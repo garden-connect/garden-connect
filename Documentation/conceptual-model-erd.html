@@ -5,7 +5,45 @@
     <title>Conceptual Model and ERD</title>
 </head>
 <body>
-<img src="ERD.png" alt="ERD Diagram">
-
+<h1>ERD Diagram</h1>
+<img src="../Garden%20Pics/ERD.png" alt="ERD Diagram">
+<h1>Conceptual Model</h1>
+    <ol>
+        <h4>Profile</h4>
+            <ul>
+                <li>profileID (primary key)</li>
+                <li>profileActivationToken (for account verification)</li>
+                <li>profileEmail</li>
+                <li>profileHash (for account password)</li>
+            </ul>
+        <h4>Posts</h4>
+            <ul>
+                <li>postID (primary key)</li>
+                <li>postCategory</li>
+                <li>postProfileID (foreign key)</li>
+                <li>postContent</li>
+                <li>postDate</li>
+            </ul>
+        <h4>Conversation</h4>
+            <ul>
+                <li>conversationID (primary key)</li>
+                <li>conversationPostID (foreign key)</li>
+                <li>conversationDate</li>
+                <li>conversationProfileID (foreign key)</li>
+                <li>conversationContent</li>
+            </ul>
+        <h4>Rating/Review</h4>
+            <ul>
+                <li>ratingID (primary key)</li>
+                <li>ratingAmount</li>
+                <li>ratingProfileID (foreign key) (of person leaving the review)</li>
+                <li>ratingContent</li>
+            </ul>
+        <h4>Following</h4>
+            <ul>
+                <li>followingProfileID1 (foreign key)</li>
+                <li>followingProfileID2 (foreign key)</li>
+            </ul>
+    </ol>
 </body>
 </html>
