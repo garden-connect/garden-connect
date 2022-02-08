@@ -11,38 +11,35 @@
     <ol>
         <h4>Profile</h4>
             <ul>
-                <li>profileID (primary key)</li>
+                <li>profileId (primary key)</li>
                 <li>profileActivationToken (for account verification)</li>
                 <li>profileEmail</li>
                 <li>profileHash (for account password)</li>
             </ul>
         <h4>Posts</h4>
             <ul>
-                <li>postID (primary key)</li>
+                <li>postId (primary key)</li>
                 <li>postCategory</li>
-                <li>postProfileID (foreign key)</li>
+                <li>postProfileId (foreign key)</li>
                 <li>postContent</li>
-                <li>postDate</li>
+                <li>postDateTime</li>
+                <li>postPicture</li>
             </ul>
         <h4>Conversation</h4>
             <ul>
-                <li>conversationID (primary key)</li>
+                <li>conversationId (primary key)</li>
                 <li>conversationPostID (foreign key)</li>
-                <li>conversationDate</li>
-                <li>conversationProfileID (foreign key)</li>
+                <li>conversationDateTime</li>
+                <li>conversationProfileId (foreign key)</li>
                 <li>conversationContent</li>
             </ul>
         <h4>Rating/Review</h4>
             <ul>
-                <li>ratingID (primary key)</li>
                 <li>ratingAmount</li>
-                <li>ratingProfileID (foreign key) (of person leaving the review)</li>
+                <li>ratingProfileId1 (foreign key) (of person leaving the review)</li>
+                <li>ratingProfileId2 (foreign key) (of person getting reviewed)</li>
                 <li>ratingContent</li>
-            </ul>
-        <h4>Following</h4>
-            <ul>
-                <li>followingProfileID1 (foreign key)</li>
-                <li>followingProfileID2 (foreign key)</li>
+                <li>ratingDateTime</li>
             </ul>
     </ol>
 </body>
