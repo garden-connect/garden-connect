@@ -5,3 +5,9 @@ export interface Profile {
     profileHash: string,
     profileName: string
 }
+
+export interface PartialProfile {
+    profileId : string|null,
+    profileEmail : string,
+    profileName : string
+}
