@@ -9,7 +9,6 @@ export const signupValidator: Schema= {
             options: {min:1, max: 32 }
         }
     },
-
     profileEmail: {
         isEmail: {
             errorMessage: 'Please provide a valid email'
@@ -34,5 +33,4 @@ export const signupValidator: Schema= {
         trim: true,
         escape: true
     },
-
 };
