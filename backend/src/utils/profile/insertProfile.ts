@@ -8,6 +8,7 @@ export async function insertProfile(profile: Profile) : Promise<string>{
         await mysqlConnection.execute(query, profile);
         return 'Profile Successfully Created'
     } catch (error) {
+        console.log("error error error")
         throw error
     }
 }
