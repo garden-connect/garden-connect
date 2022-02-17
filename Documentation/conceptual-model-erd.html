@@ -15,31 +15,32 @@
                 <li>profileActivationToken (for account verification)</li>
                 <li>profileEmail</li>
                 <li>profileHash (for account password)</li>
+                <li>profileName</li>
             </ul>
         <h4>Posts</h4>
             <ul>
                 <li>postId (primary key)</li>
-                <li>postCategory</li>
                 <li>postProfileId (foreign key)</li>
+                <li>postCategory</li>
                 <li>postContent</li>
-                <li>postDateTime</li>
+                <li>postDate</li>
                 <li>postPicture</li>
             </ul>
         <h4>Conversation</h4>
             <ul>
                 <li>conversationId (primary key)</li>
                 <li>conversationPostID (foreign key)</li>
-                <li>conversationDateTime</li>
                 <li>conversationProfileId (foreign key)</li>
+                <li>conversationDate</li>
                 <li>conversationContent</li>
             </ul>
         <h4>Rating/Review</h4>
             <ul>
-                <li>ratingAmount</li>
                 <li>ratingProfileId1 (foreign key) (of person leaving the review)</li>
                 <li>ratingProfileId2 (foreign key) (of person getting reviewed)</li>
+                <li>ratingAmount</li>
                 <li>ratingContent</li>
-                <li>ratingDateTime</li>
+                <li>ratingDate</li>
             </ul>
     </ol>
 </body>

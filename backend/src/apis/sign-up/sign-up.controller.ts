@@ -18,8 +18,8 @@ export async function signupProfileController(request: Request, response: Respon
         const profileActivationToken = setActivationToken();
         const basePath = `${request.protocol}://${request.get('host')}${request.originalUrl}/activation/${profileActivationToken}`
         console.log(profileActivationToken)
-        // console.log(basePath)
-        // console.log(profileHash)
+        console.log(basePath)
+        console.log(profileHash)
 
         const message = `<h2>Welcome to Garden Connect</h2>
 <p>Click this link to confirm your account.</p>
