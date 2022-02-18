@@ -48,8 +48,8 @@ CREATE TABLE conversation (
 CREATE TABLE rating (
                         ratingProfileId1 BINARY(16) NOT NULL,
                         ratingProfileId2 BINARY(16) NOT NULL,
-                        ratingAmount CHAR(1),
-                        ratingContent VARCHAR(1000) NOT NULL,
+                        ratingAmount CHAR(1) NOT NULL ,
+                        ratingContent VARCHAR(1000),
                         ratingDate DATETIME(6) NOT NULL,
                         INDEX(ratingProfileId1),
                         INDEX(ratingProfileId2),
