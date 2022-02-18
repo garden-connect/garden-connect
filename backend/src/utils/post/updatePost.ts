@@ -2,13 +2,13 @@ import {Post} from "../interfaces/Post";
 import {connect} from "../database.utils";
 import {ResultSetHeader, RowDataPacket} from 'mysql2';
 
-export async function insertPost(post: Post) : Promise<string> {
+export async function updatePost(post: Post) : Promise<string> {
     try {
         const mySqlConnection = await connect()
-        const mySqlQuery = "INSERT INTO post(postId, postProfileId, postActive, postCategory, postContent, postDate, postPicture ) VALUES(UUID_TO_BIN(UUID()), UUID_TO_BIN(:postProfileId), 1, :postCategory, :postContent, NOW(), :postPicture)";
+        const mySqlQuery = "UPDATE post SET postActive = :postActive, postCategory = :postCategory, postContent = :postContent, postPicture = :postPicture) WHERE postId = UUID_TO_BIN(:postId)";
 
         const [result]= await mySqlConnection.execute(mySqlQuery, post) as [ResultSetHeader, RowDataPacket]
-        return "Post created successfully"
+        return "Post updated successfully"
     } catch (error) {
         throw error
     }
