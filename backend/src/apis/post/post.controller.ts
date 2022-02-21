@@ -9,6 +9,8 @@ import {selectAllPosts} from "../../utils/post/selectAllPosts";
 import {selectPostsByPostProfileId} from "../../utils/post/selectPostsByPostProfileId";
 import {selectPostByPostId} from '../../utils/post/selectPostByPostId';
 import {deletePostByPostId} from "../../utils/post/deletePostByPostId";
+import {selectAllPostsByPostCategory} from "../../utils/post/selectAllPostsByPostCategory";
+import {updatePost} from "../../utils/post/updatePost";
 
 export async function getAllPostsController(request: Request, response: Response): Promise<Response<Status>> {
 
@@ -90,7 +92,8 @@ export async function postPost(request: Request, response: Response) : Promise<R
 
 
  export async function deletePost(request: Request, response: Response) {
- 	try {const {PostId} = request.body;
+ 	try {
+         const {PostId} = request.body;
 		const data = await deletePostByPostId(PostId)
 		const status: Status = {status: 200, data, message: null}
 		return response.json(status)
@@ -99,7 +102,44 @@ export async function postPost(request: Request, response: Response) : Promise<R
  	}
  }
 
- export async function putPost(request: Request, response: Response) {
-    try{const {}
+export async function putPostController(request: Request, response: Response) : Promise<Response>{
+    try {
+        const {postId} = request.params
+        const {postProfileId} = request.params
+        const {postActive,  postCategory, postContent, postDate, postPicture} = request.body
+        const profile = <Profile>request.session.profile
+        const postProfileIdFromSession = <string>profile.profileId
+
+        const performPostUpdate = async (post: Post) : Promise<Response> => {
+            const previousPost: Post = await selectPostByPostId(<string>post.postId) as Post
+            const newPost: Post = {...previousPost, ...post}
+            await updatePost(newPost)
+            return response.json({status: 200, data: null, message: "Post successfully updated"})
+        }
+
+        const updatePostFailed = (message: string) : Response => {
+            return response.json({status: 400, data: null, message})
+        }
+
+        return postProfileId === postProfileIdFromSession
+            ? performPostUpdate({postId, postProfileId, postActive, postCategory, postContent, postDate, postPicture})
+            : updatePostFailed("you are not allowed to perform this action")
+    } catch (error: any) {
+        return response.json( {status:400, data: null, message: error.message})
     }
- }
+}
+
+export async function getPostByPostCategoryController(request : Request, response: Response) : Promise<Response<Status>>{
+    try {
+        const     {PostCategory} = request.params
+        const data  = await selectAllPostsByPostCategory(PostCategory)
+        return response.json({status:200, message: null, data});
+    } catch(error) {
+        return response.json({
+            status: 500,
+            message: "",
+            data: null
+        })
+    }
+}
+
