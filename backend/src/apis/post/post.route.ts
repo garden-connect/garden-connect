@@ -10,11 +10,12 @@ import {
     getPostByPostCategoryController
 } from './post.controller';
 import { asyncValidatorController } from '../../utils/controllers/asyncValidator.controller';
-import { postValidator } from './post.validator';
+import { postValidator, categoryValidatorController } from './post.validator';
 import {isLoggedIn} from "../../utils/controllers/isLoggedIn.controller";
 import {check} from 'express-validator';
 import {checkSchema} from 'express-validator';
 import {deletePostByPostId} from "../../utils/post/deletePostByPostId";
+import {getProfileByProfileId} from "../profile/profile.controller";
 
 
 const router = Router();
@@ -34,8 +35,13 @@ router.route('/')
     .post(isLoggedIn, asyncValidatorController(checkSchema(postValidator)), postPost);
 
 //check scheme and validator?
-router.route("/postCategory/:postCategory").get( asyncValidatorController(checkSchema(postValidator)), getPostByPostCategoryController)
-
+router.route("/postCategory/:postCategory")
+    .get(
+        asyncValidatorController( [
+            check("postCategory", "please provide a valid category").custom(categoryValidatorController)
+        ])
+        , getProfileByProfileId
+    )
 
 
 

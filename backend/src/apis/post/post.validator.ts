@@ -1,4 +1,4 @@
-import {Schema} from 'express-validator';
+import {Schema, CustomValidator} from 'express-validator';
 
 export const postValidator : Schema = {
     postProfileId: {
@@ -6,6 +6,18 @@ export const postValidator : Schema = {
             errorMessage: 'please provide a valid PostProfileId'
         }
     },
+    postActive: {
+        isInt: {
+            errorMessage: 'active must be integer'
+        }
+    },
+
+    // postCategory: {
+    //     isString: {
+    //         errorMessage: 'must be a valid category'
+    //     }
+    // },
+
     postContent: {
         isLength: {
             errorMessage: 'a post cannot be longer than 2000 characters',
@@ -19,3 +31,12 @@ export const postValidator : Schema = {
     }
 
 };
+
+export const categoryValidatorController: CustomValidator = (value:string) => {
+    console.log(value)
+    if (value === "harvest"|| value === "hands") {
+     return true
+
+    }
+    throw new Error ("This is not a category");
+}

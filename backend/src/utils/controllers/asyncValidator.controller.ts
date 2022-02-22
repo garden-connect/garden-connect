@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from 'express';
-import {Result, Schema, ValidationChain, validationResult} from 'express-validator';
+import {Result, Schema, ValidationChain, validationResult, check } from 'express-validator';
 
 
 export const asyncValidatorController  = (validations: ValidationChain[])  => {
