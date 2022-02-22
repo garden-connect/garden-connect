@@ -5,7 +5,6 @@ import {
     getPostByPostIdController,
     getPostsByPostProfileIdController,
     postPost,
-    deletePost,
     putPostController,
     getPostByPostCategoryController
 } from './post.controller';
@@ -23,7 +22,7 @@ router.route("/:postId").get(  asyncValidatorController([
     check("postId", "please provide a valid postId").isUUID()
 ]), getPostByPostIdController)
     .put(isLoggedIn, asyncValidatorController(checkSchema(postValidator)), putPostController)
-    .delete(isLoggedIn, deletePost)
+    .delete(isLoggedIn, deletePostByPostId)
 
 router.route("/postProfileId/:postProfileId").get(  asyncValidatorController([
     check("postProfileId", "please provide a valid postProfileId").isUUID()
@@ -40,7 +39,7 @@ router.route("/postCategory/:postCategory")
         asyncValidatorController( [
             check("postCategory", "please provide a valid category").custom(categoryValidatorController)
         ])
-        , getProfileByProfileId
+        , getPostByPostCategoryController
     )
 
 

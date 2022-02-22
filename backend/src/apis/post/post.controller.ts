@@ -59,14 +59,14 @@ export async function getPostByPostIdController(request : Request, response: Res
 export async function postPost(request: Request, response: Response) : Promise<Response<Status>> {
     try {
 
-        const {postCategory, postContent, postPicture} = request.body;
+        const {postActive, postCategory, postContent, postPicture} = request.body;
         const profile : Profile = request.session.profile as Profile
         const postProfileId : string = <string>profile.profileId
 
         const post: Post = {
             postId: null,
             postProfileId,
-            postActive: null,
+            postActive,
             postCategory,
             postContent,
             postDate: null,
@@ -137,7 +137,7 @@ export async function getPostByPostCategoryController(request : Request, respons
     } catch(error) {
         return response.json({
             status: 500,
-            message: "",
+            message: "current error",
             data: null
         })
     }
