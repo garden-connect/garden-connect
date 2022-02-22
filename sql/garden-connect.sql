@@ -23,6 +23,7 @@ CREATE TABLE profile (
 CREATE TABLE post (
                        postId BINARY(16) NOT NULL,
                        postProfileId BINARY(16) NOT NULL,
+                       postActive TINYINT NOT NULL,
                        postCategory VARCHAR(16) NOT NULL,
                        postContent VARCHAR(255) NOT NULL,
                        postDate DATETIME(6) NOT NULL,
@@ -46,14 +47,14 @@ CREATE TABLE conversation (
 );
 -- create the rating entity (a weak entity from an m-to-m for profile --> profile)
 CREATE TABLE rating (
-                        ratingProfileId1 BINARY(16) NOT NULL,
-                        ratingProfileId2 BINARY(16) NOT NULL,
-                        ratingAmount CHAR(1) NOT NULL ,
+                        ratingReviewingProfileId BINARY(16) NOT NULL,
+                        ratingReviewedProfileId BINARY(16) NOT NULL,
+                        ratingAmount CHAR(1) NOT NULL,
                         ratingContent VARCHAR(1000),
                         ratingDate DATETIME(6) NOT NULL,
-                        INDEX(ratingProfileId1),
-                        INDEX(ratingProfileId2),
-                        FOREIGN KEY(ratingProfileId1) REFERENCES profile(profileId),
-                        FOREIGN KEY(ratingProfileId2) REFERENCES profile(profileId),
-                        PRIMARY KEY(ratingProfileId1, ratingProfileId2)
+                        INDEX(ratingReviewingProfileId),
+                        INDEX(ratingReviewedProfileId),
+                        FOREIGN KEY(ratingReviewingProfileId) REFERENCES profile(profileId),
+                        FOREIGN KEY(ratingReviewedProfileId) REFERENCES profile(profileId),
+                        PRIMARY KEY(ratingReviewingProfileId, ratingReviewedProfileId)
 );
