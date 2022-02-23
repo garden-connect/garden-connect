@@ -10,6 +10,7 @@ const session = require("express-session");
 const MemoryStore = require('memorystore')(session);
 import {ProfileRoute} from "./apis/profile/profile.route";
 import postRoute from "./apis/post/post.route";
+import conversationRoute from "./apis/conversation/conversation.route";
 
 
 // The following class creates the app and instantiates the server
@@ -56,6 +57,7 @@ export class App {
     this.app.use('/apis/sign-in', SignInRouter)
     this.app.use('/apis/profile', ProfileRoute)
     this.app.use('/apis/post', postRoute)
+    this.app.use('/apis/conversation', conversationRoute)
   }
 
   // starts the server and tells the terminal to post a message that the server is running and on what port
