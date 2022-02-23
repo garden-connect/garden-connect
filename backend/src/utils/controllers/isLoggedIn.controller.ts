@@ -9,8 +9,7 @@ export function isLoggedIn(request: Request, response: Response, next: NextFunct
 	let status: Status = {status: 400, message: 'Please login', data: null};
 
 	const sessionProfile = (request: Request): Profile | undefined => request.session?.profile ?? undefined;
-	console.log("session ID")
-	console.log(request.sessionID)
+
 
 	const signature = (request: Request): string => request.session?.signature ?? 'no signature'
 
@@ -43,8 +42,6 @@ export function isLoggedIn(request: Request, response: Response, next: NextFunct
 			{maxAge: '3hr'},
 			(error: VerifyErrors | null): boolean => error ? false : true
 		) as unknown
-		console.log("this is the jwt token")
-		console.log(result)
 		return result as boolean
 
 	}
