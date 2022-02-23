@@ -11,5 +11,5 @@ export async function updatePost(post: Post) : Promise<string> {
         return "Post updated successfully"
     } catch (error) {
         throw error
-    }
+    }g
 }

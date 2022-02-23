@@ -94,7 +94,6 @@ export async function postPost(request: Request, response: Response) : Promise<R
  export async function deletePost(request: Request, response: Response) : Promise<Response> {
  	try {
          const {postId} = request.params;
-         console.log("post id in controller", postId)
 		const mySqlResult = await deletePostByPostId(postId);
         const data = mySqlResult ?? null
 		const status: Status = {status: 200, data, message: null}
@@ -107,7 +106,6 @@ export async function postPost(request: Request, response: Response) : Promise<R
 export async function putPostController(request: Request, response: Response) : Promise<Response>{
     try {
         const {postId} = request.params
-        //const {postProfileId} = request.params
         const {postProfileId, postActive,  postCategory, postContent, postDate, postPicture} = request.body
         const profile = <Profile>request.session.profile
         const postProfileIdFromSession = <string>profile.profileId
