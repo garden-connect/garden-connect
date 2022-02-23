@@ -44,8 +44,8 @@ export async function getPostsByPostProfileIdController(request : Request, respo
 
 export async function getPostByPostIdController(request : Request, response: Response) : Promise<Response<Status>>{
     try {
-        const     {PostId} = request.params
-        const data  = await selectPostByPostId(PostId)
+        const     {postId} = request.params
+        const data  = await selectPostByPostId(postId)
         return response.json({status:200, message: null, data});
     } catch(error) {
         return response.json({
@@ -91,24 +91,27 @@ export async function postPost(request: Request, response: Response) : Promise<R
 
 
 
- export async function deletePost(request: Request, response: Response) {
+ export async function deletePost(request: Request, response: Response) : Promise<Response> {
  	try {
-         const {PostId} = request.body;
-		const data = await deletePostByPostId(PostId)
+         const {postId} = request.params;
+         console.log("post id in controller", postId)
+		const mySqlResult = await deletePostByPostId(postId);
+        const data = mySqlResult ?? null
 		const status: Status = {status: 200, data, message: null}
 		return response.json(status)
-	} catch (error) {
-		console.log(error)
+	} catch (error: any) {
+        return (response.json({status:400, data: null, message: error.message}))
  	}
  }
 
 export async function putPostController(request: Request, response: Response) : Promise<Response>{
     try {
         const {postId} = request.params
-        const {postProfileId} = request.params
-        const {postActive,  postCategory, postContent, postDate, postPicture} = request.body
+        //const {postProfileId} = request.params
+        const {postProfileId, postActive,  postCategory, postContent, postDate, postPicture} = request.body
         const profile = <Profile>request.session.profile
         const postProfileIdFromSession = <string>profile.profileId
+
 
         const performPostUpdate = async (post: Post) : Promise<Response> => {
             const previousPost: Post = await selectPostByPostId(<string>post.postId) as Post
@@ -122,7 +125,7 @@ export async function putPostController(request: Request, response: Response) : 
         }
 
         return postProfileId === postProfileIdFromSession
-            ? performPostUpdate({postId, postProfileId, postActive, postCategory, postContent, postDate, postPicture})
+            ? await performPostUpdate({postId, postProfileId, postActive, postCategory, postContent, postDate, postPicture})
             : updatePostFailed("you are not allowed to perform this action")
     } catch (error: any) {
         return response.json( {status:400, data: null, message: error.message})
@@ -131,8 +134,8 @@ export async function putPostController(request: Request, response: Response) : 
 
 export async function getPostByPostCategoryController(request : Request, response: Response) : Promise<Response<Status>>{
     try {
-        const     {PostCategory} = request.params
-        const data  = await selectAllPostsByPostCategory(PostCategory)
+        const     {postCategory} = request.params
+        const data  = await selectAllPostsByPostCategory(postCategory)
         return response.json({status:200, message: null, data});
     } catch(error) {
         return response.json({
