@@ -47,18 +47,6 @@ CREATE TABLE conversation (
 );
 -- create the rating entity (a weak entity from an m-to-m for profile --> profile)
 CREATE TABLE rating (
-<<<<<<< HEAD
-                        ratingReviewingProfileId BINARY(16) NOT NULL,
-                        ratingReviewedProfileId BINARY(16) NOT NULL,
-                        ratingAmount CHAR(1) NOT NULL,
-                        ratingContent VARCHAR(1000),
-                        ratingDate DATETIME(6) NOT NULL,
-                        INDEX(ratingReviewingProfileId),
-                        INDEX(ratingReviewedProfileId),
-                        FOREIGN KEY(ratingReviewingProfileId) REFERENCES profile(profileId),
-                        FOREIGN KEY(ratingReviewedProfileId) REFERENCES profile(profileId),
-                        PRIMARY KEY(ratingReviewingProfileId, ratingReviewedProfileId)
-=======
                         ratingReviewingProfile BINARY(16) NOT NULL,
                         ratingReviewedProfile BINARY(16) NOT NULL,
                         ratingAmount CHAR(1) NOT NULL,
@@ -69,5 +57,4 @@ CREATE TABLE rating (
                         FOREIGN KEY(ratingReviewingProfile) REFERENCES profile(profileId),
                         FOREIGN KEY(ratingReviewedProfile) REFERENCES profile(profileId),
                         PRIMARY KEY(ratingReviewingProfile, ratingReviewedProfile)
->>>>>>> develop
 );
