@@ -1,14 +1,14 @@
-import {Post} from "../interfaces/Post";
+import {Rating} from "../interfaces/Ratings";
 import {connect} from "../database.utils";
 import {ResultSetHeader, RowDataPacket} from 'mysql2';
 
-export async function updatePost(post: Post) : Promise<string> {
+export async function updateRating(rating: Rating) : Promise<string> {
     try {
         const mySqlConnection = await connect()
-        const mySqlQuery = "UPDATE post SET postActive = :postActive, postCategory = :postCategory, postContent = :postContent, postPicture = :postPicture WHERE postId = UUID_TO_BIN(:postId)";
+        const mySqlQuery = "UPDATE rating SET ratingAmount = :ratingAmount, ratingContent = :ratingContent, ratingDate = NOW() WHERE ratingReviewingProfileId = UUID_TO_BIN(:ratingReviewingProfileId) AND ratingReviewedProfileId = UUID_TO_BIN(:ratingReviewedProfileId)";
 
-        const [result]= await mySqlConnection.execute(mySqlQuery, post) as [ResultSetHeader, RowDataPacket]
-        return "Post updated successfully"
+        const [result]= await mySqlConnection.execute(mySqlQuery, rating) as [ResultSetHeader, RowDataPacket]
+        return "Rating updated successfully"
     } catch (error) {
         throw error
     }
