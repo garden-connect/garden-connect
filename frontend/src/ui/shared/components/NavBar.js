@@ -1,8 +1,6 @@
 import React from "react";
 import React from "react"
 import Navbar from "react-bootstrap/Navbar";
-import NavDropdown from "react-bootstrap/NavDropdown";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import NavLink from "react-bootstrap/NavLink";
 import {Link} from "react-router-dom";
 
