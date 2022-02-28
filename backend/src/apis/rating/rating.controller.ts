@@ -13,8 +13,8 @@ import {updateRating} from "../../utils/rating/updateRating";
 
 export async function getRatingsByReviewedProfileIdController(request : Request, response: Response): Promise<Response<Status>>{
     try {
-        const     {reviewedProfileId} = request.params
-        const data  = await selectRatingsByReviewedProfileId(reviewedProfileId)
+        const     {ratingReviewedProfileId} = request.params
+        const data  = await selectRatingsByReviewedProfileId(ratingReviewedProfileId)
         return response.json({status:200, message: null, data});
     } catch(error) {
         return response.json({
@@ -32,7 +32,6 @@ export async function postRating(request: Request, response: Response) : Promise
         const {ratingAmount, ratingContent} = request.body;
         const profile : Profile = request.session.profile as Profile
         const ratingReviewingProfileId : string = <string>profile.profileId
-
         const rating: Rating = {
             ratingReviewedProfileId,
             ratingReviewingProfileId,

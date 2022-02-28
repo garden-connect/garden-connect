@@ -17,7 +17,7 @@ const router = Router();
 
 router.route("/:ratingReviewedProfileId")
     .get(  asyncValidatorController([
-        check("postId", "please provide a valid postId").isUUID()
+        check("ratingReviewedProfileId", "please provide a valid ratingReviewedProfileId").isUUID()
     ]), getRatingsByReviewedProfileIdController)
     .post(isLoggedIn, asyncValidatorController(checkSchema(ratingValidator)), postRating)
     .put(isLoggedIn, asyncValidatorController(checkSchema(ratingValidator)), putRatingController)
