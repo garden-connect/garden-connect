@@ -12,6 +12,7 @@ const MemoryStore = require('memorystore')(session);
 import {ProfileRoute} from "./apis/profile/profile.route";
 import postRoute from "./apis/post/post.route";
 import conversationRoute from "./apis/conversation/conversation.route";
+import {ImageUploadRouter} from "./apis/image-upload/image-upload.route";
 
 
 // The following class creates the app and instantiates the server
@@ -60,6 +61,7 @@ export class App {
     this.app.use('/apis/post', postRoute)
     this.app.use('/apis/conversation', conversationRoute)
     this.app.use('/apis/rating', ratingRoute)
+    this.app.use('/apis/image-upload', ImageUploadRouter)
   }
 
   // starts the server and tells the terminal to post a message that the server is running and on what port
