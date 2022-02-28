@@ -2,6 +2,7 @@ import express, { Application } from 'express'
 import morgan from 'morgan'
 import signUpRoute from "./apis/sign-up/sign-up.route";
 // Routes
+import ratingRoute from "./apis/rating/rating.route"
 import { indexRoute } from './apis/index.route'
 import {SignInRouter} from "./apis/sign-in/sign-in.route";
 import {SignOutRoute} from "./apis/sign-out/sign-out.route";
@@ -58,6 +59,7 @@ export class App {
     this.app.use('/apis/profile', ProfileRoute)
     this.app.use('/apis/post', postRoute)
     this.app.use('/apis/conversation', conversationRoute)
+    this.app.use('/apis/rating', ratingRoute)
   }
 
   // starts the server and tells the terminal to post a message that the server is running and on what port

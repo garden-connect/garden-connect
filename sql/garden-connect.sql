@@ -25,7 +25,7 @@ CREATE TABLE post (
                        postProfileId BINARY(16) NOT NULL,
                        postActive TINYINT NOT NULL,
                        postCategory VARCHAR(16) NOT NULL,
-                       postContent VARCHAR(255) NOT NULL,
+                       postContent VARCHAR(512) NOT NULL,
                        postDate DATETIME(6) NOT NULL,
                        postPicture VARCHAR(255),
                        INDEX(postProfileId),
@@ -37,7 +37,7 @@ CREATE TABLE conversation (
                        conversationId BINARY(16) NOT NULL,
                        conversationPostId BINARY(16) NOT NULL,
                        conversationProfileId BINARY(16) NOT NULL,
-                       conversationContent VARCHAR(2000) NOT NULL,
+                       conversationContent VARCHAR(1000) NOT NULL,
                        conversationDate DATETIME(6) NOT NULL,
                        INDEX(conversationPostId),
                        INDEX(conversationProfileId),
@@ -47,14 +47,14 @@ CREATE TABLE conversation (
 );
 -- create the rating entity (a weak entity from an m-to-m for profile --> profile)
 CREATE TABLE rating (
-                        ratingReviewingProfile BINARY(16) NOT NULL,
-                        ratingReviewedProfile BINARY(16) NOT NULL,
+                        ratingReviewedProfileId BINARY(16) NOT NULL,
+                        ratingReviewingProfileId BINARY(16) NOT NULL,
                         ratingAmount CHAR(1) NOT NULL,
                         ratingContent VARCHAR(1000),
                         ratingDate DATETIME(6) NOT NULL,
-                        INDEX(ratingReviewingProfile),
-                        INDEX(ratingReviewedProfile),
-                        FOREIGN KEY(ratingReviewingProfile) REFERENCES profile(profileId),
-                        FOREIGN KEY(ratingReviewedProfile) REFERENCES profile(profileId),
-                        PRIMARY KEY(ratingReviewingProfile, ratingReviewedProfile)
+                        INDEX(ratingReviewedProfileId),
+                        INDEX(ratingReviewingProfileId),
+                        FOREIGN KEY(ratingReviewedProfileId) REFERENCES profile(profileId),
+                        FOREIGN KEY(ratingReviewingProfileId) REFERENCES profile(profileId),
+                        PRIMARY KEY(ratingReviewingProfileId, ratingReviewedProfileId)
 );
