@@ -1,7 +1,5 @@
 import React from "react";
-import Container from "react";
-import Row from "react";
-import Col from "react";
+import {Container, Row, Col} from "react-bootstrap";
 
 
 export const Harvest = () => {
@@ -9,42 +7,31 @@ export const Harvest = () => {
         <>
             <main>
                 <Container>
-                    <Row>
                     {/*Individual post*/}
-                        <Col>
-                            {/*Content sits horizontally in desktop and stacks in mobile*/}
-                            Profile Id, & date
-                            {/*Header^*/}
-                            Image
-                            Post title
-                            Post text
-                        </Col>
-                    </Row>
-                </Container>
-                <Container>
                     <Row>
-                        {/*Individual post*/}
+
                         <Col>
                             {/*Content sits horizontally in desktop and stacks in mobile*/}
-                            Profile Id, & date
-                            Image
-                            Post title
-                            Post text
+                            Profile Id, & date (Links to profile and ratings)
+                        </Col>
+                        <Col>
+                            Message button
                         </Col>
                     </Row>
-                </Container>
-                <Container>
                     <Row>
-                        {/*Individual post*/}
-                        <Col>
-                            {/*Content sits horizontally in desktop and stacks in mobile*/}
-                            Profile Id, & date
+                         <Col>
                             Image
+                         </Col>
+                        <Col>
                             Post title
                             Post text
                         </Col>
                     </Row>
                 </Container>
+            {/*Repeat Container for more posts*/}
+                <Container/>
+                <Container/>
+                <Container/>
             </main>
         </>
     )
