@@ -6,18 +6,21 @@ export const Harvest = () => {
     return(
         <>
             <main>
+
                 <Container>
                     {/*Individual post*/}
                     <Row>
-
                         <Col>
                             {/*Content sits horizontally in desktop and stacks in mobile*/}
-                            Profile Id, & date (Links to profile and ratings)
+                            Profile Id and # of stars (Links to profile and ratings)
                         </Col>
+
                         <Col>
                             Message button
+                        {/*Opens dialogue with profile of post*/}
                         </Col>
                     </Row>
+
                     <Row>
                          <Col>
                             Image
