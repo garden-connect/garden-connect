@@ -17,7 +17,6 @@ export const ratingValidator : Schema = {
             options: { max: 1 }
         }
     },
-
     ratingContent: {
         isLength: {
             errorMessage: 'a rating cannot be longer than 1000 characters',

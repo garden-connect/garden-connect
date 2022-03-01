@@ -32,6 +32,7 @@ export async function postRating(request: Request, response: Response) : Promise
         const {ratingAmount, ratingContent} = request.body;
         const profile : Profile = request.session.profile as Profile
         const ratingReviewingProfileId : string = <string>profile.profileId
+        console.log(ratingReviewingProfileId)
         const rating: Rating = {
             ratingReviewedProfileId,
             ratingReviewingProfileId,
