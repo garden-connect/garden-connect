@@ -18,10 +18,11 @@ export async function signInController(request: Request, response: Response): Pr
             const {profilePassword} = request.body;
 
             // @ts-ignore isEmailValid determines mySqlResult will not be null
-            const {profileId, profileActivationToken, profileHash, profileName} = mySqlResult
+            const {profileId, profileAbout, profileActivationToken, profileHash, profileName} = mySqlResult
 
             const profile: Profile = {
                 profileId,
+                profileAbout,
                 profileActivationToken,
                 profileEmail,
                 profileHash,

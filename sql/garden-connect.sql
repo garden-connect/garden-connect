@@ -11,6 +11,7 @@ DROP TABLE IF EXISTS profile;
 -- create the profile entity
 CREATE TABLE profile (
                          profileId BINARY(16) NOT NULL,
+                         profileAbout VARCHAR(1000),
                          profileActivationToken CHAR(32),
                          profileEmail VARCHAR(128) NOT NULL,
                          profileHash CHAR(97) NOT NULL,
