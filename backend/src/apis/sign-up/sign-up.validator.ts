@@ -9,6 +9,12 @@ export const signupValidator: Schema= {
             options: {min:1, max: 32 }
         }
     },
+    profileAbout: {
+        isLength: {
+            errorMessage: 'About Me must be no larger than 1000 characters',
+            options: {max: 1000}
+        }
+    },
     profileEmail: {
         isEmail: {
             errorMessage: 'Please provide a valid email'

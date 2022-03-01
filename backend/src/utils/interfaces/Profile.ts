@@ -1,5 +1,6 @@
 export interface Profile {
     profileId : string|null,
+    profileAbout : string|null,
     profileActivationToken: string|null,
     profileEmail: string,
     profileHash: string,
@@ -8,6 +9,7 @@ export interface Profile {
 
 export interface PartialProfile {
     profileId : string|null,
+    profileAbout : string|null,
     profileEmail : string,
     profileName : string
 }
