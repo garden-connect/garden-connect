@@ -6,6 +6,12 @@ export const profileValidator : Schema = {
       errorMessage: 'please provide a valid ProfileId'
     }
   },
+  profileAbout: {
+    isLength: {
+      errorMessage: 'profileAbout must be no greater than 1000 characters',
+      options: {max: 1000}
+    }
+  },
   profileEmail: {
     isEmail: {
       errorMessage: 'Please provide a valid email'
@@ -16,8 +22,8 @@ export const profileValidator : Schema = {
     escape: true,
     trim: true,
     isLength: {
-      errorMessage: 'profileName must be no greater than thirty two characters',
-      options: {min:1, max: 32 }
+      errorMessage: 'profileName must be between eight and thirty two characters',
+      options: {min: 8, max: 32 }
     }
   },
 };
