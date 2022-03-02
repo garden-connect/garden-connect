@@ -5,25 +5,25 @@ import {Link} from "react-router-dom";
 import {Nav, Container} from "react-bootstrap";
 
 export const NavBar = () => (
-<Navbar bg="light" expand="lg">
+<Navbar bg="light" expand="xl">
     <Container>
         <Navbar.Brand href="#home">Garden Connect</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
-                <Nav.Link href="#home">
+                <NavLink href="#home">
                     <Link exact to="/">My Profile</Link>
-                </Nav.Link>
-                <Nav.Link href="#link"> <Link exact to="/harvest">
+                </NavLink>
+                <NavLink href="#link"> <Link exact to="/harvest">
                     Harvest
                 </Link>
-                </Nav.Link>
-                <Nav.Link href="#home">
+                </NavLink>
+                <NavLink href="#home">
                     <Link exact to="/hands">Hands</Link>
-                </Nav.Link>
-                <Nav.Link href="#link">
+                </NavLink>
+                <NavLink href="#link">
                     <Link exact to="/post">New Post</Link>
-                </Nav.Link>
+                </NavLink>
             </Nav>
         </Navbar.Collapse>
     </Container>
