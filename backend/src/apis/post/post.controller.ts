@@ -59,7 +59,7 @@ export async function getPostByPostIdController(request : Request, response: Res
 export async function postPost(request: Request, response: Response) : Promise<Response<Status>> {
     try {
 
-        const {postActive, postCategory, postContent, postPicture} = request.body;
+        const {postActive, postCategory, postContent, postPicture, postTitle} = request.body;
         const profile : Profile = request.session.profile as Profile
         const postProfileId : string = <string>profile.profileId
 
@@ -70,7 +70,8 @@ export async function postPost(request: Request, response: Response) : Promise<R
             postCategory,
             postContent,
             postDate: null,
-            postPicture
+            postPicture,
+            postTitle
         }
         const result = await insertPost(post)
         const status: Status = {
@@ -106,7 +107,7 @@ export async function postPost(request: Request, response: Response) : Promise<R
 export async function putPostController(request: Request, response: Response) : Promise<Response>{
     try {
         const {postId} = request.params
-        const {postProfileId, postActive,  postCategory, postContent, postDate, postPicture} = request.body
+        const {postProfileId, postActive,  postCategory, postContent, postDate, postPicture, postTitle} = request.body
         const profile = <Profile>request.session.profile
         const postProfileIdFromSession = <string>profile.profileId
 
@@ -123,7 +124,7 @@ export async function putPostController(request: Request, response: Response) : 
         }
 
         return postProfileId === postProfileIdFromSession
-            ? await performPostUpdate({postId, postProfileId, postActive, postCategory, postContent, postDate, postPicture})
+            ? await performPostUpdate({postId, postProfileId, postActive, postCategory, postContent, postDate, postPicture, postTitle})
             : updatePostFailed("you are not allowed to perform this action")
     } catch (error: any) {
         return response.json( {status:400, data: null, message: error.message})

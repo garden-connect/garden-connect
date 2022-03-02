@@ -6,4 +6,5 @@ export interface Post {
     postContent: string;
     postDate: Date|null;
     postPicture: string;
+    postTitle: string;
 }
