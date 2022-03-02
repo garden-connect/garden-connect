@@ -6,10 +6,10 @@ import {Link} from "react-router-dom";
 
 export const NavBar = () => (
     <header>
-        <Navbar bg="primary" expand="sm" variant="dark">
-            <Link  to="/"><Navbar.Brand>Infinity ÷ -0</Navbar.Brand> </Link>
+        <Navbar bg="primary" color="white" expand="sm" variant="dark">
+            <Link  to="/"><Navbar.Brand>Garden Connect</Navbar.Brand> </Link>
                 <NavLink>
-                    <Link exact to="/my-profile">My Profile</Link>
+                    <Link exact to="/">My Profile</Link>
                 </NavLink>
                 <NavLink>
                     <Link exact to="/harvest">
