@@ -10,7 +10,7 @@ export const Profile = () => {
                     <Row>
                         <Col>
                             ProfileName *****<a>(12)</a>
-                        {/*click on stars or number to go to rating/review page. (12) means 12 reviews written*/}
+                        {/*click on stars or number to go to rating/review page. (12) means 12 reviews written. Clicking on profileName does nothing*/}
                         </Col>
                         {/*Edit Profile Button*/}
                         <Col>
