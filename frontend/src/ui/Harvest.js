@@ -6,6 +6,7 @@ export const Harvest = () => {
     return(
         <>
             <main>
+                <h2 className={"text-center"}>Harvest</h2>
                 <div>
                     <Container className={"border border-dark p-3 m-5"}>
                         {/*Individual post*/}

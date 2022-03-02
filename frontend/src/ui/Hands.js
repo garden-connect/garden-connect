@@ -14,7 +14,7 @@ export const Hands = () => {
     ]
     return(
         <>
-
+            <h2 className={"text-center"}>Hands</h2>
                 <div>
                     <Container>
                         {/*Individual post*/}
