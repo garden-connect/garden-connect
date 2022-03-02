@@ -11,6 +11,21 @@ export const Post = () => {
 
                         </Col>
                     </Row>
+                    <Row>
+                        <Col>
+
+                        </Col>
+                    </Row>
+                    <Row>
+                    <Col>
+
+                    </Col>
+                </Row>
+                    <Row>
+                    <Col>
+
+                    </Col>
+                </Row>
                 </Container>
             </main>
         </>
