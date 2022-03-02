@@ -1,34 +1,41 @@
-import React from "react";
-import {Container, Row, Col, Button} from "react-bootstrap";
+import React, {useState} from "react";
+import {Modal, Button} from "react-bootstrap";
+
 
 export const Message = () => {
+    const [lgShow, setLgShow] = useState(false);
+
     return (
         <>
 
-            <main>
-                {/*Modal That displays message history of posts and actual messanger to right of history*/}
-                <Container>
-                    {/*Scrollable message history on left of modal*/}
-                    <Row>
-                        <Col>
-                        </Col>
-                    </Row>
-                    {/*Messaging box to communicate between two users*/}
-                    <Row>
-                        <Col>
-                        </Col>
-                    </Row>
+            <Button variant="primary" onClick={() => setLgShow(true)}>
+                Custom Width Modal
+            </Button>
 
-                    <Row>
-                        <Col>
-                        </Col>
-                    </Row>
-                    <Row>
-                        <Col>
-                        </Col>
-                    </Row>
-                </Container>
-            </main>
+            <Modal
+                size={"lg"}
+                show={lgShow}
+                onHide={() => setLgShow(false)}
+                dialogClassName="modal-90w"
+                aria-labelledby="example-custom-modal-styling-title"
+            >
+                <Modal.Header closeButton>
+                    <Modal.Title id="example-custom-modal-styling-title">
+                        Custom Modal Styling
+                    </Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <p>
+                        Ipsum molestiae natus adipisci modi eligendi? Debitis amet quae unde
+                        commodi aspernatur enim, consectetur. Cumque deleniti temporibus
+                        ipsam atque a dolores quisquam quisquam adipisci possimus
+                        laboriosam. Quibusdam facilis doloribus debitis! Sit quasi quod
+                        accusamus eos quod. Ab quos consequuntur eaque quo rem! Mollitia
+                        reiciendis porro quo magni incidunt dolore amet atque facilis ipsum
+                        deleniti rem!
+                    </p>
+                </Modal.Body>
+            </Modal>
         </>
     )
 }
