@@ -1,5 +1,4 @@
 import React from "react";
-import React from "react"
 import Navbar from "react-bootstrap/Navbar";
 import NavLink from "react-bootstrap/NavLink";
 import {Link} from "react-router-dom";

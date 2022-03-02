@@ -6,7 +6,7 @@ export function Signin() {
         <>
             <Container>
                 <h1>Welcome to Garden Connect!</h1>
-                <p>Please sign in. IF you do not already have an account, click on "Sign Up" to create one.</p>
+                <p>Please sign in. If you do not already have an account, click on "Sign Up" to create one.</p>
                 <Button variant="primary" type="sign up">
                     Sign Up
                 </Button>
