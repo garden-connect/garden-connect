@@ -2,29 +2,31 @@ import React from "react";
 import Navbar from "react-bootstrap/Navbar";
 import NavLink from "react-bootstrap/NavLink";
 import {Link} from "react-router-dom";
+import {Nav, Container} from "react-bootstrap";
 
 export const NavBar = () => (
-    <header>
-        <Navbar bg="primary" color="white" expand="sm" variant="dark">
-            <Link  to="/"><Navbar.Brand>Garden Connect</Navbar.Brand> </Link>
-                <NavLink>
-                    <Link exact to="/">My Profile</Link>
+<Navbar bg="light" expand="sm">
+    <Container fluid>
+        <Navbar.Brand href="#home">Garden Connect</Navbar.Brand>
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Collapse id="basic-navbar-nav">
+            <Nav className="me-auto">
+                <NavLink title="My Profile" href="#home">
+                    <Link exact to="/">Profile</Link>
+
                 </NavLink>
-                <NavLink>
-                    <Link exact to="/harvest">
-                        Harvest
-                    </Link>
+                <NavLink href="#link"> <Link exact to="/harvest">
+                    Harvest
+                </Link>
                 </NavLink>
-                <NavLink>
-                    <Link exact to="/hands">
-                        Hands
-                    </Link>
+                <NavLink href="#home">
+                    <Link exact to="/hands">Hands</Link>
                 </NavLink>
-                <NavLink>
-                    <Link exact to="/new-post">
-                        New Post
-                    </Link>
+                <NavLink href="#link">
+                    <Link exact to="/post">Sign-out</Link>
                 </NavLink>
-        </Navbar>
-    </header>
+            </Nav>
+        </Navbar.Collapse>
+    </Container>
+</Navbar>
 );
