@@ -26,6 +26,14 @@ export const postValidator : Schema = {
         trim: true,
         escape: true
     },
+    postTitle: {
+        isLength: {
+            errorMessage: 'a title cannot be longer than 50 characters',
+            options: {max: 50}
+        },
+        trim: true,
+        escape: true
+    },
     postDate: {
         toDate: true
     }

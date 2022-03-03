@@ -29,6 +29,7 @@ CREATE TABLE post (
                        postContent VARCHAR(512) NOT NULL,
                        postDate DATETIME(6) NOT NULL,
                        postPicture VARCHAR(255),
+                       postTitle VARCHAR(50),
                        INDEX(postProfileId),
                        FOREIGN KEY(postProfileId) REFERENCES profile(profileId),
                        PRIMARY KEY(postId)
