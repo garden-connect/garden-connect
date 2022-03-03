@@ -1,5 +1,5 @@
 import React from "react";
-import {Container, Dropdown, DropdownButton, Form, FormLabel, Row} from "react-bootstrap";
+import {Button, Container, Dropdown, DropdownButton, Form, FormLabel, Row} from "react-bootstrap";
 
 
 export const Post = () => {
@@ -15,7 +15,7 @@ export const Post = () => {
                         <input id={"postTitle"} placeholder={"Custom Title"}/>
                         {/*Image Input*/}
                         <FormLabel>Image</FormLabel>
-                    <input className="form-control" id="addPicture"
+                    <input className="form-control" type={"file"} id="addPicture"
                            placeholder="Add Image"/>
                         {/*Select Category*/}
                         <FormLabel>Harvest or Hands</FormLabel>
@@ -27,6 +27,7 @@ export const Post = () => {
                         <FormLabel>Item Description</FormLabel>
                         <input id={"postDescription"} placeholder={"Description must be no longer than 512 characters"}/>
                     </Row>
+                    <Button className={"mt-3"}>Post</Button>
                 </Form>
                 </Container>
             </main>
