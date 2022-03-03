@@ -1,7 +1,6 @@
 import React from "react";
-import {Container, Row} from "react-bootstrap";
+import {Button, Col, Container, Row} from "react-bootstrap";
 import {PostComponents} from "./shared/components/PostComponents";
-
 
 export const Hands = () => {
 
@@ -14,13 +13,16 @@ export const Hands = () => {
     ]
     return(
         <>
-            <h2 className={"text-center"}>Hands</h2>
+                <h2 className={"text-center"}>Hands</h2>
+
+                <Button>Create Post</Button>
+
                 <div>
-                    <Container>
+                    <Container fluid>
                         {/*Individual post*/}
-                        <Row>
+
                             {postComponents.map(postComponents => <PostComponents postComponents={postComponents}/>)}
-                        </Row>
+
                     </Container>
                 </div>
                 {/*Repeat Container for more posts*/}
