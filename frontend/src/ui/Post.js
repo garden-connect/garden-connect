@@ -1,16 +1,33 @@
-import React from "react";
-import {Button, Container, Dropdown, DropdownButton, Form, FormLabel, Row} from "react-bootstrap";
+import React, {useState} from "react";
+import {Button, Container, Dropdown, DropdownButton, Form, FormLabel, Modal, Row} from "react-bootstrap";
 
+//This is for creating post
 
 export const Post = () => {
+    const [lgShow, setLgShow] = useState(false);
     return (
         <>
             <main>
                 <Container>
-                {/*Create Post Form*/}
+                    {/*Modal pop up button*/}
+                    <Button variant="primary" onClick={() => setLgShow(true)}>
+                        Create Post
+                    </Button>
+                    {/*Modal*/}
+                    <Modal
+                        size={"lg"}
+                        show={lgShow}
+                        onHide={() => setLgShow(false)}
+                        dialogClassName="modal-90w"
+                        aria-labelledby="example-custom-modal-styling-title"
+                    >
+                        <Modal.Header closeButton>
+                        </Modal.Header>
+                        <Modal.Body>
+                            {/*Create Post Form*/}
                 <Form>
                     <Row>
-                        {/*Post Form Title Input*/}
+                        {/*Title Input*/}
                         <FormLabel>Title</FormLabel>
                         <input id={"postTitle"} placeholder={"Custom Title"}/>
                         {/*Image Input*/}
@@ -27,8 +44,13 @@ export const Post = () => {
                         <FormLabel>Item Description</FormLabel>
                         <input id={"postDescription"} placeholder={"Description must be no longer than 512 characters"}/>
                     </Row>
-                    <Button className={"mt-3"}>Post</Button>
+                    <div className={"mt-3"}>
+                    <Button>Post</Button>
+                    <Button className={"mx-3"}>Cancel</Button>
+                    </div>
                 </Form>
+                        </Modal.Body>
+                    </Modal>
                 </Container>
             </main>
         </>

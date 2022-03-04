@@ -1,13 +1,12 @@
 import React, {useState} from "react";
-import {Modal, Button, Row, Col, InputGroup, FormControl} from "react-bootstrap";
-
+import {Modal, Button, Row, Col, InputGroup, FormControl, Container} from "react-bootstrap";
 
 export const Message = () => {
     const [lgShow, setLgShow] = useState(false);
 
     return (
         <>
-
+            <Container>
             <Button variant="primary" onClick={() => setLgShow(true)}>
                 Messages
             </Button>
@@ -55,6 +54,7 @@ export const Message = () => {
                         </Row>
                 </Modal.Body>
             </Modal>
+            </Container>
         </>
     )
 }
