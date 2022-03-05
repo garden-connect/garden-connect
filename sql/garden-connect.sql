@@ -1,4 +1,4 @@
--- this is a comment in SQL (yes, the space is needed!)
+cd -- this is a comment in SQL (yes, the space is needed!)
 -- these statements will drop the tables and re-add them
 -- this is akin to reformatting and reinstalling Windows (OS X never needs a reinstall...) ;)
 -- never ever ever ever ever ever ever ever ever ever ever ever ever ever ever ever ever ever ever ever

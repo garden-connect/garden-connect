@@ -1,4 +1,4 @@
-import {Button, Col, Image, ModalBody, Row, Stack} from "react-bootstrap";
+import {Button, Col, Container, Image, ModalBody, Row, Stack} from "react-bootstrap";
 import React, {useState} from "react";
 import {Modal} from "react-bootstrap";
 
@@ -19,8 +19,11 @@ function Message() {
                     </Modal.Title>
                 </Modal.Header>
                 <ModalBody>
-                    <input></input>
-                    <Button>Send</Button>
+                    <Container fluid>
+                        <Col lg={9}>
+                    <input></input></Col>
+                    <Col lg={3}><Button >Send</Button></Col>
+                    </Container>
                 </ModalBody>
             </Modal>
         </>
@@ -31,8 +34,8 @@ function Message() {
 
 
 
-export const PostComponents = ({postComponents}) => {
-    const {name, rating, title, content, date} = postComponents
+export const PostComponents = ({postData}) => {
+    const {name, rating, title, content, date} = postData
     return (
         <>
             <Row className={"border border-dark border-rounded p-3 m-5"}>
