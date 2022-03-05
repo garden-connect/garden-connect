@@ -1,5 +1,6 @@
 import React from 'react'
 import 'bootstrap/dist/css/bootstrap.css';
+import './App.css'
 import { BrowserRouter } from 'react-router-dom'
 import { Route, Switch } from 'react-router'
 import { FourOhFour } from './FourOhFour'
