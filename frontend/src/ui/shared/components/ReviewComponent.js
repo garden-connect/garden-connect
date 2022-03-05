@@ -23,7 +23,7 @@ export const ReviewComponent = () => {
                         {/*<p>On: {date}</p>*/}
                     </Stack>
                     <div>
-                        <p>Review Content.  This is a review.  This person sucked.  I hated their tomatoes.  They were ugly.</p>
+                        <p className={"review-component"}>Review Content.  This is a review.  This person sucked.  I hated their tomatoes.  They were ugly.</p>
                     </div>
                 </Col>
             </Row>

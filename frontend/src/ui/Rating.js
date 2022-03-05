@@ -4,6 +4,15 @@ import {ReviewComponent} from "./shared/components/ReviewComponent";
 
 export const Rating = () => {
     const [lgShow, setLgShow] = useState(true);
+    // function showReadMoreButton(element){
+    //     if (element.offsetHeight < element.scrollHeight ||
+    //         element.offsetWidth < element.scrollWidth) {
+    //         // your element has an overflow
+    //         // show read more button
+    //     } else {
+    //         // your element doesn't have overflow
+    //     }
+    // }
 
     return (
         <>
@@ -39,6 +48,7 @@ export const Rating = () => {
                                     {/*[***] - Rated By: ProfileName *****<a>(10)</a> On: DateTime <br/>*/}
                                     {/*Review Content - expands if you click on arrows on right that appear next to ... \/*/}
                                     <ReviewComponent/>
+
                                 </Col>
                             </Row>
                             <Row>
