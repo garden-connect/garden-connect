@@ -1,10 +1,8 @@
 import {Button, Col, Image, Row, Stack} from "react-bootstrap";
 import React from "react";
 
-
-
-export const PostComponents = ({postComponents}) => {
-    const {name, rating, title, content, date} = postComponents
+export const PostComponents = ({postData}) => {
+    const {name, rating, title, content, date} = postData
 
     return (
         <>
