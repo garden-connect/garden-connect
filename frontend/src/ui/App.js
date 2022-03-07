@@ -13,15 +13,19 @@ import { Harvest } from './Harvest'
 import { Post } from './Post'
 import { Message } from './Message'
 import { NavBar } from './shared/components/NavBar'
+import { Home } from './Home'
+import { Provider } from "react-redux";
 
 
-export const App = () => (
+export const App = (store) =>  (
     <>
+        <Provider store={store}>
         <BrowserRouter>
 
             <NavBar/>
 
             <Switch>
+                <Route exact path='/home' component={ Home } />
                 <Route exact path='/' component={ Profile } />
                 <Route exact path={ '/hands'} component={Hands} />
                 <Route exact path={ '/harvest'} component={Harvest} />
@@ -33,6 +37,7 @@ export const App = () => (
                 <Route component={FourOhFour} />
             </Switch>
         </BrowserRouter>
+        </Provider>
 
     </>
 )
