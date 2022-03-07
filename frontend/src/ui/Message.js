@@ -48,7 +48,7 @@ export const Message = () => {
                                 {/*input message*/}
                                 <InputGroup className={"justify-content-end"}>
                                     <FormControl/>
-                                    <InputGroup.Text>Send</InputGroup.Text>
+                                    <Button>Send</Button>
                                 </InputGroup>
                             </Col>
                         </Row>
