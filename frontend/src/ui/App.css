@@ -1,6 +1,28 @@
-.review-component {
+.review-text {
     display: -webkit-box;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 1;
     overflow: hidden;
 }
+.review-container br {
+    display: none;
+}
+/*.review-container {*/
+/*    display: inline;*/
+/*}*/
+.review-container input {
+    opacity: 0;
+    position: absolute;
+    pointer-events: none;
+}
+.review-container input:focus ~ label {
+    outline: -webkit-focus-ring-color auto 5px;
+}
+.review-container input:checked + p {
+    -webkit-line-clamp: unset;
+}
+.review-container input:checked ~ label,
+    p:not(.truncated) ~ label{
+        display: none;
+}
+

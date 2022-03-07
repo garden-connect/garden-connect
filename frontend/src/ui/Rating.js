@@ -13,6 +13,15 @@ export const Rating = () => {
     //         // your element doesn't have overflow
     //     }
     // }
+    const ps = document.querySelectorAll('p');
+    const observer = new ResizeObserver(entries => {
+        for (let entry of entries) {
+            entry.target.classList[entry.target.scrollHeight > entry.contentRect.height ? 'add' : 'remove']('truncated');
+        }
+    });
+    ps.forEach(p => {
+        observer.observe(p);
+    });
 
     return (
         <>
@@ -32,7 +41,7 @@ export const Rating = () => {
                             {/*ProfileId Rating/Review Header*/}
                             <Row>
                                 <Col>
-                                    ProfileName *****<a>(12)</a>
+                                    ProfileName *****(12)
                                     {/*click on profileName to go to profile page. clicking on stars or number (12) does nothing.*/}
                                 </Col>
                                 {/*Leave Review Button*/}
