@@ -1,8 +1,8 @@
 import {Button, Col, Image, Row, Stack} from "react-bootstrap";
 import React from "react";
 
-export const PostComponents = ({postData}) => {
-    const {name, rating, title, content, date} = postData
+export const PostComponents = ({post}) => {
+    const { postContent, postCategory} = post
 
     return (
         <>
@@ -12,13 +12,12 @@ export const PostComponents = ({postData}) => {
                 </Col>
                 <Col>
                     <Stack direction={"horizontal"} gap={3}>
-                        <p>{name}</p><p>{rating}</p>
-                        <p>{date}</p>
+                        <p>{postCategory}</p><p>{postContent}</p>
                         <Button>Message</Button>
                     </Stack>
                     <div>
-                        <h3>{title}</h3>
-                        <p>{content}</p>
+                        {/*<h3>{title}</h3>*/}
+                        {/*<p>{content}</p>*/}
                     </div>
                 </Col>
             </Row>
