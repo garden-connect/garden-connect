@@ -22,7 +22,7 @@ export const PostCard = ({post}) => {
     // console.log(ratingsAmount)
     const ratingsNumber = ratingsAmount.map(x => parseInt(x, 10))
     // console.log(ratingsNumber)
-    const ratingsAverage = ratingsNumber.reduce((a,b) => a + b, 0)/ratingsNumber.length;
+    const ratingsAverage = ratingsNumber.length && Math.round(ratingsNumber.reduce((a,b) => a + b, 0)/ratingsNumber.length);
     // console.log(ratingsAverage)
     // console.log(ratingsAmount.length)
     const ratingReviews = ratings.map(rating => rating.ratingContent)
