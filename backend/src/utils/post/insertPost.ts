@@ -9,6 +9,9 @@ export async function insertPost(post: Post) : Promise<string> {
         const [result]= await mySqlConnection.execute(mySqlQuery, post) as [ResultSetHeader, RowDataPacket]
         return "Post created successfully"
     } catch (error) {
+        console.log("error: " + error)
         throw error
+
+
     }
 }
