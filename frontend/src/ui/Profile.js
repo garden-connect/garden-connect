@@ -10,19 +10,26 @@ export const Profile = ({match}) => {
     const dispatch = useDispatch()
 
 
-    function sideEffects() {
+    const sideEffects = () => {
         dispatch(fetchPostsByPostProfileId(match.params.profileId));
         dispatch(fetchProfileByProfileId(match.params.profileId));
         dispatch(fetchRatingsByReviewedProfileId(match.params.profileId));
     }
     useEffect(sideEffects, [match.params.profileId, dispatch])
 
-    const posts = useSelector(state => state.posts ? state.posts.filter(post => post.postProfileId === match.params.profileId) : []);
+    const posts = useSelector(state => (state.posts ? state.posts.filter(post => post.postProfileId === match.params.profileId) : []));
     const postsActive = posts.filter(post => post.postActive === 1)
     const postsInactive = posts.filter(post => post.postActive === 0)
-    const profile = useSelector(state => state.profiles ? state.profiles[0] : null);
-    const ratings = useSelector(state => state.ratings ? state.ratings.filter(rating => rating.ratingReviewedProfileId === match.params.profileId) : [])
-
+    // console.log(posts)
+    const profile = useSelector(state => (state.profiles ? state.profiles[0] : null));
+    // console.log(profile)
+    const ratings = useSelector(state => (state.ratings ? state.ratings.filter(rating => rating.ratingReviewedProfileId === match.params.profileId) : []));
+    // const ratings = useSelector(state => (state.ratings ? state.ratings[0] : null));
+    console.log(ratings)
+    const ratingsAmount = ratings.map(rating => rating.ratingAmount)
+    console.log(ratingsAmount)
+    // const ratingsAverage = ratingsAmount.reduce((a,b) => a + b)/ratingsAmount.length;
+    // console.log(ratingsAverage)
     return (
         <>
             <main>
@@ -35,6 +42,7 @@ export const Profile = ({match}) => {
                         </Col>
                         <Col xs={1}>
                             {/*{ratings && (<h2>{ratings.ratingAmount}</h2>)}*/}
+                            {}
                             <p>****</p>
                         </Col>
                         {/*Edit Profile or Rating/Review Button*/}
@@ -64,7 +72,7 @@ export const Profile = ({match}) => {
                                     {/*<PostCard/>*/}
                                     {/*{postComponents.map(postComponents => <PostCard postComponents={postComponents}/>)}*/}
                                     {postsInactive.map((post , index) =>  <PostCard post={post} key={index}/>)}
-                                    <p>Old Posts</p>
+                                    {/*<p>Old Posts</p>*/}
                                 </Tab>
                             </Tabs>
                             {/*2 Tabs: Active Posts & Previous Posts*/}

@@ -5,9 +5,10 @@ import {useSelector} from "react-redux";
 export const PostCard = ({post}) => {
     // const { postContent, postCategory} = post
     const profiles = useSelector(state => state.profiles ? state.profiles : null)
-
+    // console.log(profiles)
     const FindProfileName = () => {
         const profile = profiles.find(profile => post.postProfileId === profile.profileId)
+        // console.log(profile)
         return (
             <>
                 {profile && <h3>{profile.profileName}</h3>}

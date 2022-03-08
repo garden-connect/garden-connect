@@ -6,7 +6,7 @@ const slice = createSlice({
     initialState: [],
     reducers: {
         getRatingsByReviewedProfileId: (ratings, action) => {
-            ratings.push(action.payload)
+            return action.payload
         }
     }
 })
