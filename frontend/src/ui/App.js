@@ -26,9 +26,9 @@ export const App = (store) =>  (
 
             <Switch>
                 <Route exact path='/home' component={ Home } />
-                <Route exact path='/' component={ Profile } />
+                <Route exact path='/' component={ Harvest } />
                 <Route exact path={ '/hands'} component={Hands} />
-                <Route exact path={ '/harvest'} component={Harvest} />
+                <Route exact path={ '/profile/:profileId'} component={Profile} profileId={":profileId"}/>
                 <Route exact path={ '/message'} component={Message} />
                 <Route exact path={ '/post'} component={Post} />
                 <Route exact path={ '/rating'}  component={Rating} />
