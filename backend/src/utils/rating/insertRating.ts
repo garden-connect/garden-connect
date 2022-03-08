@@ -9,6 +9,7 @@ export async function insertRating(rating: Rating) : Promise<string> {
         const [result]= await mySqlConnection.execute(mySqlQuery, rating) as [ResultSetHeader, RowDataPacket]
         return "Rating created successfully"
     } catch (error) {
+        console.log("error: " + error)
         throw error
     }
 }

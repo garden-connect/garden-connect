@@ -25,8 +25,12 @@ export const PostCard = ({post}) => {
     const ratingsAverage = ratingsNumber.reduce((a,b) => a + b, 0)/ratingsNumber.length;
     // console.log(ratingsAverage)
     // console.log(ratingsAmount.length)
-    // const ratingReviews = ratings.map(rating => rating.ratingContent)
-    // const reviewCount =
+    const ratingReviews = ratings.map(rating => rating.ratingContent)
+    // console.log(ratingReviews)
+    const filteredReviews = ratingReviews.filter(entry => entry.length > 0)
+    // console.log(filteredReviews)
+    const reviewCount = filteredReviews.length
+    // console.log(reviewCount)
 
     return (
         <>
@@ -39,7 +43,7 @@ export const PostCard = ({post}) => {
                         {/*<p>{postCategory}</p><p>{postContent}</p>*/}
                         <p>{post.postCategory}</p>
                         <FindProfileName/>
-                        <p>{ratingsAverage}****</p>
+                        <p>{ratingsAverage}(reviews: {reviewCount})</p>
                         <p>{post.postDate}</p>
                         <Button>Message</Button>
                     </Stack>
