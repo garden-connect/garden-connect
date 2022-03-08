@@ -15,6 +15,18 @@ export const PostCard = ({post}) => {
             </>
         )
     }
+    const ratings = useSelector(state => (state.ratings ? state.ratings.filter(rating => rating.ratingReviewedProfileId === post.postProfileId) : []));
+    // const ratings = useSelector(state => (state.ratings ? state.ratings[0] : null));
+    // console.log(ratings)
+    const ratingsAmount = ratings.map(rating => rating.ratingAmount)
+    // console.log(ratingsAmount)
+    const ratingsNumber = ratingsAmount.map(x => parseInt(x, 10))
+    // console.log(ratingsNumber)
+    const ratingsAverage = ratingsNumber.reduce((a,b) => a + b, 0)/ratingsNumber.length;
+    // console.log(ratingsAverage)
+    // console.log(ratingsAmount.length)
+    // const ratingReviews = ratings.map(rating => rating.ratingContent)
+    // const reviewCount =
 
     return (
         <>
@@ -25,8 +37,9 @@ export const PostCard = ({post}) => {
                 <Col>
                     <Stack direction={"horizontal"} gap={3}>
                         {/*<p>{postCategory}</p><p>{postContent}</p>*/}
-                        <p>{post.profileName}</p>
                         <p>{post.postCategory}</p>
+                        <FindProfileName/>
+                        <p>{ratingsAverage}****</p>
                         <p>{post.postDate}</p>
                         <Button>Message</Button>
                     </Stack>
@@ -34,9 +47,6 @@ export const PostCard = ({post}) => {
                         <p>{post.postContent}</p>
                         {/*<h3>{title}</h3>*/}
                         {/*<p>{content}</p>*/}
-                    </div>
-                    <div>
-                        <FindProfileName/>
                     </div>
                 </Col>
             </Row>

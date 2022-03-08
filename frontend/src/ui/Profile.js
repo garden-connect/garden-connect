@@ -25,14 +25,14 @@ export const Profile = ({match}) => {
     // console.log(profile)
     const ratings = useSelector(state => (state.ratings ? state.ratings.filter(rating => rating.ratingReviewedProfileId === match.params.profileId) : []));
     // const ratings = useSelector(state => (state.ratings ? state.ratings[0] : null));
-    console.log(ratings)
+    // console.log(ratings)
     const ratingsAmount = ratings.map(rating => rating.ratingAmount)
-    console.log(ratingsAmount)
+    // console.log(ratingsAmount)
     const ratingsNumber = ratingsAmount.map(x => parseInt(x, 10))
-    console.log(ratingsNumber)
+    // console.log(ratingsNumber)
     const ratingsAverage = ratingsNumber.reduce((a,b) => a + b, 0)/ratingsNumber.length;
-    console.log(ratingsAverage)
-    console.log(ratingsAmount.length)
+    // console.log(ratingsAverage)
+    // console.log(ratingsAmount.length)
     return (
         <>
             <main>
@@ -45,7 +45,7 @@ export const Profile = ({match}) => {
                         </Col>
                         <Col xs={1}>
                             {/*{ratings && (<h2>{ratings.ratingAmount}</h2>)}*/}
-                            {}
+                            {ratingsAverage}
                             <p>****</p>
                         </Col>
                         {/*Edit Profile or Rating/Review Button*/}
