@@ -1,6 +1,6 @@
 import React from "react";
 import {Container, Row} from "react-bootstrap";
-import {PostComponents} from "./shared/components/PostComponents";
+import {PostCard} from "./shared/components/PostCard";
 
 
 export const Hands = () => {
@@ -19,7 +19,7 @@ export const Hands = () => {
                     <Container>
                         {/*Individual post*/}
                         <Row>
-                            {postComponents.map(postComponents => <PostComponents postComponents={postComponents}/>)}
+                            {postComponents.map(postComponents => <PostCard postComponents={postComponents}/>)}
                         </Row>
                     </Container>
                 </div>

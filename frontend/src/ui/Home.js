@@ -1,7 +1,7 @@
 import React, {useEffect} from "react"
 import {useDispatch, useSelector} from "react-redux";
 import {fetchAllPosts} from "../store/posts";
-import {PostComponents} from "./shared/components/PostComponents";
+import {PostCard} from "./shared/components/PostCard";
 
 
 export const Home = () => {
@@ -20,7 +20,7 @@ export const Home = () => {
     return (
         <>
             <h1>Home</h1>
-            {posts.map((post , index) =>  <PostComponents post={post} key={index}/>)}
+            {posts.map((post , index) =>  <PostCard post={post} key={index}/>)}
         </>
     )
 }
