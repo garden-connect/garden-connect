@@ -12,10 +12,10 @@ export const NavBar = () => (
         <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
                 <NavLink title="My Profile" href="#home">
-                    <Link exact to="/">Profile</Link>
+                    <Link exact to="/profile">Profile</Link>
 
                 </NavLink>
-                <NavLink href="#link"> <Link exact to="/harvest">
+                <NavLink href="#link"> <Link exact to="/">
                     Harvest
                 </Link>
                 </NavLink>

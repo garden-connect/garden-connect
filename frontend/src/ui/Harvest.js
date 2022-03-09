@@ -1,37 +1,45 @@
-import React from "react";
-import {Container, Row, Col, Button, Image, Stack} from "react-bootstrap";
+import React, {useEffect} from "react";
+import {Container, Row, Col, Button, Tabs, Tab, Image, Stack} from "react-bootstrap";
+import {PostCard} from "./shared/components/PostCard";
+import {useDispatch, useSelector} from "react-redux";
+import {fetchAllPosts, fetchPostsByPostCategory} from "../store/posts";
 
 
 export const Harvest = () => {
-    return(
+
+    const dispatch = useDispatch()
+
+
+    const sideEffects = () => {
+
+        dispatch(fetchPostsByPostCategory("harvest"));
+    }
+    useEffect(sideEffects, [dispatch])
+
+    const posts = useSelector(state => (state.posts ? state.posts : []));
+    const postsActive = posts.filter(post => post.postActive === 1);
+    const postsInactive = posts.filter(post => post.postActive === 0);
+    // console.log(posts)
+    const profile = useSelector(state => (state.profiles ? state.profiles[0] : null));
+    // // console.log(profile)
+    const ratings = useSelector(state => (state.ratings ? state.ratings : []));
+    // // const ratings = useSelector(state => (state.ratings ? state.ratings[0] : null));
+    // // console.log(ratings)
+    const ratingsAmount = ratings.map(rating => rating.ratingAmount)
+    // // console.log(ratingsAmount)
+    const ratingsNumber = ratingsAmount.map(x => parseInt(x, 10))
+    // // console.log(ratingsNumber)
+    const ratingsAverage = ratingsNumber.reduce((a,b) => a + b, 0)/ratingsNumber.length;
+    const profiles = useSelector(state => state.profiles ? state.profiles : null)
+    // console.log(profiles)
+    const FindProfileName = () => {
+        // const profile = profiles.find(profile => post.postProfileId === profile.profileId)
+        // console.log(profile)
+    }
+
+    return (
         <>
-            <main>
-                <h2 className={"text-center"}>Harvest</h2>
-                <div>
-                    <Container className={"border border-dark p-3 m-5"}>
-                        {/*Individual post*/}
-                        <Row>
-                            <Col lg={4}>
-                                <Image fluid className={"d-block mx-auto"} src="https://via.placeholder.com/200"></Image>
-                            </Col>
-                            <Col lg={8}>
-                                <Stack  className={"justify-content-center"} direction={"horizontal"} gap={5}>
-                                    {/*Content sits horizontally in desktop and stacks in mobile*/}
-                                    <p>Sheamus ****(6)</p><p>2/22/2022</p><Button>Message</Button>
-                                    {/*Opens dialogue with profile of post*/}
-                                </Stack>
-
-                                <div>
-                                    <h3>Who wants some pickles??</h3>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in</p>
-                                </div>
-                            </Col>
-                        </Row>
-                    </Container>
-                </div>
-                {/*Repeat Container for more posts*/}
-
-            </main>
+            {postsActive.map((post , index) =>  <PostCard post={post} key={index}/>)}
         </>
-    )
-};
+    );
+}
