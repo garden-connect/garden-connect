@@ -58,3 +58,40 @@ export const Message = () => {
         </>
     )
 }
+
+//New Message from post modal
+export const CreateMessage = () => {
+    const [lgShow, setLgShow] = useState(false);
+
+    return (
+        <>
+            <Container>
+                <Button variant="primary" onClick={() => setLgShow(true)}>
+                    Message
+                </Button>
+
+                <Modal
+                    size={"lg"}
+                    show={lgShow}
+                    onHide={() => setLgShow(false)}
+                    dialogClassName="modal-90w"
+                    aria-labelledby="example-custom-modal-styling-title"
+                >
+                    <Modal.Header closeButton>
+                    </Modal.Header>
+                    <Modal.Body>
+                        {/*New Message*/}
+                        <Row>
+                                <h6 align={"center"}>Carrots chat with Old Mcdonald</h6>
+                                {/*input message*/}
+                                <InputGroup className={"justify-content-end"}>
+                                    <FormControl/>
+                                    <Button>Send</Button>
+                                </InputGroup>
+                        </Row>
+                    </Modal.Body>
+                </Modal>
+            </Container>
+        </>
+    )
+}
