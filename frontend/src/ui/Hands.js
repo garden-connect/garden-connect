@@ -1,29 +1,45 @@
-import React from "react";
+import React, {useEffect} from "react";
 import {Container, Row} from "react-bootstrap";
 import {PostCard} from "./shared/components/PostCard";
+import {useDispatch, useSelector} from "react-redux";
+import {fetchPostsByPostCategory} from "../store/posts";
 
 
 export const Hands = () => {
 
-    const postComponents = [
-        {name:'Sheamus', rating:'6', title:'Yall git', content:'Need some help gettin these critters off ma property, I might be mighty obliged if you could help', date:'2-22-2022'},
-        {name:'Kaitlin', rating:'8.5', title:'Sweeping dirt', content:'Lots of dirt to sweep, please help', date:'1-11-1911'},
-        {name:'Tim', rating:'11', title:'Need more chickens', content:'Need more chickens', date:'5-6-78'},
-        {name:'Taylor', rating:'46', title:'hhhhhhhhh', content:'AAAAAAAAAAAAAAAAAAAAAAFFFFFFFFFFFF FFFFF GGGGGGGGGGGGGGGGGGGGGGGGGGG', date:'00-00-0000'}
+    const dispatch = useDispatch()
 
-    ]
-    return(
+
+    const sideEffects = () => {
+
+        dispatch(fetchPostsByPostCategory("hands"));
+    }
+    useEffect(sideEffects, [dispatch])
+
+    const posts = useSelector(state => (state.posts ? state.posts : []));
+    const postsActive = posts.filter(post => post.postActive === 1);
+    const postsInactive = posts.filter(post => post.postActive === 0);
+    // console.log(posts)
+    const profile = useSelector(state => (state.profiles ? state.profiles[0] : null));
+    // // console.log(profile)
+    const ratings = useSelector(state => (state.ratings ? state.ratings : []));
+    // // const ratings = useSelector(state => (state.ratings ? state.ratings[0] : null));
+    // // console.log(ratings)
+    const ratingsAmount = ratings.map(rating => rating.ratingAmount)
+    // // console.log(ratingsAmount)
+    const ratingsNumber = ratingsAmount.map(x => parseInt(x, 10))
+    // // console.log(ratingsNumber)
+    const ratingsAverage = ratingsNumber.reduce((a,b) => a + b, 0)/ratingsNumber.length;
+    const profiles = useSelector(state => state.profiles ? state.profiles : null)
+    // console.log(profiles)
+    const FindProfileName = () => {
+        // const profile = profiles.find(profile => post.postProfileId === profile.profileId)
+        // console.log(profile)
+    }
+
+    return (
         <>
-            <h2 className={"text-center"}>Hands</h2>
-                <div>
-                    <Container>
-                        {/*Individual post*/}
-                        <Row>
-                            {postComponents.map(postComponents => <PostCard postComponents={postComponents}/>)}
-                        </Row>
-                    </Container>
-                </div>
-                {/*Repeat Container for more posts*/}
+            {postsActive.map((post , index) =>  <PostCard post={post} key={index}/>)}
         </>
-    )
-};
+    );
+}

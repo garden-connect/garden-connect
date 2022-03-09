@@ -25,7 +25,7 @@ const slice = createSlice({
 export const {getAllPosts, getPostsByPostCategory, getPostsByPostProfileId, getPostByPostId} = slice.actions
 
 export const fetchAllPosts = () => async dispatch => {
-    const {data} = await httpConfig(`/apis/post`);
+    const {data} = await httpConfig(`/apis/post/`);
     dispatch(getAllPosts(data))
 }
 export const fetchPostsByPostProfileId = (id) => async dispatch => {
