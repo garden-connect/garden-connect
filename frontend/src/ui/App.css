@@ -4,3 +4,15 @@
     -webkit-line-clamp: 1;
     overflow: hidden;
 }
+.star-rating button {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+.on {
+    color: #000;
+}
+.off {
+    color: #ccc;
+}

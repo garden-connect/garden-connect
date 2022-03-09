@@ -5,6 +5,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {fetchPostsByPostProfileId} from "../store/posts";
 import {fetchProfileByProfileId} from "../store/profiles";
 import {fetchRatingsByReviewedProfileId} from "../store/ratings";
+import {StarRating} from "./shared/components/StarRating";
 
 export const Profile = ({match}) => {
     const dispatch = useDispatch()
@@ -30,8 +31,7 @@ export const Profile = ({match}) => {
     // console.log(ratingsAmount)
     const ratingsNumber = ratingsAmount.map(x => parseInt(x, 10))
     // console.log(ratingsNumber)
-    const ratingsAverage = ratingsNumber.length && Math.round(ratingsNumber.reduce((a,b) => a + b, 0)/ratingsNumber.length);
-    // console.log(ratingsAverage)
+    const ratingsAverage = function (ratingsNumber) {return Math.round(ratingsNumber.reduce((a,b) => a + b, 0)/ratingsNumber.length)}
     // console.log(ratingsAmount.length)
     const ratingReviews = ratings.map(rating => rating.ratingContent)
     // console.log(ratingReviews)
@@ -50,7 +50,9 @@ export const Profile = ({match}) => {
                         {/*Clicking here does nothing*/}
                         </Col>
                         <Col xs={3}>
-                            {ratings && (<p>{ratingsAverage}(reviews: {reviewCount})</p>)}
+                            {ratingsNumber.length && <StarRating avgRating={ratingsAverage(ratingsNumber)}/>}
+                            {/*<StarRating avgRating={ratingsAverage}/>*/}
+                            <p>(reviews: {reviewCount})</p>
                             {/*{ratingsAverage}*/}
                             {/*<p>****</p>*/}
                         </Col>

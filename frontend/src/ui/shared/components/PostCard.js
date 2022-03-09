@@ -1,6 +1,7 @@
 import {Button, Col, Image, Row, Stack} from "react-bootstrap";
 import React from "react";
 import {useSelector} from "react-redux";
+import {StarRating} from "./StarRating";
 
 export const PostCard = ({post}) => {
     // const { postContent, postCategory} = post
@@ -22,7 +23,7 @@ export const PostCard = ({post}) => {
     // console.log(ratingsAmount)
     const ratingsNumber = ratingsAmount.map(x => parseInt(x, 10))
     // console.log(ratingsNumber)
-    const ratingsAverage = ratingsNumber.length && Math.round(ratingsNumber.reduce((a,b) => a + b, 0)/ratingsNumber.length);
+    const ratingsAverage = function (ratingsNumber) {return Math.round(ratingsNumber.reduce((a,b) => a + b, 0)/ratingsNumber.length)}
     // console.log(ratingsAverage)
     // console.log(ratingsAmount.length)
     const ratingReviews = ratings.map(rating => rating.ratingContent)
@@ -43,7 +44,9 @@ export const PostCard = ({post}) => {
                         {/*<p>{postCategory}</p><p>{postContent}</p>*/}
                         <p>{post.postCategory}</p>
                         <FindProfileName/>
-                        <p>{ratingsAverage}(reviews: {reviewCount})</p>
+                        {ratingsNumber.length && <StarRating avgRating={ratingsAverage(ratingsNumber)}/>}
+                        <p>(reviews: {reviewCount})</p>
+                        {/*<StarRating/>*/}
                         <p>{post.postDate}</p>
                         <Button>Message</Button>
                     </Stack>
