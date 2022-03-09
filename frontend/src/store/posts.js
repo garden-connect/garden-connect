@@ -2,6 +2,7 @@ import _ from "lodash";
 import {createSlice} from "@reduxjs/toolkit";
 import {httpConfig} from "../utils/http-config";
 import {fetchProfileByProfileId} from "./profiles";
+import {fetchRatingsByReviewedProfileId} from "./ratings";
 
 const slice = createSlice({
     name: "posts",
@@ -36,14 +37,21 @@ export const fetchPostsByPostCategory = (category) => async dispatch => {
     const {data} = await httpConfig(`/apis/post/postCategory/${category}`);
     dispatch(getPostsByPostCategory(data))
 }
+export const fetchPostsRatingsProfilesByPostCategory = (category) => async (dispatch, getState) => {
+    const {data} = await httpConfig(`/apis/post/postCategory/${category}`);
+    await dispatch(getPostsByPostCategory(data))
+    const profileIds = _.uniq(_.map(getState().posts, "postProfileId"));
+    profileIds.forEach(id => dispatch(fetchProfileByProfileId(id)));
+    profileIds.forEach(id => dispatch(fetchRatingsByReviewedProfileId(id)));
+}
 export const fetchPostByPostId = (id) => async dispatch => {
     const {data} = await httpConfig(`/apis/post/${id}`);
     dispatch(getPostByPostId(data))
 }
 export const fetchAllPostsAndProfilesAndRatings = () => async (dispatch, getState) => {
     await dispatch(fetchAllPosts())
-    const userIds = _.uniq(_.map(getState().posts, "postUserId"));
-    userIds.forEach(id => dispatch(fetchProfileByProfileId(id)));
-
+    const profileIds = _.uniq(_.map(getState().posts, "postProfileId"));
+    profileIds.forEach(id => dispatch(fetchProfileByProfileId(id)));
+    profileIds.forEach(id => dispatch(fetchRatingsByReviewedProfileId(id)));
 }
 export default slice.reducer

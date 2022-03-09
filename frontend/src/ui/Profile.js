@@ -5,6 +5,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {fetchPostsByPostProfileId} from "../store/posts";
 import {fetchProfileByProfileId} from "../store/profiles";
 import {fetchRatingsByReviewedProfileId} from "../store/ratings";
+import {StarRating} from "./shared/components/StarRating";
 
 export const Profile = ({match}) => {
     const dispatch = useDispatch()
@@ -30,23 +31,35 @@ export const Profile = ({match}) => {
     // console.log(ratingsAmount)
     const ratingsNumber = ratingsAmount.map(x => parseInt(x, 10))
     // console.log(ratingsNumber)
-    const ratingsAverage = ratingsNumber.reduce((a,b) => a + b, 0)/ratingsNumber.length;
-    // console.log(ratingsAverage)
+    const ratingsAverage = function (ratingsNumber) {return Math.round(ratingsNumber.reduce((a,b) => a + b, 0)/ratingsNumber.length)}
     // console.log(ratingsAmount.length)
+    console.log(ratingsAverage(ratingsNumber))
+    console.log(ratingsNumber.length)
+    const ratingReviews = ratings.map(rating => rating.ratingContent)
+    // console.log(ratingReviews)
+    const filteredReviews = ratingReviews.filter(entry => entry.length > 0)
+    // console.log(filteredReviews)
+    const reviewCount = filteredReviews.length
+    // console.log(reviewCount)
     return (
         <>
             <main>
                 <Container fluid>
                     {/*ProfileId Rating/Review Header*/}
                     <Row>
-                        <Col xs={5}>
+                        <Col xs={3}>
                             {profile && (<h2>{profile.profileName}</h2>)}
                         {/*Clicking here does nothing*/}
                         </Col>
-                        <Col xs={1}>
-                            {/*{ratings && (<h2>{ratings.ratingAmount}</h2>)}*/}
-                            {ratingsAverage}
-                            <p>****</p>
+                        <Col xs={3}>
+                            {/*{ratingsNumber.length && <StarRating avgRating={ratingsAverage(ratingsNumber)}/>}*/}
+                            {ratingsNumber.length && <StarRating avgRating={ratingsAverage(ratingsNumber)}/> || <StarRating avgRating={0}/>}
+                            {/*{<StarRating avgRating={0}/> && <StarRating avgRating={ratingsAverage(ratingsNumber)}/>}*/}
+                            {/*{<StarRating avgRating={ratingsAverage(ratingsNumber)}/> || <StarRating avgRating={0}/>}*/}
+                            {/*<StarRating avgRating={ratingsAverage}/>*/}
+                            <p>(reviews: {reviewCount})</p>
+                            {/*{ratingsAverage}*/}
+                            {/*<p>****</p>*/}
                         </Col>
                         {/*Edit Profile or Rating/Review Button*/}
                         <Col>
