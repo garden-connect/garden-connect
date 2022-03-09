@@ -33,6 +33,8 @@ export const Profile = ({match}) => {
     // console.log(ratingsNumber)
     const ratingsAverage = function (ratingsNumber) {return Math.round(ratingsNumber.reduce((a,b) => a + b, 0)/ratingsNumber.length)}
     // console.log(ratingsAmount.length)
+    console.log(ratingsAverage(ratingsNumber))
+    console.log(ratingsNumber.length)
     const ratingReviews = ratings.map(rating => rating.ratingContent)
     // console.log(ratingReviews)
     const filteredReviews = ratingReviews.filter(entry => entry.length > 0)
@@ -50,7 +52,10 @@ export const Profile = ({match}) => {
                         {/*Clicking here does nothing*/}
                         </Col>
                         <Col xs={3}>
-                            {ratingsNumber.length && <StarRating avgRating={ratingsAverage(ratingsNumber)}/>}
+                            {/*{ratingsNumber.length && <StarRating avgRating={ratingsAverage(ratingsNumber)}/>}*/}
+                            {ratingsNumber.length && <StarRating avgRating={ratingsAverage(ratingsNumber)}/> || <StarRating avgRating={0}/>}
+                            {/*{<StarRating avgRating={0}/> && <StarRating avgRating={ratingsAverage(ratingsNumber)}/>}*/}
+                            {/*{<StarRating avgRating={ratingsAverage(ratingsNumber)}/> || <StarRating avgRating={0}/>}*/}
                             {/*<StarRating avgRating={ratingsAverage}/>*/}
                             <p>(reviews: {reviewCount})</p>
                             {/*{ratingsAverage}*/}
