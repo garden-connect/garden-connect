@@ -45,7 +45,8 @@ export const PostCard = ({post}) => {
                         {/*<p>{postCategory}</p><p>{postContent}</p>*/}
                         <p>{post.postCategory}</p>
                         <FindProfileName/>
-                        {ratingsNumber.length && <StarRating avgRating={ratingsAverage(ratingsNumber)}/>}
+                        {/*{ratingsNumber.length && <StarRating avgRating={ratingsAverage(ratingsNumber)}/>}*/}
+                        {ratingsNumber.length && <StarRating avgRating={ratingsAverage(ratingsNumber)}/> || <StarRating avgRating={0}/>}
                         <p>(reviews: {reviewCount})</p>
                         {/*<StarRating/>*/}
                         <p>{post.postDate}</p>
