@@ -41,7 +41,7 @@ export const postValidator : Schema = {
 };
 
 export const categoryValidatorController: CustomValidator = (value:string) => {
-    console.log(value)
+    // console.log(value)
     if (value === "harvest"|| value === "hands") {
      return true
 

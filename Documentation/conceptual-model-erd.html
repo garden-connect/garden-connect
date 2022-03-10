@@ -12,6 +12,7 @@
         <h4>Profile</h4>
             <ul>
                 <li>profileId (primary key)</li>
+                <li>profileAbout</li>
                 <li>profileActivationToken (for account verification)</li>
                 <li>profileEmail</li>
                 <li>profileHash (for account password)</li>
@@ -21,23 +22,26 @@
             <ul>
                 <li>postId (primary key)</li>
                 <li>postProfileId (foreign key)</li>
+                <li>postActive</li>
                 <li>postCategory</li>
                 <li>postContent</li>
                 <li>postDate</li>
                 <li>postPicture</li>
+                <li>postTitle</li>
             </ul>
         <h4>Conversation</h4>
             <ul>
                 <li>conversationId (primary key)</li>
                 <li>conversationPostID (foreign key)</li>
-                <li>conversationProfileId (foreign key)</li>
-                <li>conversationDate</li>
+                <li>conversationReceiveProfileId (foreign key)</li>
+                <li>conversationSendProfileId (foreign key)</li>
                 <li>conversationContent</li>
+                <li>conversationDate</li>
             </ul>
         <h4>Rating/Review</h4>
             <ul>
-                <li>ratingProfileId1 (foreign key) (of person leaving the review)</li>
-                <li>ratingProfileId2 (foreign key) (of person getting reviewed)</li>
+                <li>ratingReviewedProfileId (foreign key)</li>
+                <li>ratingReviewingProfileId (foreign key)</li>
                 <li>ratingAmount</li>
                 <li>ratingContent</li>
                 <li>ratingDate</li>

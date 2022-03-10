@@ -31,7 +31,7 @@ export const App = (store) =>  (
                 <Route exact path={ '/profile/:profileId'} component={Profile} profileId={":profileId"}/>
                 <Route exact path={ '/conversation'} component={Conversation} />
                 <Route exact path={ '/post'} component={Post} />
-                <Route exact path={ '/rating'}  component={Rating} />
+                <Route exact path={ '/rating/:ratingReviewedProfileId'}  component={Rating} ratingReviewedProfileId={":ratingReviewedProfileId"} />
                 <Route exact path= {'/signup'}  component={Signup} />
                 <Route exact path= {'/signin'} component={Signin} />
                 <Route component={FourOhFour} />

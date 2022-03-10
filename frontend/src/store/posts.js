@@ -39,6 +39,7 @@ export const fetchPostsByPostCategory = (category) => async dispatch => {
 }
 export const fetchPostsRatingsProfilesByPostCategory = (category) => async (dispatch, getState) => {
     const {data} = await httpConfig(`/apis/post/postCategory/${category}`);
+    console.log(data)
     await dispatch(getPostsByPostCategory(data))
     const profileIds = _.uniq(_.map(getState().posts, "postProfileId"));
     profileIds.forEach(id => dispatch(fetchProfileByProfileId(id)));

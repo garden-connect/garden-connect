@@ -1,9 +1,14 @@
 import {Schema} from 'express-validator';
 
 export const conversationValidator : Schema = {
-    conversationProfileId: {
+    conversationReceiveProfileId: {
         isUUID: {
-            errorMessage: 'please provide a valid conversationProfileId'
+            errorMessage: 'please provide a valid conversationReceiveProfileId'
+        }
+    },
+    conversationSendProfileId: {
+        isUUID: {
+            errorMessage: 'please provide a valid conversationSendProfileId'
         }
     },
     conversationPostId: {

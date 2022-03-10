@@ -11,11 +11,13 @@ export async function postConversationController(request: Request, response: Res
     try {
 
         const profile : Profile = request.session.profile as Profile
-        const conversationProfileId : string = <string>profile.profileId
-        const {conversationPostId, conversationContent} = request.body
+        const conversationSendProfileId : string = <string>profile.profileId
+        console.log(conversationSendProfileId)
+        const {conversationReceiveProfileId, conversationPostId, conversationContent} = request.body
         const conversation: Conversation = {
             conversationId: null,
-            conversationProfileId,
+            conversationReceiveProfileId,
+            conversationSendProfileId,
             conversationPostId,
             conversationContent,
             conversationDate : null

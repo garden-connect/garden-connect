@@ -70,6 +70,7 @@ export const Profile = ({match}) => {
                     {/*About Me*/}
                     <Row>
                         <Col xs={6}>
+                            About Me:
                             {profile && (<p>{profile.profileAbout}</p>)}
                         </Col>
                         <Col xs={6}>
