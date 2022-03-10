@@ -5,7 +5,7 @@ import {ResultSetHeader, RowDataPacket} from 'mysql2';
 export async function insertConversationByPostId(conversation: Conversation) : Promise<string> {
     try {
         const mySqlConnection = await connect()
-        const mySqlQuery : string = "INSERT INTO conversation(conversationId, conversationPostId, conversationProfileId, conversationContent, conversationDate) VALUES(UUID_TO_BIN(UUID()), UUID_TO_BIN(:conversationPostId), UUID_TO_BIN(:conversationProfileId), :conversationContent, NOW())";
+        const mySqlQuery : string = "INSERT INTO conversation(conversationId, conversationPostId, conversationReceiveProfileId, conversationSendProfileId, conversationContent, conversationDate) VALUES(UUID_TO_BIN(UUID()), UUID_TO_BIN(:conversationPostId), UUID_TO_BIN(:conversationReceiveProfileId), UUID_TO_BIN(:conversationSendProfileId), :conversationContent, NOW())";
         const [result]= await mySqlConnection.execute(mySqlQuery, conversation) as [ResultSetHeader, RowDataPacket]
         return "Conversation created successfully"
     } catch (error) {

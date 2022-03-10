@@ -1,7 +1,8 @@
 export interface Conversation {
     conversationId: string|null;
     conversationPostId: string;
-    conversationProfileId: string;
+    conversationReceiveProfileId: string;
+    conversationSendProfileId: string;
     conversationContent: string;
     conversationDate: Date|null;
 }
