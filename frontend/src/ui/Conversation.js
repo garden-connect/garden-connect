@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import {Modal, Button, Row, Col, InputGroup, FormControl, Container} from "react-bootstrap";
 
-export const Message = () => {
+export const Conversation = () => {
     const [lgShow, setLgShow] = useState(false);
 
     return (
@@ -24,7 +24,7 @@ export const Message = () => {
 
                         <Row>
                         <Col xs={6} md={4}>
-                    {/*Message History*/}
+                    {/*Conversation History*/}
                     <ul className="nav nav-pills flex-column mb-auto">
                         <li>
                             <h5>Message History of Posts</h5>
@@ -59,7 +59,7 @@ export const Message = () => {
     )
 }
 
-//New Message from post modal
+//New Conversation from post modal
 export const CreateMessage = () => {
     const [lgShow, setLgShow] = useState(false);
 
@@ -80,7 +80,7 @@ export const CreateMessage = () => {
                     <Modal.Header closeButton>
                     </Modal.Header>
                     <Modal.Body>
-                        {/*New Message*/}
+                        {/*New Conversation*/}
                         <Row>
                                 <h6 align={"center"}>Carrots chat with Old Mcdonald</h6>
                                 {/*input message*/}

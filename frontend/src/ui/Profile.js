@@ -92,13 +92,13 @@ export const Profile = ({match}) => {
                                 </Tab>
                             </Tabs>
                             {/*2 Tabs: Active Posts & Previous Posts*/}
-                            {/*Message History Button to the right (goes to message modal)*/}
+                            {/*Conversation History Button to the right (goes to message modal)*/}
                         </Col>
                     </Row>
                     {/*Post Tab Content*/}
                     <Row>
                         <Col>
-                            {/*Scroll through Post content. Each post has Message Icon if viewing other peoples' profiles or Edit Icon if viewing own profile page*/}
+                            {/*Scroll through Post content. Each post has Conversation Icon if viewing other peoples' profiles or Edit Icon if viewing own profile page*/}
                         </Col>
                     </Row>
                 </Container>
