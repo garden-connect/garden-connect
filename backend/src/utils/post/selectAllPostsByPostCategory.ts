@@ -9,6 +9,7 @@ export async function selectAllPostsByPostCategory(postCategory: string) : Promi
         const result = await mySqlConnection.execute(mySqlQuery, {postCategory}) as RowDataPacket[]
         return result[0] as Array<Post>
     } catch (error) {
+        console.error(error)
         throw error
     }
 }

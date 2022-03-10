@@ -43,10 +43,9 @@ router.route('/')
 //check scheme and validator?
 router.route("/postCategory/:postCategory")
     .get(
-        asyncValidatorController( [
-            check("postCategory", "please provide a valid category").custom(categoryValidatorController)
-        ])
-        , getPostByPostCategoryController
+            asyncValidatorController([check("postCategory", "please provide a valid category").custom(categoryValidatorController),
+
+      ]),   getPostByPostCategoryController
     )
 
 
