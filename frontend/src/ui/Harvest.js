@@ -1,8 +1,7 @@
 import React, {useEffect} from "react";
-import {Container, Row, Col, Button, Tabs, Tab, Image, Stack} from "react-bootstrap";
 import {PostCard} from "./shared/components/PostCard";
 import {useDispatch, useSelector} from "react-redux";
-import {fetchAllPosts, fetchPostsByPostCategory, fetchPostsRatingsProfilesByPostCategory} from "../store/posts";
+import {fetchPostsRatingsProfilesByPostCategory} from "../store/posts";
 
 
 export const Harvest = () => {
