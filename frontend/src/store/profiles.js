@@ -5,17 +5,17 @@ const slice = createSlice({
     name: "profiles",
     initialState: [],
     reducers: {
-        getProfileByProfileId: (profiles, action) => {
-            profiles.push(action.payload)
+        setProfiles: (profiles, action) => {
+            return [...new Set([...profiles, ...action.payload])]
         }
     }
 })
 
-export const {getProfileByProfileId} = slice.actions
+export const {setProfiles} = slice.actions
 
 export const fetchProfileByProfileId = (id) => async dispatch => {
     const {data} = await httpConfig(`/apis/profile/${id}`);
-    dispatch(getProfileByProfileId(data))
+    dispatch(setProfiles([data]))
 }
 
 export default slice.reducer

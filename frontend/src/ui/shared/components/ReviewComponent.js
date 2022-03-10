@@ -10,19 +10,7 @@ import {fetchProfileByProfileId} from "../../../store/profiles";
 export const ReviewComponent = ({review}) => {
     // const [open, setOpen] = useState(false);
 
-    const dispatch = useDispatch()
-
-    const sideEffects = () => {
-        // dispatch(fetchAllRatersRatings(match.params.ratingReviewedProfileId))
-
-        dispatch(fetchRatingsByReviewedProfileId(review.ratingReviewedProfileId))
-        dispatch(fetchProfileByProfileId(review.ratingReviewedProfileId))
-    }
-    // console.log(match.params.ratingReviewedProfileId)
-    useEffect(sideEffects, [review.ratingReviewedProfileId, dispatch])
-
-
-    const profiles = useSelector(state => state.profiles ? state.profiles : null)
+    const profiles = useSelector(state => state.profiles ? state.profiles : [])
     const FindProfileName = () => {
         const profile = profiles.find(profile => review.ratingReviewingProfileId === profile.profileId)
         // console.log(profile)
@@ -53,7 +41,7 @@ export const ReviewComponent = ({review}) => {
         <>
             <Row className={"border border-dark p-3 m-2"}>
                 <Col xs={1}>
-                    <p>{review.ratingAmount}</p>
+                    <p>{<StarRating avgRating={review.ratingAmount}/>}</p>
                 </Col>
                 <Col xs={1}>
 

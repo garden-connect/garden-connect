@@ -11,14 +11,13 @@ export const Rating = ({match}) => {
     const dispatch = useDispatch()
 
     const sideEffects = () => {
-        // dispatch(fetchAllRatersRatings(match.params.ratingReviewedProfileId))
-        dispatch(fetchRatingsByReviewedProfileId(match.params.ratingReviewedProfileId))
         dispatch(fetchProfileByProfileId(match.params.ratingReviewedProfileId))
+        dispatch(fetchAllRatersRatings(match.params.ratingReviewedProfileId))
     }
     // console.log(match.params.ratingReviewedProfileId)
     useEffect(sideEffects, [match.params.ratingReviewedProfileId, dispatch])
 
-    const profile = useSelector(state => (state.profiles ? state.profiles[0] : null))
+    const profile = useSelector(state => (state.profiles ? state.profiles.filter(profile => profile.profileId === match.params.ratingReviewedProfileId)[0] : null));
     //  Is this going to erase all my fetched profile info from fetchAllRatersRatings?????????
     const ratings = useSelector(state => (state.ratings ? state.ratings.filter(rating => rating.ratingReviewedProfileId === match.params.ratingReviewedProfileId) : []));
     // const ratings = useSelector(state => (state.ratings ? state.ratings[0] : null));
@@ -29,8 +28,8 @@ export const Rating = ({match}) => {
     // console.log(ratingsNumber)
     const ratingsAverage = function (ratingsNumber) {return Math.round(ratingsNumber.reduce((a,b) => a + b, 0)/ratingsNumber.length)}
     // console.log(ratingsAmount.length)
-    console.log(ratingsAverage(ratingsNumber))
-    console.log(ratingsNumber.length)
+    // console.log(ratingsAverage(ratingsNumber))
+    // console.log(ratingsNumber.length)
     const ratingReviews = ratings.map(rating => rating.ratingContent)
     // console.log(ratingReviews)
     const filteredReviews = ratingReviews.filter(entry => entry.length > 0)
