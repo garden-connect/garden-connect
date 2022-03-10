@@ -137,6 +137,7 @@ export async function getPostByPostCategoryController(request : Request, respons
         const data  = await selectAllPostsByPostCategory(postCategory)
         return response.json({status:200, message: null, data});
     } catch(error) {
+        console.error(error)
         return response.json({
             status: 500,
             message: "current error",
