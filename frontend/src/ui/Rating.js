@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react";
 import {Container, Row, Col, Button, Modal, Stack} from "react-bootstrap";
 import {ReviewComponent} from "./shared/components/ReviewComponent";
 import {useDispatch, useSelector} from "react-redux";
-import {fetchAllRatersRatings} from "../store/ratings";
+import {fetchAllRatersRatings, fetchRatingsByReviewedProfileId} from "../store/ratings";
 import {fetchProfileByProfileId} from "../store/profiles";
 import {StarRating} from "./shared/components/StarRating";
 
@@ -11,7 +11,8 @@ export const Rating = ({match}) => {
     const dispatch = useDispatch()
 
     const sideEffects = () => {
-        dispatch(fetchAllRatersRatings(match.params.ratingReviewedProfileId))
+        // dispatch(fetchAllRatersRatings(match.params.ratingReviewedProfileId))
+        dispatch(fetchRatingsByReviewedProfileId(match.params.ratingReviewedProfileId))
         dispatch(fetchProfileByProfileId(match.params.ratingReviewedProfileId))
     }
     // console.log(match.params.ratingReviewedProfileId)
@@ -19,7 +20,7 @@ export const Rating = ({match}) => {
 
     const profile = useSelector(state => (state.profiles ? state.profiles[0] : null))
     //  Is this going to erase all my fetched profile info from fetchAllRatersRatings?????????
-    const ratings = useSelector(state => (state.ratings ? state.ratings.filter(rating => rating.ratingReviewedProfileId === match.params.profileId) : []));
+    const ratings = useSelector(state => (state.ratings ? state.ratings.filter(rating => rating.ratingReviewedProfileId === match.params.ratingReviewedProfileId) : []));
     // const ratings = useSelector(state => (state.ratings ? state.ratings[0] : null));
     // console.log(ratings)
     const ratingsAmount = ratings.map(rating => rating.ratingAmount)

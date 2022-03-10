@@ -22,7 +22,7 @@ export const fetchRatingsByReviewedProfileId = (id) => async dispatch => {
 
 export const fetchAllRatersRatings = (id) => async (dispatch, getState) => {
     const {data} = await httpConfig(`/apis/rating/${id}`);
-    console.log(data)
+    // console.log(data)
     await dispatch(getRatingsByReviewedProfileId(data))
     const reviewingIds = _.uniq(_.map(getState().ratings, "ratingReviewingProfileId"))
     reviewingIds.forEach(id => dispatch(fetchProfileByProfileId(id)));

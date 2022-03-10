@@ -1,13 +1,27 @@
 import {Col, Row, Stack} from "react-bootstrap";
-import React, {useState} from "react";
-import {useSelector} from "react-redux";
-import ratings from "../../../store/ratings";
+import React, {useEffect, useState} from "react";
+import {useDispatch, useSelector} from "react-redux";
+import ratings, {fetchRatingsByReviewedProfileId} from "../../../store/ratings";
 import {StarRating} from "./StarRating";
+import {fetchProfileByProfileId} from "../../../store/profiles";
 
 // export const ReviewComponent = ({reviewComponent}) => {
     // const {name, rating, content, date} = reviewComponent
 export const ReviewComponent = ({review}) => {
     // const [open, setOpen] = useState(false);
+
+    const dispatch = useDispatch()
+
+    const sideEffects = () => {
+        // dispatch(fetchAllRatersRatings(match.params.ratingReviewedProfileId))
+
+        dispatch(fetchRatingsByReviewedProfileId(review.ratingReviewedProfileId))
+        dispatch(fetchProfileByProfileId(review.ratingReviewedProfileId))
+    }
+    // console.log(match.params.ratingReviewedProfileId)
+    useEffect(sideEffects, [review.ratingReviewedProfileId, dispatch])
+
+
     const profiles = useSelector(state => state.profiles ? state.profiles : null)
     const FindProfileName = () => {
         const profile = profiles.find(profile => review.ratingReviewingProfileId === profile.profileId)
@@ -28,7 +42,7 @@ export const ReviewComponent = ({review}) => {
     const ratingsAverage = function (ratingsNumber) {return Math.round(ratingsNumber.reduce((a,b) => a + b, 0)/ratingsNumber.length)}
     // console.log(ratingsAverage)
     // console.log(ratingsAmount.length)
-    const ratingReviews = ratings.map(rating => rating.ratingContent)
+    const ratingReviews = ratersRatings.map(rating => rating.ratingContent)
     // console.log(ratingReviews)
     const filteredReviews = ratingReviews.filter(entry => entry.length > 0)
     // console.log(filteredReviews)
