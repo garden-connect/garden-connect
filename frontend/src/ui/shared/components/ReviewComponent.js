@@ -1,7 +1,7 @@
 import {Col, Row, Stack} from "react-bootstrap";
 import React, {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import ratings, {fetchRatingsByReviewedProfileId} from "../../../store/ratings";
+import {fetchRatingsByReviewedProfileId} from "../../../store/ratings";
 import {StarRating} from "./StarRating";
 import {fetchProfileByProfileId} from "../../../store/profiles";
 

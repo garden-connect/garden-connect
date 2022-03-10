@@ -29,8 +29,8 @@ export const Rating = ({match}) => {
     // console.log(ratingsNumber)
     const ratingsAverage = function (ratingsNumber) {return Math.round(ratingsNumber.reduce((a,b) => a + b, 0)/ratingsNumber.length)}
     // console.log(ratingsAmount.length)
-    // console.log(ratingsAverage(ratingsNumber))
-    // console.log(ratingsNumber.length)
+    console.log(ratingsAverage(ratingsNumber))
+    console.log(ratingsNumber.length)
     const ratingReviews = ratings.map(rating => rating.ratingContent)
     // console.log(ratingReviews)
     const filteredReviews = ratingReviews.filter(entry => entry.length > 0)
@@ -67,7 +67,7 @@ export const Rating = ({match}) => {
                                 <Col>
                                     <Stack direction={"horizontal"}>
                                         {profile && (<h2>{profile.profileName}</h2>)}
-                                        {ratingsNumber.length && <StarRating avgRating={ratingsAverage(ratingsNumber)}/> || <StarRating avgRating={0}/>}
+                                        {(ratingsNumber.length && <StarRating avgRating={ratingsAverage(ratingsNumber)}/>) || <StarRating avgRating={0}/>}
                                         <p>(reviews: {reviewCount})</p>
                                     </Stack>
                                     {/*click on profileName to go to profile page. clicking on stars or number (12) does nothing.*/}
