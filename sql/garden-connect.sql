@@ -38,13 +38,16 @@ CREATE TABLE post (
 CREATE TABLE conversation (
                        conversationId BINARY(16) NOT NULL,
                        conversationPostId BINARY(16) NOT NULL,
-                       conversationProfileId BINARY(16) NOT NULL,
+                       conversationReceiveProfileId BINARY(16) NOT NULL,
+                       conversationSendProfileId BINARY(16) NOT NULL,
                        conversationContent VARCHAR(1000) NOT NULL,
                        conversationDate DATETIME(6) NOT NULL,
                        INDEX(conversationPostId),
-                       INDEX(conversationProfileId),
+                       INDEX(conversationReceiveProfileId),
+                       INDEX(conversationSendProfileId),
                        FOREIGN KEY(conversationPostId) REFERENCES post(postId),
-                       FOREIGN KEY(conversationProfileId) REFERENCES profile(profileId),
+                       FOREIGN KEY(conversationReceiveProfileId) REFERENCES profile(profileId),
+                       FOREIGN KEY(conversationSendProfileId) REFERENCES profile(profileId),
                        PRIMARY KEY (conversationId)
 );
 -- create the rating entity (a weak entity from an m-to-m for profile --> profile)
