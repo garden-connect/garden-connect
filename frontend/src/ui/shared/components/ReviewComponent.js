@@ -1,5 +1,5 @@
-import {Col, Row, Stack} from "react-bootstrap";
-import React, {useEffect, useState} from "react";
+import {Button, Col, Row, Stack} from "react-bootstrap";
+import React, {useEffect, useRef, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {fetchRatingsByReviewedProfileId} from "../../../store/ratings";
 import {StarRating} from "./StarRating";
@@ -8,7 +8,26 @@ import {fetchProfileByProfileId} from "../../../store/profiles";
 // export const ReviewComponent = ({reviewComponent}) => {
     // const {name, rating, content, date} = reviewComponent
 export const ReviewComponent = ({review}) => {
-    // const [open, setOpen] = useState(false);
+    const [clamped, setClamped] = useState(true);
+    const [showButton, setShowButton] = useState(false);
+    // const handleClick = () => setClamped(!clamped);
+
+    const inputElement = useRef(null)
+
+    function ShowReadMoreButton(){
+        if (inputElement.current.offsetHeight < inputElement.current.scrollHeight ||
+            inputElement.current.offsetWidth < inputElement.current.scrollWidth) {
+            return setShowButton(!showButton)
+        } else {
+        }
+    }
+    useEffect(() => ShowReadMoreButton)
+
+    function handleClick(e) {
+        e.preventDefault();
+        setClamped(!clamped)
+    }
+
 
     const profiles = useSelector(state => state.profiles ? state.profiles : [])
     const FindProfileName = () => {
@@ -55,8 +74,9 @@ export const ReviewComponent = ({review}) => {
                         {/*<p>Rated by: {name}</p><p>{rating}</p>*/}
                         {/*<p>On: {date}</p>*/}
                     </Stack>
-                    <div>
-                        <p>{review.ratingContent}</p>
+                    <div className={"rating-content"}>
+                        <p ref={inputElement} className={clamped ? "clamped" : ""}>{review.ratingContent}</p>
+                        <a href={"#"} className={showButton ? "showButton" : ""} onClick={handleClick}>More</a>
                     </div>
                 </Col>
             </Row>

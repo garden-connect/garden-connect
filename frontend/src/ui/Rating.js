@@ -37,16 +37,6 @@ export const Rating = ({match}) => {
     const reviewCount = filteredReviews.length
     // console.log(reviewCount)
 
-    // function showReadMoreButton(element){
-    //     if (element.offsetHeight < element.scrollHeight ||
-    //         element.offsetWidth < element.scrollWidth) {
-    //         // your element has an overflow
-    //         // show read more button
-    //     } else {
-    //         // your element doesn't have overflow
-    //     }
-    // }
-
     return (
         <>
             <main>
