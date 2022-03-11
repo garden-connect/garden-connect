@@ -2,6 +2,7 @@ import React, {useEffect} from "react";
 import {PostCard} from "./shared/components/PostCard";
 import {useDispatch, useSelector} from "react-redux";
 import {fetchPostsByPostCategory} from "../store/posts";
+import {Post} from "./Post";
 
 
 export const Hands = () => {
@@ -38,7 +39,7 @@ export const Hands = () => {
 
     return (
         <>
-            <Hands/>
+            <Post/>
             {postsActive.map((post , index) =>  <PostCard post={post} key={index}/>)}
         </>
     );
