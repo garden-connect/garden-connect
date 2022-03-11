@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import got React, {useEffect, useState} from "react";
 import {PostCard} from "./shared/components/PostCard";
 import {useDispatch, useSelector} from "react-redux";
 import {fetchPostsRatingsProfilesByPostCategory} from "../store/posts";

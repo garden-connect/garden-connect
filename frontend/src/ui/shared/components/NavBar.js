@@ -23,7 +23,10 @@ export const NavBar = () => (
                     <Link exact to="/hands">Hands</Link>
                 </NavLink>
                 <NavLink href="#link">
-                    <Link exact to="/post">Sign-out</Link>
+                    <Link exact to="/signout">Sign-out</Link>
+                </NavLink>
+                <NavLink href="#link">
+                    <Link exact to="/signin">Sign-in</Link>
                 </NavLink>
             </Nav>
         </Navbar.Collapse>
