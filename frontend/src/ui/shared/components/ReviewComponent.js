@@ -10,6 +10,7 @@ import {fetchProfileByProfileId} from "../../../store/profiles";
 export const ReviewComponent = ({review}) => {
     const [clamped, setClamped] = useState(true);
     const [showButton, setShowButton] = useState(false);
+    const [moreLess, setMoreLess] = useState(true)
     // const handleClick = () => setClamped(!clamped);
 
     const inputElement = useRef(null)
@@ -17,7 +18,7 @@ export const ReviewComponent = ({review}) => {
     function ShowReadMoreButton(){
         if (inputElement.current.offsetHeight < inputElement.current.scrollHeight ||
             inputElement.current.offsetWidth < inputElement.current.scrollWidth) {
-            return setShowButton(!showButton)
+            return setShowButton(true)
         } else {
         }
     }
@@ -26,6 +27,7 @@ export const ReviewComponent = ({review}) => {
     function handleClick(e) {
         e.preventDefault();
         setClamped(!clamped)
+        setMoreLess(!moreLess)
     }
 
 
@@ -76,7 +78,7 @@ export const ReviewComponent = ({review}) => {
                     </Stack>
                     <div className={"rating-content"}>
                         <p ref={inputElement} className={clamped ? "clamped" : ""}>{review.ratingContent}</p>
-                        <a href={"#"} className={showButton ? "showButton" : ""} onClick={handleClick}>More</a>
+                        <a href={"#"} className={showButton ? "showButton" : ""} onClick={handleClick}>{moreLess ? "More" : "Less"}</a>
                     </div>
                 </Col>
             </Row>

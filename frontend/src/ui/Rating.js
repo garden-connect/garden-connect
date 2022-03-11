@@ -54,7 +54,7 @@ export const Rating = ({match}) => {
                             {/*ProfileId Rating/Review Header*/}
                             <Row>
                                 <Col>
-                                    <Stack direction={"horizontal"}>
+                                    <Stack gap={3} direction={"horizontal"}>
                                         {profile && (<h2>{profile.profileName}</h2>)}
                                         {(ratingsNumber.length && <StarRating avgRating={ratingsAverage(ratingsNumber)}/>) || <StarRating avgRating={0}/>}
                                         <p>(reviews: {reviewCount})</p>
