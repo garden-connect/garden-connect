@@ -58,7 +58,7 @@ export async function signupProfileController(request: Request, response: Respon
         if (error.message === "Forbidden") {
             const status: Status = {
                 status: 200,
-                message: 'Profile successfully created please check your email.',
+                message: 'Profile successfully created; please sign in!',
                 data: null
             };
 
