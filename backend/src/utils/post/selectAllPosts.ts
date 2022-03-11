@@ -9,6 +9,7 @@ export async function selectAllPosts() : Promise<Post[]> {
         const mySqlConnection = await connect()
         const mySqlQuery = 'SELECT BIN_TO_UUID(postId) AS postId, BIN_TO_UUID (postProfileId) AS postProfileId, postActive, postCategory, postContent, postDate, postPicture, postTitle FROM post ORDER BY postDate DESC'
         const result = await mySqlConnection.execute(mySqlQuery) as RowDataPacket[]
+        await mySqlConnection.release()
         return result[0] as Array<Post>
     } catch (error) {
         throw error

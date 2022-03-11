@@ -1,9 +1,24 @@
-.review-component {
+.rating-content p {
+    -webkit-line-clamp: none;
+}
+.rating-content .clamped {
     display: -webkit-box;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 1;
     overflow: hidden;
+    text-overflow: ellipsis;
+    overflow-wrap: break-word;
 }
+.rating-content {
+    display: flex;
+}
+.rating-content a {
+    display: none;
+}
+.rating-content .showButton {
+    display: flex;
+}
+
 .star-rating button {
     background-color: transparent;
     border: none;
