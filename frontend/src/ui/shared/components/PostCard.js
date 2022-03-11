@@ -39,6 +39,7 @@ export const PostCard = ({post}) => {
             <Row className={"border border-dark p-3 m-5"}>
                 <Col lg={3}>
                     <Image fluid className={"d-block"} src={"https://via.placeholder.com/200"}/>
+                {/*Change placeholder to post.postImage*/}
                 </Col>
                 <Col>
                     <Stack direction={"horizontal"} gap={3}>

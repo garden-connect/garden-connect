@@ -13,10 +13,11 @@ export async function signupProfileController(request: Request, response: Respon
         const mailgun: Mailgun = new Mailgun(formData)
         const mailgunClient: Client = mailgun.client({username: "api", key: <string>process.env.MAILGUN_API_KEY})
 
-        const {profileAbout, profileName, profileEmail, profilePassword} = request.body;
+        const {profileName, profileEmail, profilePassword} = request.body;
         const profileHash = await setHash(profilePassword);
+        const profileAbout = "about"
         const profileActivationToken = setActivationToken();
-        const basePath = `${request.protocol}://${request.get('host')}${request.originalUrl}/activation/${profileActivationToken}`
+        const basePath = `${request.protocol}://${request.get('host')}${request.originalUrl}activation/${profileActivationToken}`
 
         const message = `<h2>Welcome to Garden Connect</h2>
 <p>Click this link to confirm your account.</p>
@@ -29,18 +30,19 @@ export async function signupProfileController(request: Request, response: Respon
             subject: 'Garden Connect -- Account Activation',
             html: message
         }
-        // console.log(mailgunMessage)
+         console.log(mailgunMessage)
 
 
         const profile: Profile = {
             profileId: null,
-            profileAbout: null,
+            profileAbout,
             profileActivationToken,
             profileEmail,
             profileHash,
             profileName
         };
         await insertProfile(profile)
+        console.log(profile)
 
         await mailgunClient.messages.create(<string>process.env.MAILGUN_DOMAIN, mailgunMessage)
 
@@ -53,10 +55,20 @@ export async function signupProfileController(request: Request, response: Respon
         return response.json(status)
 
     } catch (error: any) {
+        if (error.message === "Forbidden") {
+            const status: Status = {
+                status: 200,
+                message: 'Profile successfully created please check your email.',
+                data: null
+            };
+
+            return (response.json(status))
+
+        }
 
         const status: Status = {
             status: 500,
-            message: error.message,
+            message:error.message,
             data: null
         };
 
