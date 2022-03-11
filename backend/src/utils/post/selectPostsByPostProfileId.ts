@@ -7,6 +7,7 @@ export async function selectPostsByPostProfileId(postProfileId: string) : Promis
         const mySqlConnection = await connect();
         const mySqlQuery = 'SELECT BIN_TO_UUID(postId) AS postId, BIN_TO_UUID (postProfileId) AS postProfileId, postActive, postCategory, postContent, postDate, postPicture, postTitle FROM post WHERE postProfileId = UUID_TO_BIN(:postProfileId) ORDER BY postDate DESC'
         const result = await <RowDataPacket>mySqlConnection.execute(mySqlQuery, {postProfileId})
+        await mySqlConnection.release()
         return result[0] as Post[]
     } catch (error) {
         throw error
