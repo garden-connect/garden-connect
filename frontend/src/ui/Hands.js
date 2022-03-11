@@ -38,6 +38,7 @@ export const Hands = () => {
 
     return (
         <>
+            <Hands/>
             {postsActive.map((post , index) =>  <PostCard post={post} key={index}/>)}
         </>
     );
