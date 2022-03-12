@@ -3,6 +3,7 @@ import Navbar from "react-bootstrap/Navbar";
 import NavLink from "react-bootstrap/NavLink";
 import {Link} from "react-router-dom";
 import {Nav, Container} from "react-bootstrap";
+import {SigninModal} from "./sign-in/SigninModal";
 
 export const NavBar = () => (
 <Navbar bg="light" expand="sm">
@@ -26,7 +27,7 @@ export const NavBar = () => (
                     <Link exact to="/signout">Sign-out</Link>
                 </NavLink>
                 <NavLink href="#link">
-                    <Link exact to="/signin">Sign-in</Link>
+                    <SigninModal/>
                 </NavLink>
             </Nav>
         </Navbar.Collapse>

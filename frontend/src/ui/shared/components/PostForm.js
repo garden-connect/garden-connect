@@ -6,6 +6,7 @@ import {PostFormContent} from "./PostFormContent";
 import {useSelector, useDispatch} from "react-redux";
 import {fetchAllPosts} from "../../../store/posts";
 
+
 export const PostForm = () => {
     const post = {
         postContent: "",
