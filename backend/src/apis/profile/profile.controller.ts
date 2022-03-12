@@ -8,11 +8,14 @@ import {updateProfile} from "../../utils/profile/updateProfile";
 export async function putProfileController(request: Request, response: Response) : Promise<Response>{
   try {
     const {profileId} = request.params
-    const {profileEmail, profileName} = request.body
+    const {profileName} = request.body
     // const profileAbout = request.body.profileAbout ?? null;
     const profileAbout = request.body.profileAbout ?? "";
     const profile = <Profile>request.session.profile
     const profileIdFromSession = <string>profile.profileId
+    console.log(profile.profileId)
+    const profileEmail = <string>profile.profileEmail
+    console.log(profileEmail)
 
     const preformUpdate = async (partialProfile: PartialProfile) : Promise<Response> => {
       const previousProfile: Profile = await selectWholeProfileByProfileId(<string>partialProfile.profileId) as Profile

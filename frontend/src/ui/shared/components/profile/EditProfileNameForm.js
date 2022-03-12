@@ -12,8 +12,9 @@ export const EditProfileNameForm = () => {
 
     const profile = useSelector(state => (state.profiles ? state.profiles[0] : null))
 
-    const name = {
-        profileName: `${profile.profileName}`
+    const initial = {
+        profileName: `${profile.profileName}`,
+        profileAbout: `${profile.profileAbout}`
     };
 
     const auth = useSelector(state => state.auth? state.auth : null)
@@ -21,12 +22,13 @@ export const EditProfileNameForm = () => {
     const validator = Yup.object().shape({
         profileName: Yup.string()
             .required("username is required")
-            .min(1, "Password must be at least one character")
+            .min(1, "Name must be at least one character")
     });
 
     const submitName = (values, {resetForm, setStatus}) => {
+        const initialAbout = initial.profileAbout
         const nameProfileId = auth?.profileId ?? null
-        const name = {nameProfileId, ...values}
+        const name = {nameProfileId, ...values, initialAbout}
         httpConfig.put(`/apis/profile/${auth.profileId}`, name)
             .then(reply => {
                     let {message, type} = reply;
@@ -44,7 +46,7 @@ export const EditProfileNameForm = () => {
     return (
 
         <Formik
-            initialValues={name}
+            initialValues={initial}
             onSubmit={submitName}
             validationSchema={validator}
         >

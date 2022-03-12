@@ -2,9 +2,11 @@ import React, {useEffect} from "react";
 import Navbar from "react-bootstrap/Navbar";
 import NavLink from "react-bootstrap/NavLink";
 import {Link} from "react-router-dom";
-import {Nav, Container} from "react-bootstrap";
+import {Nav, Container, Button} from "react-bootstrap";
 import {fetchAuth} from "../../../store/auth";
 import {useDispatch, useSelector} from "react-redux";
+import {SigninModal} from "./sign-in/SigninModal";
+import {SignOutComponent} from "./SignOut";
 
 export const NavBar = () => {
 
@@ -24,23 +26,30 @@ export const NavBar = () => {
             <Navbar.Toggle aria-controls="basic-navbar-nav"/>
             <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="me-auto">
-                    <NavLink title="My Profile" href="#home">
-                        <Link exact to="/profile">Profile</Link>
-
-                    </NavLink>
-                    <NavLink href="#link"> <Link exact to="/">
+                    {auth !== null && (
+                        <>
+                            <NavLink title="My Profile" href={`/profile/${auth.profileId}`}>
+                                <Button>Profile</Button>
+                            </NavLink>
+                        </>
+                    )}
+                    <NavLink href="/"> <Button>
                         Harvest
-                    </Link>
+                    </Button>
                     </NavLink>
-                    <NavLink href="#home">
-                        <Link exact to="/hands">Hands</Link>
+                    <NavLink href="/hands">
+                        <Button>Hands</Button>
                     </NavLink>
-                    <NavLink href="#link">
-                        <Link exact to="/signout">Sign-out</Link>
+                    <NavLink>
+                        <SigninModal/>
                     </NavLink>
-                    <NavLink href="#link">
-                        <Link exact to="/signin">Sign-in</Link>
-                    </NavLink>
+                    {auth !== null && (
+                        <>
+                            <NavLink>
+                                <SignOutComponent/>
+                            </NavLink>
+                        </>
+                    )}
                 </Nav>
             </Navbar.Collapse>
         </Container>

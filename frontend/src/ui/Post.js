@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import {Button, Container, Dropdown, DropdownButton, Form, FormLabel, Modal, Row} from "react-bootstrap";
 import {PostForm} from "./shared/components/PostForm";
+import {Link} from "react-router-dom";
 
 //This is for creating post
 

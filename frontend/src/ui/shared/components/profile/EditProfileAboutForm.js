@@ -12,7 +12,8 @@ export const EditProfileAboutForm = () => {
 
     const profile = useSelector(state => (state.profiles ? state.profiles[0] : null))
 
-    const about = {
+    const initial = {
+        profileName: `${profile.profileName}`,
         profileAbout: `${profile.profileAbout}`
     };
 
@@ -24,8 +25,9 @@ export const EditProfileAboutForm = () => {
     });
 
     const submitAbout = (values, {resetForm, setStatus}) => {
+        const initialName = initial.profileName
         const aboutProfileId = auth?.profileId ?? null
-        const about = {aboutProfileId, ...values}
+        const about = {aboutProfileId, ...values, initialName}
         httpConfig.put(`/apis/profile/${auth.profileId}`, about)
             .then(reply => {
                     let {message, type} = reply;
@@ -43,7 +45,7 @@ export const EditProfileAboutForm = () => {
     return (
 
         <Formik
-            initialValues={about}
+            initialValues={initial}
             onSubmit={submitAbout}
             validationSchema={validator}
         >

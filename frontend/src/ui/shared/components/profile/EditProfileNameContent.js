@@ -29,7 +29,6 @@ export const EditProfileNameContent = (props) => {
                             placeholder={profile.profileName}
                             onChange={handleChange}
                             onBlur={handleBlur}
-
                         />
                     </div>
                     {
@@ -55,7 +54,5 @@ export const EditProfileNameContent = (props) => {
                 status && (<div className={status.type}>{status.message}</div>)
             }
         </>
-
-
     )
 };

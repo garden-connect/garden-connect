@@ -14,12 +14,12 @@ export const profileValidator : Schema = {
     trim: true,
     escape: true
   },
-  profileEmail: {
-    isEmail: {
-      errorMessage: 'Please provide a valid email'
-    },
-    trim: true
-  },
+  // profileEmail: {
+  //   isEmail: {
+  //     errorMessage: 'Please provide a valid email'
+  //   },
+  //   trim: true
+  // },
   profileName: {
     escape: true,
     trim: true,
