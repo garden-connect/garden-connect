@@ -40,8 +40,8 @@ export const Profile = ({match}) => {
     // console.log(ratingsNumber)
     const ratingsAverage = function (ratingsNumber) {return Math.round(ratingsNumber.reduce((a,b) => a + b, 0)/ratingsNumber.length)}
     // console.log(ratingsAmount.length)
-    console.log(ratingsAverage(ratingsNumber))
-    console.log(ratingsNumber.length)
+    // console.log(ratingsAverage(ratingsNumber))
+    // console.log(ratingsNumber.length)
     const ratingReviews = ratings.map(rating => rating.ratingContent)
     // console.log(ratingReviews)
     const filteredReviews = ratingReviews.filter(entry => entry.length > 0)
@@ -65,7 +65,7 @@ export const Profile = ({match}) => {
                         </Col>
                         {/*Edit Profile or Rating/Review Button*/}
                         <Col>
-                            <Button variant={"secondary"}>Edit Profile</Button>
+                            {/*<Button variant={"secondary"}>Edit Profile</Button>*/}
                              {/*(When viewing other profiles, it will be a Leave Review Button)*/}
                         </Col>
                     </Row>
@@ -76,7 +76,7 @@ export const Profile = ({match}) => {
                             {profile && (<p>{profile.profileAbout}</p>)}
                         </Col>
                         <Col xs={6}>
-                            {(auth.profileId === match.params.profileId && (
+                            {(auth !== null && auth.profileId === match.params.profileId && (
                                 <>
                                 <button className={showEditButton ? "showEditButton" : "hideEditButton"} onClick={() => showEditHideButton}>Edit Profile</button>
                                 </>
