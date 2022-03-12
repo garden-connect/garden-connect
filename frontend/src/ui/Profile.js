@@ -17,7 +17,12 @@ export const Profile = ({match}) => {
         setShowEdit(!showEdit)
         setShowEditButton(!showEditButton)
     }
-console.log(auth)
+    const editThisPage = () => {
+        if (showEdit)
+            return console.log("Edit the page")
+    }
+    useEffect(editThisPage)
+
     const sideEffects = () => {
         dispatch(fetchPostsByPostProfileId(match.params.profileId));
         dispatch(fetchProfileByProfileId(match.params.profileId));
@@ -78,7 +83,7 @@ console.log(auth)
                         <Col xs={6}>
                             {(auth !== null && auth.profileId === match.params.profileId && (
                                 <>
-                                <button className={showEditButton ? "showEditButton" : "hideEditButton"} onClick={() => showEditHideButton}>Edit Profile</button>
+                                <button className={showEditButton ? "showEditButton" : "hideEditButton"} onClick={() => showEditHideButton()}>Edit Profile</button>
                                 </>
                             )) || (
                                 <>

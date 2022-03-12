@@ -24,8 +24,8 @@ export const profileValidator : Schema = {
     escape: true,
     trim: true,
     isLength: {
-      errorMessage: 'profileName must be between eight and thirty two characters',
-      options: {min: 8, max: 32 }
+      errorMessage: 'profileName must be between one and thirty two characters',
+      options: {min: 1, max: 32 }
     },
   },
 };
