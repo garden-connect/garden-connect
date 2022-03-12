@@ -6,6 +6,8 @@ import {fetchPostsByPostProfileId} from "../store/posts";
 import {fetchProfileByProfileId} from "../store/profiles";
 import {fetchRatingsByReviewedProfileId} from "../store/ratings";
 import {StarRating} from "./shared/components/StarRating";
+import {EditProfileNameForm} from "./shared/components/profile/EditProfileNameForm";
+import {EditProfileAboutForm} from "./shared/components/profile/EditProfileAboutForm";
 
 export const Profile = ({match}) => {
     const [showEditButton, setShowEditButton] = useState(true);
@@ -60,7 +62,8 @@ export const Profile = ({match}) => {
                     <Row>
                         <Col xs={3}>
                             <div className={"profile-name"}>
-                                {profile && (<h2>{profile.profileName}</h2>)}
+                                {(showEdit && (<EditProfileNameForm/>)) || (profile && (<h2>{profile.profileName}</h2>))}
+                                {/*{profile && (<h2>{profile.profileName}</h2>)}*/}
                             </div>
                         {/*Clicking here does nothing*/}
                         </Col>
@@ -78,7 +81,7 @@ export const Profile = ({match}) => {
                     <Row>
                         <Col xs={6}>
                             About Me:
-                            {profile && (<p>{profile.profileAbout}</p>)}
+                            {(showEdit && (<EditProfileAboutForm/>)) || (profile && (<p>{profile.profileAbout}</p>))}
                         </Col>
                         <Col xs={6}>
                             {(auth !== null && auth.profileId === match.params.profileId && (

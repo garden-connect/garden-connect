@@ -1,4 +1,3 @@
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import React from "react";
 import {useSelector} from "react-redux";
 
@@ -22,11 +21,6 @@ export const EditProfileNameContent = (props) => {
                 <div className="form-group">
                     <label htmlFor="profileName">What would you like to be called?</label>
                     <div className="input-group">
-                        <div className="input-group-prepend">
-                            <div className="input-group-text">
-                                <FontAwesomeIcon icon="pencil-alt"/>
-                            </div>
-                        </div>
                         <input
                             className="form-control"
                             name="profileName"
@@ -53,7 +47,7 @@ export const EditProfileNameContent = (props) => {
                         className="btn btn-danger mb-2"
                         onClick={handleReset}
                         disabled={!dirty || isSubmitting}
-                    >Keep Name
+                    >Reset
                     </button>
                 </div>
             </form>

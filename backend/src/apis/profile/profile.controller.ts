@@ -9,7 +9,8 @@ export async function putProfileController(request: Request, response: Response)
   try {
     const {profileId} = request.params
     const {profileEmail, profileName} = request.body
-    const profileAbout = request.body.profileAbout ?? null;
+    // const profileAbout = request.body.profileAbout ?? null;
+    const profileAbout = request.body.profileAbout ?? "";
     const profile = <Profile>request.session.profile
     const profileIdFromSession = <string>profile.profileId
 
