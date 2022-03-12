@@ -7,7 +7,7 @@ import {fetchProfileByProfileId} from "../store/profiles";
 import {StarRating} from "./shared/components/StarRating";
 
 export const Rating = ({match}) => {
-    const [lgShow, setLgShow] = useState(true);
+    const [lgShow, setLgShow] = useState(false);
     const dispatch = useDispatch()
 
     const sideEffects = () => {
@@ -28,6 +28,9 @@ export const Rating = ({match}) => {
     return (
         <>
             <main>
+                <Button variant="primary" onClick={() => setLgShow(true)}>
+                    Ratings/Reviews
+                </Button>
                 <Modal
                     size={"lg"}
                     show={lgShow}

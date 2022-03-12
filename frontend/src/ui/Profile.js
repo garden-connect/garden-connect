@@ -8,6 +8,7 @@ import {fetchRatingsByReviewedProfileId} from "../store/ratings";
 import {StarRating} from "./shared/components/StarRating";
 import {EditProfileNameForm} from "./shared/components/profile/EditProfileNameForm";
 import {EditProfileAboutForm} from "./shared/components/profile/EditProfileAboutForm";
+import {Rating} from "./Rating";
 
 export const Profile = ({match}) => {
     const [showEditButton, setShowEditButton] = useState(true);
@@ -15,6 +16,7 @@ export const Profile = ({match}) => {
     const dispatch = useDispatch()
 
     const auth = useSelector(state => state.auth ? state.auth : null);
+
     function showEditHideButton() {
         setShowEdit(!showEdit)
         setShowEditButton(!showEditButton)
@@ -91,6 +93,7 @@ export const Profile = ({match}) => {
                             )) || (
                                 <>
                                     <Button href={`/rating/${match.params.profileId}`}>Ratings/Reviews</Button>{}
+                                    {/*{profile && <Rating match={profile}/>}*/}
                                 </>
                             )}
                         </Col>
