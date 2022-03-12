@@ -17,7 +17,7 @@ export const Profile = ({match}) => {
         setShowEdit(!showEdit)
         setShowEditButton(!showEditButton)
     }
-
+console.log(auth)
     const sideEffects = () => {
         dispatch(fetchPostsByPostProfileId(match.params.profileId));
         dispatch(fetchProfileByProfileId(match.params.profileId));
@@ -65,7 +65,7 @@ export const Profile = ({match}) => {
                         </Col>
                         {/*Edit Profile or Rating/Review Button*/}
                         <Col>
-                            {/*<Button variant={"secondary"}>Edit Profile</Button>*/}
+                            <Button href={"/message"}>Message History</Button>{}
                              {/*(When viewing other profiles, it will be a Leave Review Button)*/}
                         </Col>
                     </Row>
@@ -82,7 +82,7 @@ export const Profile = ({match}) => {
                                 </>
                             )) || (
                                 <>
-                                    <Button href={"/message"}>Message History</Button>{}
+                                    <Button href={`/rating/${match.params.profileId}`}>Ratings/Reviews</Button>{}
                                 </>
                             )}
                         </Col>
