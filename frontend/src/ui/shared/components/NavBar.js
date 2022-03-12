@@ -7,6 +7,8 @@ import {fetchAuth} from "../../../store/auth";
 import {useDispatch, useSelector} from "react-redux";
 import {SigninModal} from "./sign-in/SigninModal";
 import {SignOutComponent} from "./SignOut";
+import {Post} from "../../Post";
+import {SignUp} from "./sign-up/SignupPage";
 
 export const NavBar = () => {
 
@@ -40,11 +42,21 @@ export const NavBar = () => {
                     <NavLink href="/hands">
                         <Button>Hands</Button>
                     </NavLink>
-                    <NavLink>
-                        <SigninModal/>
-                    </NavLink>
+                    {auth === null && (
+                        <>
+                            <NavLink>
+                                <SigninModal/>
+                            </NavLink>
+                            <NavLink href={"/signup"}>
+                                <Button>Sign Up</Button>
+                            </NavLink>
+                        </>
+                    )}
                     {auth !== null && (
                         <>
+                            <NavLink>
+                                <Post/>
+                            </NavLink>
                             <NavLink>
                                 <SignOutComponent/>
                             </NavLink>

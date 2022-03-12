@@ -22,7 +22,6 @@ export const Harvest = () => {
 
     return (
         <>
-            <Post/>
             {postsActive.map((post , index) =>  <PostCard post={post} key={index}/>)}
         </>
     );

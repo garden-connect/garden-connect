@@ -21,7 +21,6 @@ export const Hands = () => {
 
     return (
         <>
-            <Post/>
             {postsActive.map((post , index) =>  <PostCard post={post} key={index}/>)}
         </>
     );
