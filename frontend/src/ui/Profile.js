@@ -39,7 +39,7 @@ export const Profile = ({match}) => {
     const postsActive = posts.filter(post => post.postActive === 1)
     const postsInactive = posts.filter(post => post.postActive === 0)
     // console.log(posts)
-    const profile = useSelector(state => (state.profiles ? state.profiles[0] : null));
+    const profile = useSelector(state => (state.profiles ? state.profiles.filter(profile => profile.profileId === match.params.profileId) : null))[0];
     // console.log(profile)
     const ratings = useSelector(state => (state.ratings ? state.ratings.filter(rating => rating.ratingReviewedProfileId === match.params.profileId) : []));
     // const ratings = useSelector(state => (state.ratings ? state.ratings[0] : null));
@@ -114,7 +114,7 @@ export const Profile = ({match}) => {
                                 </Tab>
                             </Tabs>
                             {/*2 Tabs: Active Posts & Previous Posts*/}
-                            {/*Message History Button to the right (goes to message modal)*/}
+                            {/*Conversation History Button to the right (goes to message modal)*/}
                         </Col>
                     </Row>
                 </Container>

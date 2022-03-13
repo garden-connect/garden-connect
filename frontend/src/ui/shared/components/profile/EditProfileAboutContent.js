@@ -42,7 +42,7 @@ export const EditProfileAboutContent = (props) => {
                 </div>
 
                 <div className="form-group">
-                    <button className="btn btn-primary mb-2" type="submit">That's Me!</button>
+                    <button className="btn btn-primary mb-2" type={"submit"}>That's Me!</button>
                     <button
                         className="btn btn-danger mb-2"
                         onClick={handleReset}

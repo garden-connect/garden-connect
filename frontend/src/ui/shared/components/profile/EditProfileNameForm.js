@@ -8,21 +8,21 @@ import {fetchProfileByProfileId} from "../../../../store/profiles";
 
 export const EditProfileNameForm = () => {
 
-    const profile = useSelector(state => (state.profiles ? state.profiles[0] : null))
+    const auth = useSelector(state => state.auth ? state.auth : null);
+    const profile = useSelector(state => (state.profiles ? state.profiles.filter(profile => profile.profileId === auth.profileId) : null))[0]
 
     const dispatch = useDispatch()
-    const effects = () => {
-        dispatch(fetchProfileByProfileId(profile.profileId))
-    }
-    useEffect(effects, [])
+    // const effects = () => {
+    //     dispatch(fetchProfileByProfileId(profile.profileId))
+    // }
+    // useEffect(effects, [])
 
     const initial = {
         profileName: `${profile.profileName}`,
         profileAbout: `${profile.profileAbout}`
     };
-    // console.log(initial)
+    console.log(initial)
 
-    const auth = useSelector(state => state.auth? state.auth : null)
 
     const validator = Yup.object().shape({
         profileName: Yup.string()

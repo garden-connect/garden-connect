@@ -53,7 +53,7 @@ export const PostCard = ({post}) => {
                             <Button>Message</Button>
                             </>
                         )}
-                        {/*<Button>Message</Button>*/}
+                        {/*<Button>Conversation</Button>*/}
                     </Stack>
                     <div>
                         <p>{post.postContent}</p>

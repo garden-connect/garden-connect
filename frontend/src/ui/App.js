@@ -10,7 +10,7 @@ import { Rating } from './Rating'
 import { Hands } from './Hands'
 import { Harvest } from './Harvest'
 import { Post } from './Post'
-import { Message } from './Message'
+import { Conversation } from './Conversation'
 import { NavBar } from './shared/components/NavBar'
 import { Home } from './Home'
 import { Provider } from "react-redux";
@@ -30,7 +30,7 @@ export const App = (store) =>  (
                 <Route exact path='/' component={ Harvest } />
                 <Route exact path={ '/hands'} component={Hands} />
                 <Route exact path={ '/profile/:profileId'} component={Profile} profileId={":profileId"}/>
-                <Route exact path={ '/message'} component={Message} />
+                <Route exact path={ '/conversation'} component={Conversation} />
                 <Route exact path={ '/post'} component={Post} />
                 <Route exact path={ '/rating/:ratingReviewedProfileId'}  component={Rating} ratingReviewedProfileId={":ratingReviewedProfileId"} />
                 <Route exact path={ '/rating'}  component={Rating} />

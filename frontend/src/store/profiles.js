@@ -6,7 +6,14 @@ const slice = createSlice({
     initialState: [],
     reducers: {
         setProfiles: (profiles, action) => {
-            return [...new Set([...profiles, ...action.payload])]
+            const filteredProfiles = profiles.filter(profile => profile.profileId !== action.payload[0].profileId)
+            if (filteredProfiles === profiles) {
+                return[...profiles, ...action.payload]
+            }
+            else {
+                return [...action.payload, ...filteredProfiles]
+            }
+            // return [...new Set([...profiles, ...action.payload])]
         }
     }
 })
