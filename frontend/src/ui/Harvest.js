@@ -2,7 +2,6 @@ import React, {useEffect} from "react";
 import {PostCard} from "./shared/components/PostCard";
 import {useDispatch, useSelector} from "react-redux";
 import {fetchPostsRatingsProfilesByPostCategory} from "../store/posts";
-import {Post} from "./Post";
 
 
 export const Harvest = () => {

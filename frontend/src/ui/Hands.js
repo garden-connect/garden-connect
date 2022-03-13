@@ -1,8 +1,7 @@
 import React, {useEffect} from "react";
 import {PostCard} from "./shared/components/PostCard";
 import {useDispatch, useSelector} from "react-redux";
-import {fetchPostsByPostCategory} from "../store/posts";
-import {Post} from "./Post";
+import {fetchPostsRatingsProfilesByPostCategory} from "../store/posts";
 
 
 export const Hands = () => {
@@ -12,7 +11,7 @@ export const Hands = () => {
 
     const sideEffects = () => {
 
-        dispatch(fetchPostsByPostCategory("hands"));
+        dispatch(fetchPostsRatingsProfilesByPostCategory("hands"));
     }
     useEffect(sideEffects, [dispatch])
 
