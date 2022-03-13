@@ -22,6 +22,8 @@ export const PostCard = ({post}) => {
     const ratingReviews = ratings.map(rating => rating.ratingContent)
     const filteredReviews = ratingReviews.filter(entry => entry.length > 0)
     const reviewCount = filteredReviews.length
+    const dateShort = new Date(post.postDate)
+
     return (
         <>
             <Row className={"border border-dark p-3 m-5"}>
@@ -38,7 +40,7 @@ export const PostCard = ({post}) => {
                         {ratingsNumber.length && <StarRating avgRating={ratingsAverage(ratingsNumber)}/> || <StarRating avgRating={0}/>}
                         <p>(reviews: {reviewCount})</p>
                         {/*<StarRating/>*/}
-                        <p>{post.postDate}</p>
+                        <p>{dateShort.toLocaleDateString()}</p>
                         <Button>Message</Button>
                     </Stack>
                     <div>

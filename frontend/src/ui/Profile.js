@@ -4,10 +4,11 @@ import {PostCard} from "./shared/components/PostCard";
 import {useDispatch, useSelector} from "react-redux";
 import {fetchPostsByPostProfileId} from "../store/posts";
 import {fetchProfileByProfileId} from "../store/profiles";
-import {fetchRatingsByReviewedProfileId} from "../store/ratings";
+import {fetchAllRatersRatings, fetchRatingsByReviewedProfileId} from "../store/ratings";
 import {StarRating} from "./shared/components/StarRating";
 import {EditProfileNameForm} from "./shared/components/profile/EditProfileNameForm";
 import {EditProfileAboutForm} from "./shared/components/profile/EditProfileAboutForm";
+import {Rating} from "./Rating";
 
 export const Profile = ({match}) => {
     const [showEditButton, setShowEditButton] = useState(true);
@@ -29,7 +30,8 @@ export const Profile = ({match}) => {
     const sideEffects = () => {
         dispatch(fetchPostsByPostProfileId(match.params.profileId));
         dispatch(fetchProfileByProfileId(match.params.profileId));
-        dispatch(fetchRatingsByReviewedProfileId(match.params.profileId));
+        // dispatch(fetchRatingsByReviewedProfileId(match.params.profileId));
+        dispatch(fetchAllRatersRatings(match.params.profileId))
     }
     useEffect(sideEffects, [match.params.profileId, dispatch])
 
@@ -91,8 +93,8 @@ export const Profile = ({match}) => {
                                 </>
                             )) || (
                                 <>
-                                    <Button href={`/rating/${match.params.profileId}`}>Ratings/Reviews</Button>{}
-                                    {/*{profile && <Rating match={profile}/>}*/}
+                                    {/*<Button href={`/rating/${match.params.profileId}`}>Ratings/Reviews</Button>{}*/}
+                                    {profile && <Rating match={profile}/>}
                                 </>
                             )}
                         </Col>
