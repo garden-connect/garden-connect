@@ -6,12 +6,15 @@ import {StarRating} from "./StarRating";
 export const PostCard = ({post}) => {
     // const { postContent, postCategory} = post
 
+    const auth = useSelector(state => state.auth ? state.auth : null);
+
     const profiles = useSelector(state => state.profiles ? state.profiles : [])
     const FindProfileName = () => {
         const profile = profiles.find(profile => post.postProfileId === profile.profileId)
         return (
             <>
-                {profile && <h3>{profile.profileName}</h3>}
+                {/*{profile && <h3>{profile.profileName}</h3>}*/}
+                {profile && <a href={`/profile/${profile.profileId}`}>{profile.profileName}</a>}
             </>
         )
     }
@@ -41,7 +44,16 @@ export const PostCard = ({post}) => {
                         <p>(reviews: {reviewCount})</p>
                         {/*<StarRating/>*/}
                         <p>{dateShort.toLocaleDateString()}</p>
-                        <Button>Message</Button>
+                        {(auth !== null && auth.profileId === post.postProfileId && (
+                            <>
+                            <Button>Edit Post</Button>
+                            </>
+                        )) || (auth !== null &&
+                            <>
+                            <Button>Message</Button>
+                            </>
+                        )}
+                        {/*<Button>Message</Button>*/}
                     </Stack>
                     <div>
                         <p>{post.postContent}</p>
