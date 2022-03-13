@@ -49,14 +49,15 @@ export const ReviewComponent = ({review}) => {
         setMoreLess(!moreLess)
     }
 
-
     const profiles = useSelector(state => state.profiles ? state.profiles : [])
     const FindProfileName = () => {
         const profile = profiles.find(profile => review.ratingReviewingProfileId === profile.profileId)
         return (
             <>
-                {profile && <h3>{profile.profileName}</h3>}
+                {/*{profile && <h3>{profile.profileName}</h3>}*/}
+                {profile && <a href={`/profile/${profile.profileId}`}>{profile.profileName}</a>}
             </>
+
         )
     }
     const ratersRatings = useSelector(state => (state.ratings ? state.ratings.filter(rating => rating.ratingReviewedProfileId === review.ratingReviewingProfileId) : []));

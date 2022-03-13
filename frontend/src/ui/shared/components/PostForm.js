@@ -8,20 +8,29 @@ import {fetchAllPosts} from "../../../store/posts";
 
 
 export const PostForm = () => {
+    const dispatch = useDispatch()
+
     const post = {
         postContent: "",
+        postTitle: "",
+        postCategory: "",
+        postPicture: ""
     };
 
-    const dispatch = useDispatch()
+
     const auth = useSelector(state => state.auth ? state.auth : null);
     const validator = Yup.object().shape({
-        postContent: Yup.string()
-            .required("post content is required"),
+        // postContent: Yup.string()
+        //     .required("post content is required"),
+        // postTitle: Yup.string()
+        //     .required("post title is required"),
+        // postCategory: Yup.string()
+        //     .required("post category is required")
     });
 
     const submitPost = (values, {resetForm, setStatus}) => {
         const postProfileId = auth?.profileId ?? null
-        const post = {postProfileId, ...values}
+        const post = {postProfileId, postActive:1, ...values}
         httpConfig.post("/apis/post/", post)
             .then(reply => {
                 let {message, type} = reply;
