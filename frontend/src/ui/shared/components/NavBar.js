@@ -57,9 +57,7 @@ export const NavBar = () => {
                     )}
                     {auth !== null && (
                         <>
-                            <NavLink>
                                 <Post/>
-                            </NavLink>
                             <NavLink>
                                 <SignOutComponent/>
                             </NavLink>

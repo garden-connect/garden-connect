@@ -1,5 +1,15 @@
 import React from "react";
-import {Button, Dropdown, DropdownButton, Form, FormLabel, Row} from "react-bootstrap";
+import {
+    Button,
+    Dropdown,
+    DropdownButton,
+    Form,
+    FormControl,
+    FormLabel,
+    FormSelect,
+    InputGroup,
+    Row
+} from "react-bootstrap";
 import {FormDebugger} from "./FormDebugger";
 
 
@@ -18,8 +28,10 @@ export const PostFormContent = (props) => {
     } = props;
     return (
         <>
-                <Form onSubmit={handleSubmit}>
-                    <Row>
+            <form  onSubmit={handleSubmit}>
+                <InputGroup>
+                    <div>
+
                         {/*Title Input*/}
                         <FormLabel>Create a post</FormLabel>
                         <input id={"postTitle"} placeholder={"Custom Title"}
@@ -36,7 +48,6 @@ export const PostFormContent = (props) => {
                                 </div>
                             )
                         }
-
                         {/*Image Input*/}
                         <FormLabel>Image</FormLabel>
                         <input className="form-control" type={"file"} id="postPicture"
@@ -49,28 +60,9 @@ export const PostFormContent = (props) => {
                             )
                         }
                         {/*Select Category*/}
-                        <FormLabel>Harvest or Hands</FormLabel>
 
 
-                        <DropdownButton id="dropdown-basic-button"
-                                        title="Category"
-                                        className="form-control"
-                                        name="postCategory"
-                                        value={values.postCategory}
-                                        onChange={handleChange}
-                                        onBlur={handleBlur}>
-                            <Dropdown.Item href="#/action-1">Harvest</Dropdown.Item>
-                            <Dropdown.Item href="#/action-2">Hands</Dropdown.Item>
 
-
-                        </DropdownButton>
-                        {
-                            errors.postCategory&& touched.postCategory && (
-                                <div className="alert alert-danger">
-                                    {errors.postCategory}
-                                </div>
-                            )
-                        }
                         {/*Post Description*/}
                         <FormLabel>Item Description</FormLabel>
                         <input
@@ -89,9 +81,40 @@ export const PostFormContent = (props) => {
                                 </div>
                             )
                         }
-                    </Row>
+                        <FormLabel>Harvest or Hands</FormLabel>
+                    <div>
+                        {/*<DropdownButton*/}
+                        {/*    variant="outline-secondary"*/}
+                        {/*    title="Dropdown"*/}
+                        {/*    id="input-group-dropdown-1"*/}
+                        {/*>*/}
+                        {/*    <Dropdown.Item href="#harvest">Harvest</Dropdown.Item>*/}
+                        {/*    <Dropdown.Item href="#hands">Hands</Dropdown.Item>*/}
+                        {/*</DropdownButton>*/}
+                        <FormSelect
+                            className="form-control"
+                            name="postCategory"
+                            type="text"
+                            value={values.postCategory}
+                            onChange={handleChange}
+                            onBlur={handleBlur}
+                        >
+                        <option>Choose a category</option>
+                        <option value="harvest">Harvest</option>
+                        <option value="hands">Hands</option>
+                        </FormSelect>
+                    </div>
+                        {
+                            errors.postCategory&& touched.postCategory && (
+                                <div className="alert alert-danger">
+                                    {errors.postCategory}
+                                </div>
+                            )
+                        }
+
                     <div className={"mt-3"}>
                         <Button className="btn btn-primary mb-2" type="submit">Post</Button>
+
                         <button
                             className="btn btn-secondary mb-2"
                             onClick={handleReset}
@@ -99,13 +122,14 @@ export const PostFormContent = (props) => {
                         >Cancel
                         </button>
                     </div>
+                    </div>
 
-                    <FormDebugger {...props} />
-
-                </Form>
-                {
-                       status && (<div className={status.type}>{status.message}</div>)
-                    }
+                    </InputGroup>
+            {/*<FormDebugger {...props} />*/}
+            {
+                status && (<div className={status.type}>{status.message}</div>)
+            }
+            </form>
         </>
         )
         };
