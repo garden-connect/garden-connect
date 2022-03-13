@@ -3,6 +3,7 @@ import {useSelector} from "react-redux";
 
 export const EditProfileNameContent = (props) => {
     const profile = useSelector(state => (state.profiles ? state.profiles[0] : null))
+    console.log(profile)
     const {
         status,
         values,
@@ -41,7 +42,7 @@ export const EditProfileNameContent = (props) => {
                 </div>
 
                 <div className="form-group">
-                    <button className="btn btn-primary mb-2" type="submit">Change Name</button>
+                    <button className="btn btn-primary mb-2" onClick={handleSubmit}>Change Name</button>
                     <button
                         className="btn btn-danger mb-2"
                         onClick={handleReset}

@@ -8,7 +8,6 @@ import {fetchRatingsByReviewedProfileId} from "../store/ratings";
 import {StarRating} from "./shared/components/StarRating";
 import {EditProfileNameForm} from "./shared/components/profile/EditProfileNameForm";
 import {EditProfileAboutForm} from "./shared/components/profile/EditProfileAboutForm";
-import {Rating} from "./Rating";
 
 export const Profile = ({match}) => {
     const [showEditButton, setShowEditButton] = useState(true);
@@ -21,11 +20,11 @@ export const Profile = ({match}) => {
         setShowEdit(!showEdit)
         setShowEditButton(!showEditButton)
     }
-    const editThisPage = () => {
-        if (showEdit)
-            return console.log("Edit the page")
-    }
-    useEffect(editThisPage)
+    // const editThisPage = () => {
+    //     if (showEdit)
+    //         return console.log("Edit the page")
+    // }
+    // useEffect(editThisPage)
 
     const sideEffects = () => {
         dispatch(fetchPostsByPostProfileId(match.params.profileId));
@@ -88,7 +87,7 @@ export const Profile = ({match}) => {
                         <Col xs={6}>
                             {(auth !== null && auth.profileId === match.params.profileId && (
                                 <>
-                                <button className={showEditButton ? "showEditButton" : "hideEditButton"} onClick={() => showEditHideButton()}>Edit Profile</button>
+                                <Button onClick={() => showEditHideButton()}>{showEditButton ? "Edit Profile" : "Done Editing"}</Button>
                                 </>
                             )) || (
                                 <>

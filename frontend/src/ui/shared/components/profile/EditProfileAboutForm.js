@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {httpConfig} from "../../../../utils/http-config";
 import * as Yup from "yup";
 import {Formik} from "formik";
@@ -8,14 +8,19 @@ import {fetchProfileByProfileId} from "../../../../store/profiles";
 
 export const EditProfileAboutForm = () => {
 
-    const dispatch = useDispatch()
-
     const profile = useSelector(state => (state.profiles ? state.profiles[0] : null))
+
+    const dispatch = useDispatch()
+    const effects = () => {
+        dispatch(fetchProfileByProfileId(profile.profileId))
+    }
+    useEffect(effects, [])
 
     const initial = {
         profileName: `${profile.profileName}`,
         profileAbout: `${profile.profileAbout}`
     };
+    // console.log(initial)
 
     const auth = useSelector(state => state.auth? state.auth : null)
 
@@ -25,7 +30,7 @@ export const EditProfileAboutForm = () => {
     });
 
     const submitAbout = (values, {resetForm, setStatus}) => {
-        const initialName = initial.profileName
+        const initialName = initial?.profileName ?? null
         const aboutProfileId = auth?.profileId ?? null
         const about = {aboutProfileId, ...values, initialName}
         httpConfig.put(`/apis/profile/${auth.profileId}`, about)
@@ -33,7 +38,7 @@ export const EditProfileAboutForm = () => {
                     let {message, type} = reply;
 
                     if(reply.status === 200) {
-                        resetForm();
+                        // resetForm();
                         dispatch(fetchProfileByProfileId(auth.profileId))
                     }
                     setStatus({message, type});
