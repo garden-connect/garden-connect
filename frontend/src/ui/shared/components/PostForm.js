@@ -9,6 +9,9 @@ import {fetchAllPosts} from "../../../store/posts";
 export const PostForm = () => {
     const post = {
         postContent: "",
+        postTitle: "",
+        postCategory: "",
+        postPicture: ""
     };
 
     const dispatch = useDispatch()
@@ -16,12 +19,18 @@ export const PostForm = () => {
     const validator = Yup.object().shape({
         postContent: Yup.string()
             .required("post content is required"),
+        postTitle: Yup.string()
+            .required("post title is required"),
+        postCategory: Yup.string()
+            .required("post category is required")
     });
 
     const submitPost = (values, {resetForm, setStatus}) => {
         const postProfileId = auth?.profileId ?? null
-        const post = {postProfileId, ...values}
-        httpConfig.post("/apis/post/", post)
+        const post = {postProfileId, postActive:1, values}
+        console.log(post)
+        console.log(values)
+        httpConfig.post("/apis/post/", values)
             .then(reply => {
                 let {message, type} = reply;
 
