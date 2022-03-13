@@ -1,3 +1,4 @@
+
 import React, {useEffect} from "react";
 import Navbar from "react-bootstrap/Navbar";
 import NavLink from "react-bootstrap/NavLink";
@@ -19,6 +20,8 @@ export const NavBar = () => {
     };
     const inputs = [];
     useEffect(effects, inputs);
+
+
 
     return (
 
@@ -54,9 +57,7 @@ export const NavBar = () => {
                     )}
                     {auth !== null && (
                         <>
-                            <NavLink>
                                 <Post/>
-                            </NavLink>
                             <NavLink>
                                 <SignOutComponent/>
                             </NavLink>
@@ -67,3 +68,4 @@ export const NavBar = () => {
         </Container>
     </Navbar>
     )};
+
