@@ -2,11 +2,11 @@ import React, {useEffect} from 'react';
 import {httpConfig} from "../../../../utils/http-config";
 import * as Yup from "yup";
 import {Formik} from "formik";
-import {EditProfileNameContent} from "./EditProfileNameContent";
+import {EditProfileContent} from "./EditProfileContent";
 import {useDispatch, useSelector} from "react-redux";
 import {fetchProfileByProfileId} from "../../../../store/profiles";
 
-export const EditProfileNameForm = () => {
+export const EditProfileForm = () => {
 
     const auth = useSelector(state => state.auth ? state.auth : null);
     const profile = useSelector(state => (state.profiles ? state.profiles.filter(profile => profile.profileId === auth.profileId) : null))[0]
@@ -21,20 +21,21 @@ export const EditProfileNameForm = () => {
         profileName: `${profile.profileName}`,
         profileAbout: `${profile.profileAbout}`
     };
-    console.log(initial)
+    // console.log(initial)
 
 
     const validator = Yup.object().shape({
         profileName: Yup.string()
             .required("username is required")
-            .min(1, "Name must be at least one character")
+            .min(1, "Name must be at least one character"),
+        profileAbout: Yup.string()
+            .max(1000, "About cannot be more than one thousand charactrers")
     });
 
     const submitName = (values, {resetForm, setStatus}) => {
-        const initialAbout = initial.profileAbout
         const nameProfileId = auth?.profileId ?? null
-        const name = {nameProfileId, ...values, initialAbout}
-        httpConfig.put(`/apis/profile/${auth.profileId}`, name)
+        const profile = {nameProfileId, ...values}
+        httpConfig.put(`/apis/profile/${auth.profileId}`, profile)
             .then(reply => {
                     let {message, type} = reply;
 
@@ -55,7 +56,7 @@ export const EditProfileNameForm = () => {
             onSubmit={submitName}
             validationSchema={validator}
         >
-            {EditProfileNameContent}
+            {EditProfileContent}
         </Formik>
 
     )

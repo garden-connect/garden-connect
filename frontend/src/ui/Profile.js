@@ -6,7 +6,7 @@ import {fetchPostsByPostProfileId} from "../store/posts";
 import {fetchProfileByProfileId} from "../store/profiles";
 import {fetchAllRatersRatings, fetchRatingsByReviewedProfileId} from "../store/ratings";
 import {StarRating} from "./shared/components/StarRating";
-import {EditProfileNameForm} from "./shared/components/profile/EditProfileNameForm";
+import {EditProfileForm} from "./shared/components/profile/EditProfileForm";
 import {EditProfileAboutForm} from "./shared/components/profile/EditProfileAboutForm";
 import {Rating} from "./Rating";
 
@@ -65,7 +65,7 @@ export const Profile = ({match}) => {
                     <Row>
                         <Col xs={3}>
                             <div className={"profile-name"}>
-                                {(showEdit && (<EditProfileNameForm/>)) || (profile && (<h2>{profile.profileName}</h2>))}
+                                {(showEdit && (<EditProfileForm/>)) || (profile && (<h2>{profile.profileName}</h2>))}
                                 {/*{profile && (<h2>{profile.profileName}</h2>)}*/}
                             </div>
                         {/*Clicking here does nothing*/}
@@ -83,8 +83,7 @@ export const Profile = ({match}) => {
                     {/*About Me*/}
                     <Row>
                         <Col xs={6}>
-                            About Me:
-                            {(showEdit && (<EditProfileAboutForm/>)) || (profile && (<p>{profile.profileAbout}</p>))}
+                            {(showEdit && " ") || (profile && (<p>About Me:<br/> {profile.profileAbout}</p>))}
                         </Col>
                         <Col xs={6}>
                             {(auth !== null && auth.profileId === match.params.profileId && (

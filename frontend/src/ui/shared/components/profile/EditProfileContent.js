@@ -1,10 +1,10 @@
 import React from "react";
 import {useSelector} from "react-redux";
 
-export const EditProfileNameContent = (props) => {
+export const EditProfileContent = (props) => {
     const auth = useSelector(state => state.auth ? state.auth : null);
     const profile = useSelector(state => (state.profiles ? state.profiles.filter(profile => profile.profileId === auth.profileId) : null))[0]
-    console.log(profile)
+    // console.log(profile)
     const {
         status,
         values,
@@ -43,7 +43,30 @@ export const EditProfileNameContent = (props) => {
                 </div>
 
                 <div className="form-group">
-                    <button className="btn btn-primary mb-2" onClick={handleSubmit}>Change Name</button>
+                    <label htmlFor="profileAbout">Tell us about yourself</label>
+                    <div className="input-group">
+                        <input
+                            className="form-control"
+                            name="profileAbout"
+                            type="textarea"
+                            value={values.profileAbout}
+                            placeholder={profile.profileAbout}
+                            onChange={handleChange}
+                            onBlur={handleBlur}
+
+                        />
+                    </div>
+                    {
+                        errors.profileAbout && touched.profileAbout && (
+                            <div className="alert alert-danger">
+                                {errors.profileAbout}
+                            </div>
+                        )
+                    }
+                </div>
+
+                <div className="form-group">
+                    <button className="btn btn-primary mb-2" onClick={handleSubmit}>Update Profile</button>
                     <button
                         className="btn btn-danger mb-2"
                         onClick={handleReset}

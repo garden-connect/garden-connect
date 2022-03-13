@@ -8,7 +8,8 @@ import {fetchProfileByProfileId} from "../../../../store/profiles";
 
 export const EditProfileAboutForm = () => {
 
-    const profile = useSelector(state => (state.profiles ? state.profiles[0] : null))
+    const auth = useSelector(state => state.auth ? state.auth : null);
+    const profile = useSelector(state => (state.profiles ? state.profiles.filter(profile => profile.profileId === auth.profileId) : null))[0]
 
     const dispatch = useDispatch()
     const effects = () => {
@@ -20,9 +21,8 @@ export const EditProfileAboutForm = () => {
         profileName: `${profile.profileName}`,
         profileAbout: `${profile.profileAbout}`
     };
-    // console.log(initial)
+    console.log(profile.profileName)
 
-    const auth = useSelector(state => state.auth? state.auth : null)
 
     const validator = Yup.object().shape({
         profileAbout: Yup.string()
@@ -30,7 +30,7 @@ export const EditProfileAboutForm = () => {
     });
 
     const submitAbout = (values, {resetForm, setStatus}) => {
-        const initialName = initial?.profileName ?? null
+        const initialName = profile.profileName
         const aboutProfileId = auth?.profileId ?? null
         const about = {aboutProfileId, ...values, initialName}
         httpConfig.put(`/apis/profile/${auth.profileId}`, about)

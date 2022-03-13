@@ -2,7 +2,9 @@ import React from "react";
 import {useSelector} from "react-redux";
 
 export const EditProfileAboutContent = (props) => {
-    const profile = useSelector(state => (state.profiles ? state.profiles[0] : null))
+
+    const auth = useSelector(state => state.auth ? state.auth : null);
+    const profile = useSelector(state => (state.profiles ? state.profiles.filter(profile => profile.profileId === auth.profileId) : null))[0]
     const {
         status,
         values,
