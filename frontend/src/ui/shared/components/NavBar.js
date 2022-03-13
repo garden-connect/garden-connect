@@ -23,7 +23,7 @@ export const NavBar = () => {
 
     return (
 
-    <Navbar bg="light" expand="sm">
+    <Navbar expand="sm" className="navigation border border-2 border-dark">
         <Container fluid>
             <Navbar.Brand>Garden Connect</Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav"/>
@@ -32,7 +32,7 @@ export const NavBar = () => {
                     {auth !== null && (
                         <>
                             <NavLink title="My Profile" href={`/profile/${auth.profileId}`}>
-                                <Button>Profile</Button>
+                                <Button className="mt-3">Profile</Button>
                             </NavLink>
                         </>
                     )}
@@ -41,7 +41,7 @@ export const NavBar = () => {
                     </Button>
                     </NavLink>
                     <NavLink href="/hands">
-                        <Button>Hands</Button>
+                        <Button className="mt-3">Hands</Button>
                     </NavLink>
                     {auth === null && (
                         <>
