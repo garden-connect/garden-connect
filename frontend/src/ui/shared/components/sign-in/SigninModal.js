@@ -6,19 +6,18 @@ import Link from "react-router-dom/es/Link";
 
 export function SigninModal() {
 
-    const [lgShow, setLgShow] = useState(false);
+    const [modalShow, setModalShow] = useState(false);
 
     return (
         <>
-
-            <Button variant="primary" onClick={() => setLgShow(true)}>
+            <Button variant="primary" onClick={() => setModalShow(true)}>
                 Sign In
             </Button>
 
             <Modal
                 size="lg"
-                show={lgShow}
-                onHide={() => setLgShow(false)}
+                show={modalShow}
+                onHide={() => setModalShow(false)}
                 aria-labelledby="example-modal-sizes-title-lg"
             >
                 <Modal.Header closeButton>

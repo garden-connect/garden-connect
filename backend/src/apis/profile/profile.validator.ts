@@ -14,18 +14,18 @@ export const profileValidator : Schema = {
     trim: true,
     escape: true
   },
-  profileEmail: {
-    isEmail: {
-      errorMessage: 'Please provide a valid email'
-    },
-    trim: true
-  },
+  // profileEmail: {
+  //   isEmail: {
+  //     errorMessage: 'Please provide a valid email'
+  //   },
+  //   trim: true
+  // },
   profileName: {
     escape: true,
     trim: true,
     isLength: {
-      errorMessage: 'profileName must be between eight and thirty two characters',
-      options: {min: 8, max: 32 }
+      errorMessage: 'profileName must be between one and thirty two characters',
+      options: {min: 1, max: 32 }
     },
   },
 };

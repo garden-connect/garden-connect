@@ -1,6 +1,7 @@
 import React from "react";
 import {Button, Form, Container, Row, Col} from "react-bootstrap";
 import {SignupForm} from "./SignupForm";
+import {SigninModal} from "../sign-in/SigninModal";
 
 
 export function SignUp() {
@@ -17,20 +18,13 @@ export function SignUp() {
 
             <Container>
                 <Row>
-                    <Col lg={2} className={"mb-5"}>
-                    <Button variant="primary" type="submit">
-                        Submit
-                    </Button>
-                    </Col>
                     <Col lg={4}>
                     <p>
                     After creating a profile, click here to sign in!
                     </p>
                     </Col>
                     <Col lg={2}>
-                        <Button href='/signin' variant="primary" type="submit">
-                            Sign in
-                        </Button>
+                        <SigninModal/>
                     </Col>
 
                 </Row>
