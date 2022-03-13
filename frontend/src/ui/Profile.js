@@ -1,20 +1,37 @@
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import {Container, Row, Col, Button, Tabs, Tab} from "react-bootstrap";
 import {PostCard} from "./shared/components/PostCard";
 import {useDispatch, useSelector} from "react-redux";
 import {fetchPostsByPostProfileId} from "../store/posts";
 import {fetchProfileByProfileId} from "../store/profiles";
-import {fetchRatingsByReviewedProfileId} from "../store/ratings";
+import {fetchAllRatersRatings, fetchRatingsByReviewedProfileId} from "../store/ratings";
 import {StarRating} from "./shared/components/StarRating";
+import {EditProfileNameForm} from "./shared/components/profile/EditProfileNameForm";
+import {EditProfileAboutForm} from "./shared/components/profile/EditProfileAboutForm";
+import {Rating} from "./Rating";
 
 export const Profile = ({match}) => {
+    const [showEditButton, setShowEditButton] = useState(true);
+    const [showEdit, setShowEdit] = useState(false)
     const dispatch = useDispatch()
 
+    const auth = useSelector(state => state.auth ? state.auth : null);
+
+    function showEditHideButton() {
+        setShowEdit(!showEdit)
+        setShowEditButton(!showEditButton)
+    }
+    // const editThisPage = () => {
+    //     if (showEdit)
+    //         return console.log("Edit the page")
+    // }
+    // useEffect(editThisPage)
 
     const sideEffects = () => {
         dispatch(fetchPostsByPostProfileId(match.params.profileId));
         dispatch(fetchProfileByProfileId(match.params.profileId));
-        dispatch(fetchRatingsByReviewedProfileId(match.params.profileId));
+        // dispatch(fetchRatingsByReviewedProfileId(match.params.profileId));
+        dispatch(fetchAllRatersRatings(match.params.profileId))
     }
     useEffect(sideEffects, [match.params.profileId, dispatch])
 
@@ -33,8 +50,8 @@ export const Profile = ({match}) => {
     // console.log(ratingsNumber)
     const ratingsAverage = function (ratingsNumber) {return Math.round(ratingsNumber.reduce((a,b) => a + b, 0)/ratingsNumber.length)}
     // console.log(ratingsAmount.length)
-    console.log(ratingsAverage(ratingsNumber))
-    console.log(ratingsNumber.length)
+    // console.log(ratingsAverage(ratingsNumber))
+    // console.log(ratingsNumber.length)
     const ratingReviews = ratings.map(rating => rating.ratingContent)
     // console.log(ratingReviews)
     const filteredReviews = ratingReviews.filter(entry => entry.length > 0)
@@ -42,28 +59,24 @@ export const Profile = ({match}) => {
     const reviewCount = filteredReviews.length
     // console.log(reviewCount)
     return (
-        <>
             <main>
                 <Container fluid>
                     {/*ProfileId Rating/Review Header*/}
                     <Row>
                         <Col xs={3}>
-                            {profile && (<h2>{profile.profileName}</h2>)}
+                            <div className={"profile-name"}>
+                                {(showEdit && (<EditProfileNameForm/>)) || (profile && (<h2>{profile.profileName}</h2>))}
+                                {/*{profile && (<h2>{profile.profileName}</h2>)}*/}
+                            </div>
                         {/*Clicking here does nothing*/}
                         </Col>
                         <Col xs={3}>
-                            {/*{ratingsNumber.length && <StarRating avgRating={ratingsAverage(ratingsNumber)}/>}*/}
-                            {ratingsNumber.length && <StarRating avgRating={ratingsAverage(ratingsNumber)}/> || <StarRating avgRating={0}/>}
-                            {/*{<StarRating avgRating={0}/> && <StarRating avgRating={ratingsAverage(ratingsNumber)}/>}*/}
-                            {/*{<StarRating avgRating={ratingsAverage(ratingsNumber)}/> || <StarRating avgRating={0}/>}*/}
-                            {/*<StarRating avgRating={ratingsAverage}/>*/}
+                            {(ratingsNumber.length && <StarRating avgRating={ratingsAverage(ratingsNumber)}/>) || <StarRating avgRating={0}/>}
                             <p>(reviews: {reviewCount})</p>
-                            {/*{ratingsAverage}*/}
-                            {/*<p>****</p>*/}
                         </Col>
                         {/*Edit Profile or Rating/Review Button*/}
                         <Col>
-                            <Button variant={"secondary"}>Edit Profile</Button>
+                            <Button href={"/message"}>Message History</Button>{}
                              {/*(When viewing other profiles, it will be a Leave Review Button)*/}
                         </Col>
                     </Row>
@@ -71,10 +84,19 @@ export const Profile = ({match}) => {
                     <Row>
                         <Col xs={6}>
                             About Me:
-                            {profile && (<p>{profile.profileAbout}</p>)}
+                            {(showEdit && (<EditProfileAboutForm/>)) || (profile && (<p>{profile.profileAbout}</p>))}
                         </Col>
                         <Col xs={6}>
-                            <Button>Message History</Button>
+                            {(auth !== null && auth.profileId === match.params.profileId && (
+                                <>
+                                <Button onClick={() => showEditHideButton()}>{showEditButton ? "Edit Profile" : "Done Editing"}</Button>
+                                </>
+                            )) || (
+                                <>
+                                    {/*<Button href={`/rating/${match.params.profileId}`}>Ratings/Reviews</Button>{}*/}
+                                    {profile && <Rating match={profile}/>}
+                                </>
+                            )}
                         </Col>
                     </Row>
                     {/*Posts Section*/}
@@ -87,7 +109,6 @@ export const Profile = ({match}) => {
                                 </Tab>
                                 <Tab eventKey="Previous Posts" title="Previous Posts">
                                     {/*<PostCard/>*/}
-                                    {/*{postComponents.map(postComponents => <PostCard postComponents={postComponents}/>)}*/}
                                     {postsInactive.map((post , index) =>  <PostCard post={post} key={index}/>)}
                                     {/*<p>Old Posts</p>*/}
                                 </Tab>
@@ -96,14 +117,7 @@ export const Profile = ({match}) => {
                             {/*Message History Button to the right (goes to message modal)*/}
                         </Col>
                     </Row>
-                    {/*Post Tab Content*/}
-                    <Row>
-                        <Col>
-                            {/*Scroll through Post content. Each post has Message Icon if viewing other peoples' profiles or Edit Icon if viewing own profile page*/}
-                        </Col>
-                    </Row>
                 </Container>
             </main>
-        </>
     )
 }

@@ -28,6 +28,7 @@ export const SignInForm = () => {
     };
 
     const submitSignIn = (values, {resetForm, setStatus}) => {
+        console.log("submitting")
         httpConfig.post("/apis/sign-in/", values)
             .then(reply => {
                 let {message, type} = reply;

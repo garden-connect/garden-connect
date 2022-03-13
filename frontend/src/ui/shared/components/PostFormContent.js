@@ -51,34 +51,19 @@ export const PostFormContent = (props) => {
                         {/*Select Category*/}
                         <FormLabel>Harvest or Hands</FormLabel>
 
-                        <Button
-                            className="form-control"
-                            name="postCategory"
-                            type="button"
-                            value={values.postCategory}
-                            onChange={handleChange}
-                            onBlur={handleBlur}
-                        />
-                        <Button
-                            className="form-control"
-                            name="postCategory"
-                            type="button"
-                            value={values.postCategory}
-                            onChange={handleChange}
-                            onBlur={handleBlur}
-                        />
-                        {/*<DropdownButton id="dropdown-basic-button"*/}
-                        {/*                title="Category"*/}
-                        {/*                className="form-control"*/}
-                        {/*                name="postCategory"*/}
-                        {/*                value={values.postCategory}*/}
-                        {/*                onChange={handleChange}*/}
-                        {/*                onBlur={handleBlur}>*/}
-                        {/*    <Dropdown.Item href="#/action-1">Harvest</Dropdown.Item>*/}
-                        {/*    <Dropdown.Item href="#/action-2">Hands</Dropdown.Item>*/}
+
+                        <DropdownButton id="dropdown-basic-button"
+                                        title="Category"
+                                        className="form-control"
+                                        name="postCategory"
+                                        value={values.postCategory}
+                                        onChange={handleChange}
+                                        onBlur={handleBlur}>
+                            <Dropdown.Item href="#/action-1">Harvest</Dropdown.Item>
+                            <Dropdown.Item href="#/action-2">Hands</Dropdown.Item>
 
 
-                        {/*</DropdownButton>*/}
+                        </DropdownButton>
                         {
                             errors.postCategory&& touched.postCategory && (
                                 <div className="alert alert-danger">

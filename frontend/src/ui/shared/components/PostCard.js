@@ -6,11 +6,9 @@ import {StarRating} from "./StarRating";
 export const PostCard = ({post}) => {
     // const { postContent, postCategory} = post
 
-    const profiles = useSelector(state => state.profiles ? state.profiles : null)
-    // console.log(profiles)
+    const profiles = useSelector(state => state.profiles ? state.profiles : [])
     const FindProfileName = () => {
         const profile = profiles.find(profile => post.postProfileId === profile.profileId)
-        // console.log(profile)
         return (
             <>
                 {profile && <h3>{profile.profileName}</h3>}
@@ -18,21 +16,13 @@ export const PostCard = ({post}) => {
         )
     }
     const ratings = useSelector(state => (state.ratings ? state.ratings.filter(rating => rating.ratingReviewedProfileId === post.postProfileId) : []));
-    // const ratings = useSelector(state => (state.ratings ? state.ratings[0] : null));
-    // console.log(ratings)
     const ratingsAmount = ratings.map(rating => rating.ratingAmount)
-    // console.log(ratingsAmount)
     const ratingsNumber = ratingsAmount.map(x => parseInt(x, 10))
-    // console.log(ratingsNumber)
     const ratingsAverage = function (ratingsNumber) {return Math.round(ratingsNumber.reduce((a,b) => a + b, 0)/ratingsNumber.length)}
-    // console.log(ratingsAverage)
-    // console.log(ratingsAmount.length)
     const ratingReviews = ratings.map(rating => rating.ratingContent)
-    // console.log(ratingReviews)
     const filteredReviews = ratingReviews.filter(entry => entry.length > 0)
-    // console.log(filteredReviews)
     const reviewCount = filteredReviews.length
-    // console.log(reviewCount)
+    const dateShort = new Date(post.postDate)
 
     return (
         <>
@@ -50,7 +40,7 @@ export const PostCard = ({post}) => {
                         {ratingsNumber.length && <StarRating avgRating={ratingsAverage(ratingsNumber)}/> || <StarRating avgRating={0}/>}
                         <p>(reviews: {reviewCount})</p>
                         {/*<StarRating/>*/}
-                        <p>{post.postDate}</p>
+                        <p>{dateShort.toLocaleDateString()}</p>
                         <Button>Message</Button>
                     </Stack>
                     <div>
