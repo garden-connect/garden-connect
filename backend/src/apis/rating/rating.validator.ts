@@ -13,7 +13,7 @@ export const ratingValidator : Schema = {
     },
     ratingAmount: {
         isLength: {
-            errorMessage: 'rating amount must be between 1 character',
+            errorMessage: 'rating amount must be 1 character',
             options: { max: 1 }
         },
         trim: true,

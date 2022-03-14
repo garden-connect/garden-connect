@@ -4,7 +4,7 @@ import {Stack} from "react-bootstrap";
 
 export const StarRating = ({avgRating}) => {
        return (
-        <Stack direction={"horizontal"} className={"star-rating"}>
+        <div className={"hstack d-flex align-items-baseline"}>
             {[...Array(5)].map((star, index) => {
                 index += 1;
                 return (
@@ -16,6 +16,6 @@ export const StarRating = ({avgRating}) => {
                     </div>
                 );
             })}
-        </Stack>
+        </div>
     );
 };

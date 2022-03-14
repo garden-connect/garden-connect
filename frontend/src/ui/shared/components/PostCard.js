@@ -2,6 +2,7 @@ import {Button, Col, Image, Row, Stack} from "react-bootstrap";
 import React from "react";
 import {useSelector} from "react-redux";
 import {StarRating} from "./StarRating";
+import {ConversationPost} from "../../ConversationPost";
 
 export const PostCard = ({post}) => {
     // const { postContent, postCategory} = post
@@ -50,10 +51,10 @@ export const PostCard = ({post}) => {
                             </>
                         )) || (auth !== null &&
                             <>
-                            <Button>Message</Button>
+                            <ConversationPost post={post}/>
                             </>
                         )}
-                        {/*<Button>Message</Button>*/}
+                        {/*<Button>ConversationPost</Button>*/}
                     </Stack>
                     <div>
                         <p>{post.postContent}</p>
