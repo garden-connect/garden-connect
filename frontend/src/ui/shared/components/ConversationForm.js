@@ -4,7 +4,8 @@ import * as Yup from "yup";
 import {Formik} from "formik";
 import {ConversationFormContent} from "./ConversationFormContent";
 import {useSelector, useDispatch} from "react-redux";
-import {fetchAllPosts} from "../../../store/posts";
+import {fetchConversationsContainingProfileId} from "../../../store/conversations";
+import {PostFormContent} from "./PostFormContent";
 
 
 export const ConversationForm = () => {
@@ -29,11 +30,20 @@ export const ConversationForm = () => {
 
                     if(reply.status === 200) {
                         resetForm();
-                        dispatch(fetchAllPosts())
+                        dispatch(fetchConversationsContainingProfileId())
                     }
                     setStatus({message, type});
                 }
             );
     };
+
+    return (
+        <Formik initialValues={conversation}
+                onSubmit={submitConversation}
+                validationSchema={validator}
+        >
+            {ConversationFormContent}
+        </Formik>
+    )
 
 }

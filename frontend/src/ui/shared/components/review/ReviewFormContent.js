@@ -1,9 +1,11 @@
 import React from "react";
 import {useSelector} from "react-redux";
+import {StarRatingResponsive} from "../StarRatingResponsive";
 
-export const EditProfileNameContent = (props) => {
-    const profile = useSelector(state => (state.profiles ? state.profiles[0] : null))
-    console.log(profile)
+export const ReviewFormContent = (props) => {
+    const auth = useSelector(state => state.auth ? state.auth : null);
+    const profile = useSelector(state => (state.profiles ? state.profiles.filter(profile => profile.profileId === auth.profileId) : null))[0]
+    // console.log(profile)
     const {
         status,
         values,
@@ -19,30 +21,33 @@ export const EditProfileNameContent = (props) => {
     return (
         <>
             <form onSubmit={handleSubmit}>
+                <StarRatingResponsive values={values}/>
+
                 <div className="form-group">
-                    <label htmlFor="profileName">What would you like to be called?</label>
+                    <label htmlFor="ratingReview">Write a Review:</label>
                     <div className="input-group">
                         <input
                             className="form-control"
-                            name="profileName"
+                            name="ratingReview"
                             type="text"
-                            value={values.profileName}
-                            placeholder={profile.profileName}
+                            value={values.ratingContent}
+                            placeholder="Review Content"
                             onChange={handleChange}
                             onBlur={handleBlur}
+
                         />
                     </div>
                     {
-                        errors.profileName && touched.profileName && (
+                        errors.ratingContent && touched.ratingContent && (
                             <div className="alert alert-danger">
-                                {errors.profileName}
+                                {errors.ratingContent}
                             </div>
                         )
                     }
                 </div>
 
                 <div className="form-group">
-                    <button className="btn btn-primary mb-2" onClick={handleSubmit}>Change Name</button>
+                    <button className="btn btn-primary mb-2" type={"submit"}>Submit Review</button>
                     <button
                         className="btn btn-danger mb-2"
                         onClick={handleReset}

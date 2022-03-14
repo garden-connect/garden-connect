@@ -37,3 +37,7 @@
 /*.hideEditButton {*/
 /*    display: none;*/
 /*}*/
+StarRating {
+    display: flex;
+    align-items: baseline;
+}

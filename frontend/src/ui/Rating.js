@@ -5,9 +5,11 @@ import {useDispatch, useSelector} from "react-redux";
 import {fetchAllRatersRatings} from "../store/ratings";
 import {fetchProfileByProfileId} from "../store/profiles";
 import {StarRating} from "./shared/components/StarRating";
+import {ReviewForm} from "./shared/components/review/ReviewForm";
 
 export const Rating = ({match}) => {
     const [modalShow, setModalShow] = useState(false);
+    const [showForm, setShowForm] = useState(false)
     const profile = useSelector(state => (state.profiles ? state.profiles.filter(profile => profile.profileId === match.profileId)[0] : null));
     const ratings = useSelector(state => (state.ratings ? state.ratings.filter(rating => rating.ratingReviewedProfileId === match.profileId) : []));
     // console.log("rating: " + ratings)
@@ -37,19 +39,22 @@ export const Rating = ({match}) => {
                         <Container fluid>
                             {/*ProfileId Rating/Review Header*/}
                             <Row>
-                                <Col>
-                                    <Stack gap={3} direction={"horizontal"}>
+                                <Col xs={9}>
+                                    <div className={"hstack gap-3 d-flex align-items-baseline"}>
                                         {profile && (<h2>{profile.profileName}</h2>)}
                                         {(ratingsNumber.length && <StarRating avgRating={ratingsAverage(ratingsNumber)}/>) || <StarRating avgRating={0}/>}
                                         <p>(reviews: {reviewCount})</p>
-                                    </Stack>
+                                    </div>
                                     {/*click on profileName to go to profile page. clicking on stars or number (12) does nothing.*/}
                                 </Col>
                                 {/*Leave Review Button*/}
-                                <Col>
-                                    <Button>Leave Review</Button>
+                                <Col xs={3}>
+                                    <Button onClick={() => setShowForm(true)}>Leave Review</Button>
                                     {/*Won't be visible when viewing your own Reviews. Pressing button opens 5 empty stars, a input text box, and a submit button*/}
                                 </Col>
+                            </Row>
+                            <Row>
+                                {showForm && profile && <ReviewForm reviewedProfile={profile}/>}
                             </Row>
                             {/*Review Section*/}
                             <Row>

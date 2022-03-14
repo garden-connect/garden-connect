@@ -1,13 +1,12 @@
 import React, {useEffect, useState} from "react";
-import {Container, Row, Col, Button, Tabs, Tab} from "react-bootstrap";
+import {Container, Row, Col, Button, Tabs, Tab, Stack} from "react-bootstrap";
 import {PostCard} from "./shared/components/PostCard";
 import {useDispatch, useSelector} from "react-redux";
 import {fetchPostsByPostProfileId} from "../store/posts";
 import {fetchProfileByProfileId} from "../store/profiles";
 import {fetchAllRatersRatings, fetchRatingsByReviewedProfileId} from "../store/ratings";
 import {StarRating} from "./shared/components/StarRating";
-import {EditProfileNameForm} from "./shared/components/profile/EditProfileNameForm";
-import {EditProfileAboutForm} from "./shared/components/profile/EditProfileAboutForm";
+import {EditProfileForm} from "./shared/components/profile/EditProfileForm";
 import {Rating} from "./Rating";
 
 export const Profile = ({match}) => {
@@ -39,7 +38,7 @@ export const Profile = ({match}) => {
     const postsActive = posts.filter(post => post.postActive === 1)
     const postsInactive = posts.filter(post => post.postActive === 0)
     // console.log(posts)
-    const profile = useSelector(state => (state.profiles ? state.profiles[0] : null));
+    const profile = useSelector(state => (state.profiles ? state.profiles.filter(profile => profile.profileId === match.params.profileId) : null))[0];
     // console.log(profile)
     const ratings = useSelector(state => (state.ratings ? state.ratings.filter(rating => rating.ratingReviewedProfileId === match.params.profileId) : []));
     // const ratings = useSelector(state => (state.ratings ? state.ratings[0] : null));
@@ -61,35 +60,24 @@ export const Profile = ({match}) => {
     return (
             <main>
                 <Container fluid>
-                    {/*ProfileId Rating/Review Header*/}
+                    {/*ProfileId Rating/Review Header and About Me*/}
                     <Row>
-                        <Col xs={3}>
-                            <div className={"profile-name"}>
-                                {(showEdit && (<EditProfileNameForm/>)) || (profile && (<h2>{profile.profileName}</h2>))}
+                        <Col xs={9}>
+                            <div className={"hstack gap-3 d-flex align-items-baseline"}>
+                                {(showEdit && (<EditProfileForm/>)) || (profile && (<h2>{profile.profileName}</h2>))}
                                 {/*{profile && (<h2>{profile.profileName}</h2>)}*/}
+                                {(ratingsNumber.length && <StarRating avgRating={ratingsAverage(ratingsNumber)}/>) || <StarRating avgRating={0}/>}
+                                <p>(reviews: {reviewCount})</p>
                             </div>
-                        {/*Clicking here does nothing*/}
+                            {(showEdit && " ") || (profile && (<p>About Me:<br/> {profile.profileAbout}</p>))}
                         </Col>
                         <Col xs={3}>
-                            {(ratingsNumber.length && <StarRating avgRating={ratingsAverage(ratingsNumber)}/>) || <StarRating avgRating={0}/>}
-                            <p>(reviews: {reviewCount})</p>
-                        </Col>
-                        {/*Edit Profile or Rating/Review Button*/}
-                        <Col>
+                            <Stack gap={1}>
                             <Button href={"/message"}>Message History</Button>{}
                              {/*(When viewing other profiles, it will be a Leave Review Button)*/}
-                        </Col>
-                    </Row>
-                    {/*About Me*/}
-                    <Row>
-                        <Col xs={6}>
-                            About Me:
-                            {(showEdit && (<EditProfileAboutForm/>)) || (profile && (<p>{profile.profileAbout}</p>))}
-                        </Col>
-                        <Col xs={6}>
                             {(auth !== null && auth.profileId === match.params.profileId && (
                                 <>
-                                <Button onClick={() => showEditHideButton()}>{showEditButton ? "Edit Profile" : "Done Editing"}</Button>
+                                    <Button onClick={() => showEditHideButton()}>{showEditButton ? "Edit Profile" : "Done Editing"}</Button>
                                 </>
                             )) || (
                                 <>
@@ -97,6 +85,7 @@ export const Profile = ({match}) => {
                                     {profile && <Rating match={profile}/>}
                                 </>
                             )}
+                            </Stack>
                         </Col>
                     </Row>
                     {/*Posts Section*/}
@@ -114,7 +103,7 @@ export const Profile = ({match}) => {
                                 </Tab>
                             </Tabs>
                             {/*2 Tabs: Active Posts & Previous Posts*/}
-                            {/*Conversation History Button to the right (goes to message modal)*/}
+                            {/*ConversationPost History Button to the right (goes to message modal)*/}
                         </Col>
                     </Row>
                 </Container>
