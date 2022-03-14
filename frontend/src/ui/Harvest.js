@@ -15,7 +15,8 @@ export const Harvest = () => {
     useEffect(sideEffects, [dispatch])
 
     const posts = useSelector(state => (state.posts ? state.posts : []));
-    const postsActive = posts.filter(post => post.postActive === 1);
+    const harvestPosts = posts.filter(post => post.postCategory === "harvest")
+    const postsActive = harvestPosts.filter(post => post.postActive === 1);
 
 
     return (
