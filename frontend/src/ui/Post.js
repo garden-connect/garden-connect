@@ -24,32 +24,13 @@ export const Post = () => {
                         aria-labelledby="example-custom-modal-styling-title"
                     >
                         <Modal.Header closeButton>
+                            <Modal.Title id="example-modal-sizes-title-lg">
+                                Make a New Post!
+                            </Modal.Title>
                         </Modal.Header>
                         <Modal.Body>
-                            {/*Create Post Form*/}
+
                 <PostForm/>
-                    {/*<Row>*/}
-                    {/*    /!*Title Input*!/*/}
-                    {/*    <FormLabel>Title</FormLabel>*/}
-                    {/*    <input id={"postTitle"} placeholder={"Custom Title"}/>*/}
-                    {/*    /!*Image Input*!/*/}
-                    {/*    <FormLabel>Image</FormLabel>*/}
-                    {/*<input className="form-control" type={"file"} id="addPicture"*/}
-                    {/*       placeholder="Add Image"/>*/}
-                    {/*    /!*Select Category*!/*/}
-                    {/*    <FormLabel>Harvest or Hands</FormLabel>*/}
-                    {/*    <DropdownButton id="dropdown-basic-button" title="Category">*/}
-                    {/*        <Dropdown.Item href="#/action-1">Harvest</Dropdown.Item>*/}
-                    {/*        <Dropdown.Item href="#/action-2">Hands</Dropdown.Item>*/}
-                    {/*    </DropdownButton>*/}
-                    {/*    /!*Post Description*!/*/}
-                    {/*    <FormLabel>Item Description</FormLabel>*/}
-                    {/*    <input id={"postDescription"} placeholder={"Description must be no longer than 512 characters"}/>*/}
-                    {/*</Row>*/}
-                    {/*<div className={"mt-3"}>*/}
-                    {/*<Button>Post</Button>*/}
-                    {/*<Button className={"mx-3"}>Cancel</Button>*/}
-                    {/*</div>*/}
 
                         </Modal.Body>
                     </Modal>

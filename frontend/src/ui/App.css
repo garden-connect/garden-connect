@@ -44,6 +44,10 @@
     font-family: Palatino;
 }
 
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+    background-color: darkmagenta;
+}
+
 h1 {
     font-family: NavajoDeco;
     font-size: xxx-large;
@@ -59,9 +63,22 @@ span.navbar-brand {
     font-size: xxx-large;
 }
 
+
 .navigation {
     background-color: #E9BD70;
     border-color: darkolivegreen;
+}
+ body {
+     font-family: Palatino;
+ }
+
+.modal-header, .modal-body {
+    background-color: #E9BD70;
+}
+
+.modal-title {
+    font-family: NavajoDeco;
+    font-size: xxx-large;
 }
 
 
