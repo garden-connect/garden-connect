@@ -20,7 +20,7 @@ export const SigninFormContent = (props) => {
             <form onSubmit={handleSubmit}>
                 {/*controlId must match what is passed to the initialValues prop*/}
                 <div className="form-group">
-                    <label htmlFor="profileEmail">Email Address</label>
+                    <label htmlFor="profileEmail" className="my-2">Email Address</label>
                     <div className="input-group">
                         <input
                             className="form-control"
@@ -44,7 +44,7 @@ export const SigninFormContent = (props) => {
                 </div>
                 {/*controlId must match what is defined by the initialValues object*/}
                 <div className="form-group">
-                    <label htmlFor="profilePassword">Password</label>
+                    <label htmlFor="profilePassword" className="my-2">Password</label>
                     <div className="input-group">
                         <input
                             id="profilePassword"
@@ -62,9 +62,9 @@ export const SigninFormContent = (props) => {
                 </div>
 
                 <div className="form-group">
-                    <button className="btn btn-primary mb-2" onClick={handleSubmit}>Submit</button>
+                    <button className="btn btn-primary my-2" onClick={handleSubmit}>Submit</button>
                     <button
-                        className="btn btn-danger mb-2"
+                        className="btn btn-danger my-2"
                         onClick={handleReset}
                         disabled={!dirty || isSubmitting}
                     >Reset
