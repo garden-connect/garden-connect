@@ -29,7 +29,7 @@ export const EditProfileForm = () => {
             .required("username is required")
             .min(1, "Name must be at least one character"),
         profileAbout: Yup.string()
-            .max(1000, "About cannot be more than one thousand charactrers")
+            .max(1000, "About cannot be more than one thousand characters")
     });
 
     const submitName = (values, {resetForm, setStatus}) => {
