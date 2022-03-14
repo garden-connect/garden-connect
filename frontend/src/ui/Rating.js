@@ -7,17 +7,10 @@ import {fetchProfileByProfileId} from "../store/profiles";
 import {StarRating} from "./shared/components/StarRating";
 
 export const Rating = ({match}) => {
-    const [lgShow, setLgShow] = useState(true);
-    const dispatch = useDispatch()
-
-    const sideEffects = () => {
-        dispatch(fetchProfileByProfileId(match.params.ratingReviewedProfileId))
-        dispatch(fetchAllRatersRatings(match.params.ratingReviewedProfileId))
-    }
-    useEffect(sideEffects, [match.params.ratingReviewedProfileId, dispatch])
-
-    const profile = useSelector(state => (state.profiles ? state.profiles.filter(profile => profile.profileId === match.params.ratingReviewedProfileId)[0] : null));
-    const ratings = useSelector(state => (state.ratings ? state.ratings.filter(rating => rating.ratingReviewedProfileId === match.params.ratingReviewedProfileId) : []));
+    const [modalShow, setModalShow] = useState(false);
+    const profile = useSelector(state => (state.profiles ? state.profiles.filter(profile => profile.profileId === match.profileId)[0] : null));
+    const ratings = useSelector(state => (state.ratings ? state.ratings.filter(rating => rating.ratingReviewedProfileId === match.profileId) : []));
+    // console.log("rating: " + ratings)
     const ratingsAmount = ratings.map(rating => rating.ratingAmount)
     const ratingsNumber = ratingsAmount.map(x => parseInt(x, 10))
     const ratingsAverage = function (ratingsNumber) {return Math.round(ratingsNumber.reduce((a,b) => a + b, 0)/ratingsNumber.length)}
@@ -28,10 +21,13 @@ export const Rating = ({match}) => {
     return (
         <>
             <main>
+                <Button variant="primary" onClick={() => setModalShow(true)}>
+                    Ratings/Reviews
+                </Button>
                 <Modal
                     size={"lg"}
-                    show={lgShow}
-                    onHide={() => setLgShow(false)}
+                    show={modalShow}
+                    onHide={() => setModalShow(false)}
                     aria-labelledby={"modal-lg"}>
                     <Modal.Header closeButton>
                         <Modal.Title id={"modal-lg"}>Ratings And Reviews</Modal.Title>

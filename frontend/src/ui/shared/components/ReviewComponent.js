@@ -1,5 +1,5 @@
 import {Col, Row, Stack} from "react-bootstrap";
-import React, {useEffect, useRef, useState} from "react";
+import React, {useCallback, useEffect, useRef, useState} from "react";
 import { useSelector} from "react-redux";
 import {StarRating} from "./StarRating";
 
@@ -8,16 +8,40 @@ export const ReviewComponent = ({review}) => {
     const [showButton, setShowButton] = useState(false);
     const [moreLess, setMoreLess] = useState(true)
 
-    const inputElement = useRef(null)
-
-    function ShowReadMoreButton(){
-        if (inputElement.current.offsetHeight < inputElement.current.scrollHeight ||
-            inputElement.current.offsetWidth < inputElement.current.scrollWidth) {
-            return setShowButton(true)
-        } else {
-        }
+    function ShowReadMoreButton() {
+        const inputElement = useRef(null)
+        const setInputElement = useCallback(node => {
+            console.log(node)
+            console.log(inputElement)
+            // console.log(inputElement.current)
+            if (inputElement.current) {
+                console.log("pass")
+                // return setShowButton(false)
+            }
+            else if (inputElement.current !== null && (inputElement.current.offsetHeight < inputElement.current.scrollHeight ||
+                inputElement.current.offsetWidth < inputElement.current.scrollWidth)) {
+                return setShowButton(true)
+            }
+            inputElement.current = node
+            console.log("change inputElement.current")
+        }, [])
+        return [setInputElement]
     }
-    useEffect(() => ShowReadMoreButton)
+    const [inputElement] = ShowReadMoreButton()
+
+//     const inputElement = useRef(null)
+// console.log(inputElement)
+//
+//     function ShowReadMoreButton(){
+//         if
+//         (inputElement.current.offsetHeight < inputElement.current.scrollHeight ||
+//             inputElement.current.offsetWidth < inputElement.current.scrollWidth) {
+//             return setShowButton(true)
+//         } else {
+//         }
+//     }
+//     useEffect(() => ShowReadMoreButton)
+
 
     function handleClick(e) {
         e.preventDefault();
@@ -25,14 +49,15 @@ export const ReviewComponent = ({review}) => {
         setMoreLess(!moreLess)
     }
 
-
     const profiles = useSelector(state => state.profiles ? state.profiles : [])
     const FindProfileName = () => {
         const profile = profiles.find(profile => review.ratingReviewingProfileId === profile.profileId)
         return (
             <>
-                {profile && <h3>{profile.profileName}</h3>}
+                {/*{profile && <h3>{profile.profileName}</h3>}*/}
+                {profile && <a href={`/profile/${profile.profileId}`}>{profile.profileName}</a>}
             </>
+
         )
     }
     const ratersRatings = useSelector(state => (state.ratings ? state.ratings.filter(rating => rating.ratingReviewedProfileId === review.ratingReviewingProfileId) : []));
@@ -42,6 +67,7 @@ export const ReviewComponent = ({review}) => {
     const ratingReviews = ratersRatings.map(rating => rating.ratingContent)
     const filteredReviews = ratingReviews.filter(entry => entry.length > 0)
     const reviewCount = filteredReviews.length
+    const dateShort = new Date(review.ratingDate)
     return (
         <>
             <Row className={"border border-dark p-3 m-2"}>
@@ -56,7 +82,7 @@ export const ReviewComponent = ({review}) => {
                         <FindProfileName/>
                         {ratingsNumber.length && <StarRating avgRating={ratingsAverage(ratingsNumber)}/>}
                         <p>(reviews: {reviewCount})</p>
-                        <p>{review.ratingDate}</p>
+                        <p>{dateShort.toLocaleDateString()}</p>
                     </Stack>
                     <div className={"rating-content"}>
                         <p ref={inputElement} className={clamped ? "clamped" : ""}>{review.ratingContent}</p>

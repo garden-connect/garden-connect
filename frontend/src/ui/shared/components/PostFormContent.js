@@ -1,5 +1,16 @@
 import React from "react";
-import {Button, Dropdown, DropdownButton, Form, FormLabel, Row} from "react-bootstrap";
+import {
+    Button,
+    Dropdown,
+    DropdownButton,
+    Form,
+    FormControl,
+    FormLabel,
+    FormSelect,
+    InputGroup,
+    Row
+} from "react-bootstrap";
+import {FormDebugger} from "./FormDebugger";
 
 
 export const PostFormContent = (props) => {
@@ -17,20 +28,41 @@ export const PostFormContent = (props) => {
     } = props;
     return (
         <>
-                <Form onSubmit={handleSubmit}>
-                    <Row>
+            <form  onSubmit={handleSubmit}>
+                <InputGroup>
+                    <div>
+
                         {/*Title Input*/}
                         <FormLabel>Create a post</FormLabel>
-                        <input id={"postTitle"} placeholder={"Custom Title"}/>
+                        <input id={"postTitle"} placeholder={"Custom Title"}
+                        className="form-control"
+                        name="postTitle"
+                        value={values.postTitle}
+                       onChange={handleChange}
+                       onBlur={handleBlur}
+                        />
+                        {
+                            errors.postTitle && touched.postTitle && (
+                                <div className="alert alert-danger">
+                                    {errors.postTitle}
+                                </div>
+                            )
+                        }
                         {/*Image Input*/}
                         <FormLabel>Image</FormLabel>
-                        <input className="form-control" type={"file"} id="addPicture"
-                               placeholder="Add Image"/>                        {/*Select Category*/}
-                        <FormLabel>Harvest or Hands</FormLabel>
-                        <DropdownButton id="dropdown-basic-button" title="Category">
-                            <Dropdown.Item href="#/action-1">Harvest</Dropdown.Item>
-                            <Dropdown.Item href="#/action-2">Hands</Dropdown.Item>
-                        </DropdownButton>
+                        <input className="form-control" type={"file"} id="postPicture"
+                               placeholder="Add Image" value={values.postPicture} onChange={handleChange} onBlur={handleBlur}/>
+                        {
+                            errors.postPicture && touched.postPicture && (
+                                <div className="alert alert-danger">
+                                    {errors.postPicture}
+                                </div>
+                            )
+                        }
+                        {/*Select Category*/}
+
+
+
                         {/*Post Description*/}
                         <FormLabel>Item Description</FormLabel>
                         <input
@@ -42,9 +74,47 @@ export const PostFormContent = (props) => {
                             onChange={handleChange}
                             onBlur={handleBlur}
                         />
-                    </Row>
+                        {
+                            errors.postContent && touched.postContent && (
+                                <div className="alert alert-danger">
+                                    {errors.postContent}
+                                </div>
+                            )
+                        }
+                        <FormLabel>Harvest or Hands</FormLabel>
+                    <div>
+                        {/*<DropdownButton*/}
+                        {/*    variant="outline-secondary"*/}
+                        {/*    title="Dropdown"*/}
+                        {/*    id="input-group-dropdown-1"*/}
+                        {/*>*/}
+                        {/*    <Dropdown.Item href="#harvest">Harvest</Dropdown.Item>*/}
+                        {/*    <Dropdown.Item href="#hands">Hands</Dropdown.Item>*/}
+                        {/*</DropdownButton>*/}
+                        <FormSelect
+                            className="form-control"
+                            name="postCategory"
+                            type="text"
+                            value={values.postCategory}
+                            onChange={handleChange}
+                            onBlur={handleBlur}
+                        >
+                        <option>Choose a category</option>
+                        <option value="harvest">Harvest</option>
+                        <option value="hands">Hands</option>
+                        </FormSelect>
+                    </div>
+                        {
+                            errors.postCategory&& touched.postCategory && (
+                                <div className="alert alert-danger">
+                                    {errors.postCategory}
+                                </div>
+                            )
+                        }
+
                     <div className={"mt-3"}>
                         <Button className="btn btn-primary mb-2" type="submit">Post</Button>
+
                         <button
                             className="btn btn-secondary mb-2"
                             onClick={handleReset}
@@ -52,17 +122,14 @@ export const PostFormContent = (props) => {
                         >Cancel
                         </button>
                     </div>
-                    {
-                        errors.postContent && touched.postContent && (
-                            <div className="alert alert-danger">
-                                {errors.postContent}
-                            </div>
-                        )
-                    }
-                </Form>
-                {
-                       status && (<div className={status.type}>{status.message}</div>)
-                    }
+                    </div>
+
+                    </InputGroup>
+            {/*<FormDebugger {...props} />*/}
+            {
+                status && (<div className={status.type}>{status.message}</div>)
+            }
+            </form>
         </>
         )
         };
