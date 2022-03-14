@@ -72,7 +72,7 @@ export const ReviewComponent = ({review}) => {
                 <Col>
                     <Stack direction={"horizontal"} gap={3}>
                         <FindProfileName/>
-                        {ratingsNumber.length && <StarRating avgRating={ratingsAverage(ratingsNumber)}/>}
+                        {(ratingsNumber.length && <StarRating avgRating={ratingsAverage(ratingsNumber)}/>) || <StarRating avgRating={0}/>}
                         <p>(reviews: {reviewCount})</p>
                         <p>{dateShort.toLocaleDateString()}</p>
                     </Stack>

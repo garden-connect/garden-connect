@@ -2,7 +2,7 @@ import {Button, Col, Image, Row, Stack} from "react-bootstrap";
 import React from "react";
 import {useSelector} from "react-redux";
 import {StarRating} from "./StarRating";
-import {ConversationPost} from "../../ConversationPost";
+import {ConversationPost} from "../../Conversation";
 
 export const PostCard = ({post}) => {
     // const { postContent, postCategory} = post
@@ -51,7 +51,8 @@ export const PostCard = ({post}) => {
                             </>
                         )) || (auth !== null &&
                             <>
-                            <ConversationPost post={post}/>
+                            {/*<ConversationPost post={post}/>*/}
+                                <Button>Message Me</Button>
                             </>
                         )}
                         {/*<Button>ConversationPost</Button>*/}
