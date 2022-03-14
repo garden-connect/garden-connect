@@ -19,12 +19,13 @@ export const PostForm = () => {
 
     const auth = useSelector(state => state.auth ? state.auth : null);
     const validator = Yup.object().shape({
-        // postContent: Yup.string()
-        //     .required("post content is required"),
-        // postTitle: Yup.string()
-        //     .required("post title is required"),
-        // postCategory: Yup.string()
-        //     .required("post category is required")
+        postContent: Yup.string()
+            .required("post content is required"),
+        postTitle: Yup.string()
+            .required("post title is required"),
+        postCategory: Yup.string()
+            .required("post category is required"),
+        postPicture: Yup.mixed()
     });
 
     const submitPost = (values, {resetForm, setStatus}) => {
@@ -42,6 +43,22 @@ export const PostForm = () => {
             }
         );
     };
+    if (values.postPicture !== undefined) {
+        httpConfig.post(`/apis/image-upload/`, values.postPicture)
+            .then(reply => {
+                    let {message, type} = reply;
+
+                    if (reply.status === 200) {
+                        submitUpdatedProfile({...values, postPicture:message})
+                    } else {
+                        setStatus({message, type});
+                    }
+                }
+            );
+    } else {
+        submitPost(...post);
+    }
+
 
     return (
         <Formik initialValues={post}

@@ -51,7 +51,11 @@ export const PostFormContent = (props) => {
                         {/*Image Input*/}
                         <FormLabel>Image</FormLabel>
                         <input className="form-control" type={"file"} id="postPicture"
-                               placeholder="Add Image" value={values.postPicture} onChange={handleChange} onBlur={handleBlur}/>
+                               placeholder="Add Image"
+                               value={values.postPicture}
+                               onChange={handleChange}
+                               onBlur={handleBlur}
+                        />
                         {
                             errors.postPicture && touched.postPicture && (
                                 <div className="alert alert-danger">
