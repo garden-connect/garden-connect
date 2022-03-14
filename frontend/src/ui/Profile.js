@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import {Container, Row, Col, Button, Tabs, Tab} from "react-bootstrap";
+import {Container, Row, Col, Button, Tabs, Tab, Stack} from "react-bootstrap";
 import {PostCard} from "./shared/components/PostCard";
 import {useDispatch, useSelector} from "react-redux";
 import {fetchPostsByPostProfileId} from "../store/posts";
@@ -61,34 +61,24 @@ export const Profile = ({match}) => {
     return (
             <main>
                 <Container fluid>
-                    {/*ProfileId Rating/Review Header*/}
+                    {/*ProfileId Rating/Review Header and About Me*/}
                     <Row>
-                        <Col xs={3}>
-                            <div className={"profile-name"}>
+                        <Col xs={9}>
+                            <div className={"hstack gap-3 d-flex align-items-baseline"}>
                                 {(showEdit && (<EditProfileForm/>)) || (profile && (<h2>{profile.profileName}</h2>))}
                                 {/*{profile && (<h2>{profile.profileName}</h2>)}*/}
+                                {(ratingsNumber.length && <StarRating avgRating={ratingsAverage(ratingsNumber)}/>) || <StarRating avgRating={0}/>}
+                                <p>(reviews: {reviewCount})</p>
                             </div>
-                        {/*Clicking here does nothing*/}
-                        </Col>
-                        <Col xs={3}>
-                            {(ratingsNumber.length && <StarRating avgRating={ratingsAverage(ratingsNumber)}/>) || <StarRating avgRating={0}/>}
-                            <p>(reviews: {reviewCount})</p>
-                        </Col>
-                        {/*Edit Profile or Rating/Review Button*/}
-                        <Col>
-                            <Button href={"/message"}>Message History</Button>{}
-                             {/*(When viewing other profiles, it will be a Leave Review Button)*/}
-                        </Col>
-                    </Row>
-                    {/*About Me*/}
-                    <Row>
-                        <Col xs={6}>
                             {(showEdit && " ") || (profile && (<p>About Me:<br/> {profile.profileAbout}</p>))}
                         </Col>
-                        <Col xs={6}>
+                        <Col xs={3}>
+                            <Stack gap={1}>
+                            <Button href={"/message"}>Message History</Button>{}
+                             {/*(When viewing other profiles, it will be a Leave Review Button)*/}
                             {(auth !== null && auth.profileId === match.params.profileId && (
                                 <>
-                                <Button onClick={() => showEditHideButton()}>{showEditButton ? "Edit Profile" : "Done Editing"}</Button>
+                                    <Button onClick={() => showEditHideButton()}>{showEditButton ? "Edit Profile" : "Done Editing"}</Button>
                                 </>
                             )) || (
                                 <>
@@ -96,6 +86,7 @@ export const Profile = ({match}) => {
                                     {profile && <Rating match={profile}/>}
                                 </>
                             )}
+                            </Stack>
                         </Col>
                     </Row>
                     {/*Posts Section*/}
