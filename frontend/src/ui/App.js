@@ -18,6 +18,7 @@ import {SignUp} from "./shared/components/sign-up/SignupPage";
 import {SignOutComponent} from "./shared/components/SignOut";
 
 
+
 export const App = (store) =>  (
     <>
         <Provider store={store}>

@@ -8,7 +8,10 @@ export function SignUp() {
     return (
         <>
             <Container>
-                <h2>Welcome to Garden Connect!<br/> This site is meant to build community and facilitate interaction between gardeners and homesteaders in Albuquerque, New Mexico. Take a look around to see what gardeners near you are up to; sign up to become part of the community! </h2>
+                <Row>
+                <h1 className="d-flex justify-content-center my-3">Welcome to Garden Connect!</h1>
+                </Row>
+                <h2 className="d-flex justify-content-center text-center">This site is meant to build community and facilitate interaction between gardeners and homesteaders in Albuquerque, New Mexico. Take a look around to see what gardeners near you are up to; sign up to become part of the community!</h2>
                 <p className={"mt-5"}>Please fill out the following fields to create an account</p>
             </Container>
 

@@ -1,3 +1,9 @@
+@font-face {
+    src: url(../fonts/NavajoDeco.ttf);
+    font-family: NavajoDeco;
+}
+
+
 .rating-content p {
     -webkit-line-clamp: none;
 }
@@ -31,6 +37,58 @@
 .off {
     color: #ccc;
 }
+
+.btn {
+    background-color: darkolivegreen;
+    border-color: darkslategray;
+    font-family: Palatino;
+}
+
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+    background-color: darkmagenta;
+}
+
+h1 {
+    font-family: NavajoDeco;
+    font-size: xxx-large;
+
+}
+
+h2 {
+    font-family: Palatino;
+}
+
+span.navbar-brand {
+    font-family: NavajoDeco;
+    font-size: xxx-large;
+}
+
+
+.navigation {
+    background-color: #E9BD70;
+    border-color: darkolivegreen;
+}
+ body {
+     font-family: Palatino;
+ }
+
+.modal-header, .modal-body {
+    background-color: #E9BD70;
+}
+
+.modal-title {
+    font-family: NavajoDeco;
+    font-size: xxx-large;
+}
+
+
+
+
+
+
+
+
+
 /*.showEditButton {*/
 /*    display: flex;*/
 /*}*/
