@@ -2,9 +2,12 @@ import React, {useEffect, useState} from "react";
 import {Modal, Button, Row, Col, InputGroup, FormControl, Container} from "react-bootstrap";
 import {useDispatch, useSelector} from "react-redux";
 import {fetchPostsRatingsProfilesByPostCategory} from "../store/posts";
+import {fetchConversationsContainingProfileId} from "../store/conversations";
 
 export const ConversationPost = ({post}) => {
     const [lgShow, setLgShow] = useState(false);
+    // console.log(post)
+
 
     const auth = useSelector(state => state.auth ? state.auth : null);
 
@@ -12,9 +15,9 @@ export const ConversationPost = ({post}) => {
 
     const sideEffects = () => {
 
-        dispatch(fetchPostsRatingsProfilesByPostCategory("harvest"));
+        dispatch(fetchConversationsContainingProfileId(post.postProfileId));
     }
-    useEffect(sideEffects, [dispatch])
+    useEffect(sideEffects, [post.postProfileId, dispatch])
 
     return (
         <>
