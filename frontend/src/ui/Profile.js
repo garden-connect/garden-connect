@@ -7,7 +7,6 @@ import {fetchProfileByProfileId} from "../store/profiles";
 import {fetchAllRatersRatings, fetchRatingsByReviewedProfileId} from "../store/ratings";
 import {StarRating} from "./shared/components/StarRating";
 import {EditProfileForm} from "./shared/components/profile/EditProfileForm";
-import {EditProfileAboutForm} from "./shared/components/profile/EditProfileAboutForm";
 import {Rating} from "./Rating";
 
 export const Profile = ({match}) => {
