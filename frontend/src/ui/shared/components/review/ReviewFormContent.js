@@ -29,18 +29,25 @@ export const ReviewFormContent = (props) => {
                         <input
                             className="form-control"
                             name="ratingReview"
-                            type="textarea"
+                            type="text"
                             value={values.ratingContent}
-                            placeholder=""
+                            placeholder="Review Content"
                             onChange={handleChange}
                             onBlur={handleBlur}
 
                         />
                     </div>
+                    {
+                        errors.ratingContent && touched.ratingContent && (
+                            <div className="alert alert-danger">
+                                {errors.ratingContent}
+                            </div>
+                        )
+                    }
                 </div>
 
                 <div className="form-group">
-                    <button className="btn btn-primary mb-2" onClick={handleSubmit}>Submit Review</button>
+                    <button className="btn btn-primary mb-2" type={"submit"}>Submit Review</button>
                     <button
                         className="btn btn-danger mb-2"
                         onClick={handleReset}

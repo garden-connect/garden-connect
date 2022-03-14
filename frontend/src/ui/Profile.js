@@ -103,7 +103,7 @@ export const Profile = ({match}) => {
                                 </Tab>
                             </Tabs>
                             {/*2 Tabs: Active Posts & Previous Posts*/}
-                            {/*Conversation History Button to the right (goes to message modal)*/}
+                            {/*ConversationPost History Button to the right (goes to message modal)*/}
                         </Col>
                     </Row>
                 </Container>

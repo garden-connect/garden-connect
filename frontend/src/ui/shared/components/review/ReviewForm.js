@@ -18,7 +18,7 @@ export const ReviewForm = ({reviewedProfile}) => {
     // useEffect(effects, [])
 
     const initial = {
-        ratingAmount: "0",
+        ratingAmount: "",
         ratingContent: ""
     };
     // console.log(initial)

@@ -5,7 +5,7 @@ import {StarRating} from "./StarRating";
 
 export const ReviewComponent = ({review}) => {
     const [clamped, setClamped] = useState(true);
-    const [showButton, setShowButton] = useState(false);
+    const [showButton, setShowButton] = useState(true);
     const [moreLess, setMoreLess] = useState(true)
 
     // function ShowReadMoreButton() {
@@ -29,20 +29,20 @@ export const ReviewComponent = ({review}) => {
     // }
     // const [inputElement] = ShowReadMoreButton()
 
-    const ShowReadMoreButton = useCallback(node => {
-        // console.log(node)
-        // console.log(node.offsetHeight)
-        // console.log(node.scrollHeight)
-        if (node?.offsetHeight !== 0) {
-            console.log(node)
-            console.log(node.offsetHeight)
-            // console.log(node.innerHTML)
-            console.log(node.scrollHeight)
-            console.log(node.clientHeight)
-
-            // setShowButton(true)
-        }
-    }, []);
+    // const ShowReadMoreButton = useCallback(node => {
+    //     // console.log(node)
+    //     // console.log(node.offsetHeight)
+    //     // console.log(node.scrollHeight)
+    //     if (node?.offsetHeight !== 0) {
+    //         console.log(node)
+    //         console.log(node.offsetHeight)
+    //         // console.log(node.innerHTML)
+    //         console.log(node.scrollHeight)
+    //         console.log(node.clientHeight)
+    //
+    //         // setShowButton(true)
+    //     }
+    // }, []);
 
 //     const inputElement = useRef(null)
 // console.log(inputElement)
@@ -101,7 +101,9 @@ export const ReviewComponent = ({review}) => {
                         <p>{dateShort.toLocaleDateString()}</p>
                     </Stack>
                     <div className={"rating-content"}>
-                        <p ref={ShowReadMoreButton} className={clamped ? "clamped" : ""}>{review.ratingContent}</p>
+                        <p
+                            // ref={ShowReadMoreButton}
+                           className={clamped ? "clamped" : ""}>{review.ratingContent}</p>
                         {/*{inputElement.current !== null && (inputElement.current.offsetHeight < inputElement.current.scrollHeight ||*/}
                         {/*    inputElement.current.offsetWidth < inputElement.current.scrollWidth) &&*/}
 

@@ -4,6 +4,9 @@ import button from "bootstrap/js/src/button";
 export const StarRatingResponsive = (values) => {
     const [ratingAmount, setRatingAmount] = useState(0);
     const [hover, setHover] = useState()
+    console.log(ratingAmount)
+    values.ratingAmount = ratingAmount
+    console.log(values)
     return (
         <div className={"star-rating"}>
             {[...Array(5)].map((star, index) => {
