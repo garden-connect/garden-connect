@@ -140,9 +140,8 @@ export const PostFormContent = (props) => {
                     </InputGroup>
             {/*<FormDebugger {...props} />*/}
             {
-
-            }
                 status && (<div className={status.type}>{status.message}</div>)
+            }
             </form>
         </>
         )
