@@ -6,7 +6,7 @@ import {Post} from "./Post";
 import {Col, Container, Row, Image, Button} from "react-bootstrap";
 import NavLink from "react-bootstrap/NavLink";
 import {fetchAuth} from "../store/auth";
-// import chickey from "../images/desert_chicken2.jpg"
+import tomatoes from "../images/tomato.png"
 
 export const Harvest = () => {
 
@@ -39,11 +39,19 @@ export const Harvest = () => {
                             </NavLink>
                         </>
                     )}
+
                     <Row>
-                        <Col sm={12}/>
+                        <Col sm={3}>
+                            <Image width="80rem" height="auto" className="d-flex justify-content-center" src={tomatoes} alt="tomatoes"/>
+                        </Col>
+                        <Col sm={6}>
                         <h2 className="d-flex justify-content-center harvest-shadow">You are on the Harvest page!</h2>
                         <h3 className="d-flex justify-content-center text-center">Here you will find local bounty for
                             trade, sell, or giveaway. Message the member to inquire about a post! </h3>
+                            </Col>
+                        <Col sm={3} className="d-flex justify-content-end" >
+                            <Image width="80rem" height="80rem"  src={tomatoes} alt="tomatoes"/>
+                        </Col>
                     </Row>
 
 

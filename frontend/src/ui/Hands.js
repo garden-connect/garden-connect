@@ -3,7 +3,9 @@ import {PostCard} from "./shared/components/PostCard";
 import {useDispatch, useSelector} from "react-redux";
 import {fetchPostsRatingsProfilesByPostCategory} from "../store/posts";
 import {Post} from "./Post";
-import {Col, Container, Row} from "react-bootstrap";
+import {Col, Container, Image, Row} from "react-bootstrap";
+import love from "../images/love.png"
+import love1 from "../images/give-love.png"
 
 
 export const Hands = () => {
@@ -25,9 +27,16 @@ export const Hands = () => {
         <>
             <Container>
                 <Row>
-                    <Col sm={12}/>
+                    <Col sm={3}>
+                        <Image width="80rem" height="auto" className="d-flex justify-content-center" src={love} alt="love"/>
+                    </Col>
+                    <Col sm={6}>
                     <h2 className="d-flex justify-content-center harvest-shadow">You are on the Hands page!</h2>
                     <h3 className="d-flex justify-content-center text-center">Here you will find members either in need of helping hands, or offering up their own! Message a fellow gardener to inquire about a post! </h3>
+                    </Col>
+                    <Col sm={3} className="d-flex justify-content-end" >
+                        <Image width="80rem" height="80rem"  src={love1} alt="love1"/>
+                    </Col>
                 </Row>
 
 

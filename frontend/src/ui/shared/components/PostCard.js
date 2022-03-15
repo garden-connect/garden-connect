@@ -65,8 +65,10 @@ export const PostCard = ({post}) => {
                             </>
                         )) || (auth !== null &&
                             <>
+
                             <ConversationPost post={post}/>
                                 {/*<Button>Message Me</Button>*/}
+
                             </>
                         )}
                         {/*<Button>ConversationPost</Button>*/}
