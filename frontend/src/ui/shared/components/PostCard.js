@@ -1,10 +1,14 @@
 import {Button, Col, Image, Row, Stack} from "react-bootstrap";
-import React from "react";
+import React, {useState} from "react";
 import {useSelector} from "react-redux";
 import {StarRating} from "./StarRating";
 import {ConversationPost} from "../../Conversation";
+import {EditProfileForm} from "./profile/EditProfileForm";
+import {EditPostForm} from "./EditPostForm";
 
 export const PostCard = ({post}) => {
+    const [showEditButton, setShowEditButton] = useState(true);
+    const [showEdit, setShowEdit] = useState(false)
     // const { postContent, postCategory} = post
 
     const auth = useSelector(state => state.auth ? state.auth : null);
@@ -28,6 +32,11 @@ export const PostCard = ({post}) => {
     const reviewCount = filteredReviews.length
     const dateShort = new Date(post.postDate)
 
+    function showEditHideButton() {
+        setShowEdit(!showEdit)
+        setShowEditButton(!showEditButton)
+    }
+
     return (
         <>
             <Row className={"border border-dark p-3 m-5"}>
@@ -47,7 +56,7 @@ export const PostCard = ({post}) => {
                         <p>{dateShort.toLocaleDateString()}</p>
                         {(auth !== null && auth.profileId === post.postProfileId && (
                             <>
-                            <Button>Edit Post</Button>
+                                <Button onClick={() => showEditHideButton()}>{showEditButton ? "Edit Post" : "Done Editing"}</Button>
                             </>
                         )) || (auth !== null &&
                             <>
@@ -58,7 +67,8 @@ export const PostCard = ({post}) => {
                         {/*<Button>ConversationPost</Button>*/}
                     </Stack>
                     <div>
-                        <p>{post.postContent}</p>
+                        {(showEdit && (<EditPostForm post={post}/>)) || (post && (<h2>{post.postTitle}</h2>))}
+                        {(showEdit && " ") || (post && (<p>{post.postContent}</p>))}
                         {/*<h3>{title}</h3>*/}
                         {/*<p>{content}</p>*/}
                     </div>

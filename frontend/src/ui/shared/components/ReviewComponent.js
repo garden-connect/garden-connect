@@ -11,10 +11,11 @@ export const ReviewComponent = ({review}) => {
     const[height, setHeight] = useState(0)
     const measuredRef = useCallback(node => {
         if (node !== null) {
-            setHeight(node.getBoundingClientRect())
+            setHeight(node.getBoundingClientRect().height)
         }
     }, [])
     console.log(height)
+
 
 
     // const ShowReadMoreButton = useCallback(node => {
@@ -60,6 +61,7 @@ export const ReviewComponent = ({review}) => {
     const filteredReviews = ratingReviews.filter(entry => entry.length > 0)
     const reviewCount = filteredReviews.length
     const dateShort = new Date(review.ratingDate)
+
     return (
         <>
             <Row className={"border border-dark p-3 m-2"}>
@@ -79,7 +81,8 @@ export const ReviewComponent = ({review}) => {
                     <div className={"rating-content"}>
                         <p
                             ref={measuredRef}
-                           className={clamped ? "clamped" : ""}>{review.ratingContent}</p>
+                           // className={clamped ? "clamped" : ""}
+                        >{review.ratingContent}</p>
 
                         <a href={"#"} className={showButton ? "showButton" : ""} onClick={handleClick}>{moreLess ? "More" : "Less"}</a>
                     </div>
