@@ -12,16 +12,23 @@ const slice = createSlice({
         getConversationsContainingProfileId: (conversations, action) => {
             return action.payload
         },
+        getConversationsByPostId: (conversations, action) => {
+            return action.payload
+        }
 
     }
 })
 
-export const {getConversationsContainingProfileId} = slice.actions
+export const {getConversationsContainingProfileId, getConversationsByPostId} = slice.actions
 
 
 export const fetchConversationsContainingProfileId = (id) => async dispatch => {
     const {data} = await httpConfig(`/apis/conversation/conversationProfileId/${id}`);
     dispatch(getConversationsContainingProfileId(data))
+}
+export const fetchConversationsByPostId = (id) => async dispatch => {
+    const {data} = await httpConfig(`/apis/conversation/${id}`);
+    dispatch(getConversationsByPostId(data))
 }
 
 

@@ -5,58 +5,36 @@ import {StarRating} from "./StarRating";
 
 export const ReviewComponent = ({review}) => {
     const [clamped, setClamped] = useState(true);
-    const [showButton, setShowButton] = useState(true);
+    const [showButton, setShowButton] = useState(false);
     const [moreLess, setMoreLess] = useState(true)
 
-    // function ShowReadMoreButton() {
-    //     const inputElement = useRef(null)
-    //     const setInputElement = useCallback(node => {
-    //         console.log(node)
-    //         console.log(inputElement)
-    //         // console.log(inputElement.current)
-    //         if (inputElement.current) {
-    //             console.log("pass")
-    //             // return setShowButton(false)
-    //         }
-    //         else if (inputElement.current !== null && (inputElement.current.offsetHeight < inputElement.current.scrollHeight ||
-    //             inputElement.current.offsetWidth < inputElement.current.scrollWidth)) {
-    //             return setShowButton(true)
-    //         }
-    //         inputElement.current = node
-    //         console.log("change inputElement.current")
-    //     }, [])
-    //     return [setInputElement]
-    // }
-    // const [inputElement] = ShowReadMoreButton()
+    const[height, setHeight] = useState(0)
+    const measuredRef = useCallback(node => {
+        if (node !== null) {
+            setHeight(node.getBoundingClientRect().height)
+        }
+    }, [])
+    console.log(height)
+
+
 
     // const ShowReadMoreButton = useCallback(node => {
     //     // console.log(node)
     //     // console.log(node.offsetHeight)
     //     // console.log(node.scrollHeight)
-    //     if (node?.offsetHeight !== 0) {
-    //         console.log(node)
-    //         console.log(node.offsetHeight)
+    //     if (node?.offsetHeight > 0) {
+    //         console.log("i made it")
+    //         // console.log(node)
+    //         // console.log(node.offsetHeight)
     //         // console.log(node.innerHTML)
-    //         console.log(node.scrollHeight)
-    //         console.log(node.clientHeight)
+    //         // console.log(node.scrollHeight)
+    //         // console.log(node.clientHeight)
     //
-    //         // setShowButton(true)
+    //         setShowButton(true)
     //     }
     // }, []);
 
-//     const inputElement = useRef(null)
-// console.log(inputElement)
 //
-//     function ShowReadMoreButton(){
-//         if
-//         (inputElement.current.offsetHeight < inputElement.current.scrollHeight ||
-//             inputElement.current.offsetWidth < inputElement.current.scrollWidth) {
-//             setShowButton(true)
-//         } else {
-//         }
-//         return ""
-//     }
-    // useEffect(() => ShowReadMoreButton)
 
 
     function handleClick(e) {
@@ -70,7 +48,6 @@ export const ReviewComponent = ({review}) => {
         const profile = profiles.find(profile => review.ratingReviewingProfileId === profile.profileId)
         return (
             <>
-                {/*{profile && <h3>{profile.profileName}</h3>}*/}
                 {profile && <a href={`/profile/${profile.profileId}`}>{profile.profileName}</a>}
             </>
 
@@ -84,6 +61,7 @@ export const ReviewComponent = ({review}) => {
     const filteredReviews = ratingReviews.filter(entry => entry.length > 0)
     const reviewCount = filteredReviews.length
     const dateShort = new Date(review.ratingDate)
+
     return (
         <>
             <Row className={"border border-dark p-3 m-2"}>
@@ -96,21 +74,17 @@ export const ReviewComponent = ({review}) => {
                 <Col>
                     <Stack direction={"horizontal"} gap={3}>
                         <FindProfileName/>
-                        {ratingsNumber.length && <StarRating avgRating={ratingsAverage(ratingsNumber)}/>}
+                        {(ratingsNumber.length && <StarRating avgRating={ratingsAverage(ratingsNumber)}/>) || <StarRating avgRating={0}/>}
                         <p>(reviews: {reviewCount})</p>
                         <p>{dateShort.toLocaleDateString()}</p>
                     </Stack>
                     <div className={"rating-content"}>
                         <p
-                            // ref={ShowReadMoreButton}
-                           className={clamped ? "clamped" : ""}>{review.ratingContent}</p>
-                        {/*{inputElement.current !== null && (inputElement.current.offsetHeight < inputElement.current.scrollHeight ||*/}
-                        {/*    inputElement.current.offsetWidth < inputElement.current.scrollWidth) &&*/}
+                            ref={measuredRef}
+                           // className={clamped ? "clamped" : ""}
+                        >{review.ratingContent}</p>
 
                         <a href={"#"} className={showButton ? "showButton" : ""} onClick={handleClick}>{moreLess ? "More" : "Less"}</a>
-                        {/*}*/}
-                        {/*{console.log(inputElement.current)}*/}
-                        {/*<MoreOrLessButton showButton = {showButton} onClick={handleClick} moreLess={moreLess} ShowReadMoreButton={ShowReadMoreButton}/>*/}
                     </div>
                 </Col>
             </Row>
