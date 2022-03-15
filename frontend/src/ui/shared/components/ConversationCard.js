@@ -1,24 +1,41 @@
-import {Button, Col, Image, Row, Stack} from "react-bootstrap";
-import React from "react";
-import {useSelector} from "react-redux";
-import {ConversationPost} from "../../ConversationPost";
+import React, {useEffect, useState} from "react";
+import {Modal, Button, Row, Col, InputGroup, FormControl, Container} from "react-bootstrap";
+import {useDispatch, useSelector} from "react-redux";
 
-export const ConversationCard = ({conversation}) => {
+export const ConversationCard = ({message}) => {
 
     const auth = useSelector(state => state.auth ? state.auth : null);
-
     const profiles = useSelector(state => state.profiles ? state.profiles : [])
+
     const FindProfileName = () => {
-        const profile = profiles.find(profile => post.postProfileId === profile.profileId)
+        const profileSenderId = message.find(conversation => conversation.conversationSendProfileId !== auth.profileId)
+        const profileSenderName = profiles.find(profile => profile.profileId === profileSenderId)
         return (
             <>
-                {/*{profile && <h3>{profile.profileName}</h3>}*/}
-                {profile && <a href={`/profile/${profile.profileId}`}>{profile.profileName}</a>}
+                {profileSenderName}
             </>
         )
     }
 
+    return (
+        <>
+            <Container>
+                        <Row>
+                            <Col xs={2}>
+                                {/*ConversationProfileName Auth*/}
+                                {message && auth.profileName === message.conversationSendProfileId && auth.profileName}
+                            </Col>
 
+                            {/*Message*/}
+                            <Col xs={10}>
 
-
+                            </Col>
+                            <Col xs={2}>
+                                {/*ConversationProfileName Auth*/}
+                                {message && FindProfileName}
+                            </Col>
+                        </Row>
+                </Container>
+        </>
+    )
 }

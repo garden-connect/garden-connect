@@ -37,7 +37,7 @@ export const ReviewForm = ({reviewedProfile}) => {
         const ratingReviewingProfileId = auth?.profileId ?? null
         const ratingReviewedProfileId = reviewedProfile.profileId
         const rating = {ratingReviewingProfileId, ratingReviewedProfileId, ...values}
-        httpConfig.put(`/apis/rating/${reviewedProfile.profileId}`, rating)
+        httpConfig.post(`/apis/rating/${reviewedProfile.profileId}`, rating)
             .then(reply => {
                     let {message, type} = reply;
 

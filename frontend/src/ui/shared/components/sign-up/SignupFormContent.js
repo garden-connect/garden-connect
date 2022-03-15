@@ -104,7 +104,7 @@ export const SignupFormContent = (props) => {
                 </div>
 
                 <div className="form-group">
-                    <button className="btn btn-primary mb-2" type="submit">Submit</button>
+                    <button className="mb-2" type="submit">Submit</button>
                     <button
                         className="btn btn-danger mb-2"
                         onClick={handleReset}

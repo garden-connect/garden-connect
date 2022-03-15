@@ -17,7 +17,8 @@ export const Hands = () => {
     useEffect(sideEffects, [dispatch])
 
     const posts = useSelector(state => (state.posts ? state.posts : []));
-    const postsActive = posts.filter(post => post.postActive === 1);
+    const handsPosts = posts.filter(post => post.postCategory === "hands")
+    const postsActive = handsPosts.filter(post => post.postActive === 1);
 
     return (
         <>

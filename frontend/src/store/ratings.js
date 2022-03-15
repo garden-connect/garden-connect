@@ -8,9 +8,9 @@ const slice = createSlice({
     initialState: [],
     reducers: {
         setRatings: (ratings, action) => {
-            return [...new Set([...ratings, ...action.payload])]
-            //return existing ratings in the action payload, check for duplicates, want the unique profile ids from that
-            //google unique elements in array javascript. "set"
+            const filteredRatings = ratings.filter(rating => (rating.ratingReviewedProfileId !== action.payload[0].ratingReviewedProfileId) && (rating.ratingReviewingProfileId !== action.payload[0].ratingReviewingProfileId))
+            if (filteredRatings !== ratings)
+                return [...new Set([...ratings, ...action.payload])]
         }
     }
 })

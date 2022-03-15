@@ -40,7 +40,7 @@ export const PostFormContent = (props) => {
 
                         {/*Title Input*/}
                         <FormLabel>Post Title</FormLabel>
-                        <input id={"postTitle"} placeholder={"Custom Title"}
+                        <input id={"postTitle"} placeholder={"Write a title for your Post"}
                         className="form-control"
                         name="postTitle"
                         value={values.postTitle}
@@ -77,7 +77,7 @@ export const PostFormContent = (props) => {
 
 
                         {/*Post Description*/}
-                        <FormLabel>Item Description</FormLabel>
+                        <FormLabel className="my-2">Post Content: describe what you are offering or looking for!</FormLabel>
                         <input
                             className="form-control"
                             name="postContent"
@@ -94,7 +94,7 @@ export const PostFormContent = (props) => {
                                 </div>
                             )
                         }
-                        <FormLabel>Harvest or Hands</FormLabel>
+                        <FormLabel className="my-2">Harvest or Hands</FormLabel>
                     <div>
                         {/*<DropdownButton*/}
                         {/*    variant="outline-secondary"*/}
@@ -126,14 +126,14 @@ export const PostFormContent = (props) => {
                         }
 
                     <div className={"mt-3"}>
-                        <Button className="btn btn-primary mb-2" type="submit">Post</Button>
+                        <Button className="btn btn-primary m-2" type="submit">Post</Button>
 
-                        <button
-                            className="btn btn-secondary mb-2"
+                        <Button
+                            className="btn btn-secondary m2-2" type="cancel"
                             onClick={handleReset}
-                            disabled={!dirty || isSubmitting}
+                            // disabled={!dirty || isSubmitting}
                         >Cancel
-                        </button>
+                        </Button>
                     </div>
                     </div>
 

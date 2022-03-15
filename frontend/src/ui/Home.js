@@ -4,6 +4,7 @@ import {fetchAllPosts} from "../store/posts";
 import {PostCard} from "./shared/components/PostCard";
 
 
+
 export const Home = () => {
 
     const posts = useSelector(state => state.posts ? state.posts : [])

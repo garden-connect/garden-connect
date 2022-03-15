@@ -1,14 +1,11 @@
 import React from "react";
 import {useSelector} from "react-redux";
-import {StarRatingResponsive} from "../StarRatingResponsive";
-import {FormDebugger} from "../FormDebugger";
 
-export const ReviewFormContent = (props) => {
+export const EditPostFormContent = (props) => {
     const auth = useSelector(state => state.auth ? state.auth : null);
     const profile = useSelector(state => (state.profiles ? state.profiles.filter(profile => profile.profileId === auth.profileId) : null))[0]
     // console.log(profile)
     const {
-        setFieldValue,
         status,
         values,
         errors,
@@ -23,34 +20,53 @@ export const ReviewFormContent = (props) => {
     return (
         <>
             <form onSubmit={handleSubmit}>
-                <StarRatingResponsive values={values}
-                setFieldValue={setFieldValue}/>
-
                 <div className="form-group">
-                    <label htmlFor="ratingContent">Write a Review:</label>
+                    <label htmlFor="postTitle">Post Title</label>
                     <div className="input-group">
                         <input
                             className="form-control"
-                            name="ratingContent"
+                            name="postTitle"
                             type="text"
-                            value={values.ratingContent}
-                            placeholder="Review Content"
+                            value={values.postTitle}
+                            placeholder="Title"
                             onChange={handleChange}
                             onBlur={handleBlur}
-
                         />
                     </div>
                     {
-                        errors.ratingContent && touched.ratingContent && (
+                        errors.postTitle && touched.postTitle && (
                             <div className="alert alert-danger">
-                                {errors.ratingContent}
+                                {errors.postTitle}
                             </div>
                         )
                     }
                 </div>
 
                 <div className="form-group">
-                    <button className="btn btn-primary mb-2" type={"submit"}>Submit Review</button>
+                    <label htmlFor="postContent">Post</label>
+                    <div className="input-group">
+                        <input
+                            className="form-control"
+                            name="postContent"
+                            type="textarea"
+                            value={values.postContent}
+                            placeholder="Post"
+                            onChange={handleChange}
+                            onBlur={handleBlur}
+
+                        />
+                    </div>
+                    {
+                        errors.postContent && touched.postContent && (
+                            <div className="alert alert-danger">
+                                {errors.postContent}
+                            </div>
+                        )
+                    }
+                </div>
+
+                <div className="form-group">
+                    <button className="btn btn-primary mb-2" onClick={handleSubmit}>Update Post</button>
                     <button
                         className="btn btn-danger mb-2"
                         onClick={handleReset}
@@ -59,7 +75,6 @@ export const ReviewFormContent = (props) => {
                     </button>
                 </div>
             </form>
-            <FormDebugger {...props} />
             {
                 status && (<div className={status.type}>{status.message}</div>)
             }

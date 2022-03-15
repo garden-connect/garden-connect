@@ -8,6 +8,7 @@ import {fetchAllRatersRatings, fetchRatingsByReviewedProfileId} from "../store/r
 import {StarRating} from "./shared/components/StarRating";
 import {EditProfileForm} from "./shared/components/profile/EditProfileForm";
 import {Rating} from "./Rating";
+import {fetchConversationsContainingProfileId} from "../store/conversations";
 
 export const Profile = ({match}) => {
     const [showEditButton, setShowEditButton] = useState(true);
@@ -31,6 +32,7 @@ export const Profile = ({match}) => {
         dispatch(fetchProfileByProfileId(match.params.profileId));
         // dispatch(fetchRatingsByReviewedProfileId(match.params.profileId));
         dispatch(fetchAllRatersRatings(match.params.profileId))
+        dispatch(fetchConversationsContainingProfileId(match.params.profileId))
     }
     useEffect(sideEffects, [match.params.profileId, dispatch])
 
