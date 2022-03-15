@@ -62,9 +62,9 @@ export const Profile = ({match}) => {
                 <Container fluid>
                     {/*ProfileId Rating/Review Header and About Me*/}
                     <Row>
-                        <Col xs={9}>
+                        <Col className="about-me" xs={9}>
                             <div className={"hstack gap-3 d-flex align-items-baseline"}>
-                                {(showEdit && (<EditProfileForm/>)) || (profile && (<h2>{profile.profileName}</h2>))}
+                                {(showEdit && (<EditProfileForm/>)) || (profile && (<h2 className="name">{profile.profileName}</h2>))}
                                 {/*{profile && (<h2>{profile.profileName}</h2>)}*/}
                                 {(ratingsNumber.length && <StarRating avgRating={ratingsAverage(ratingsNumber)}/>) || <StarRating avgRating={0}/>}
                                 <p>(reviews: {reviewCount})</p>

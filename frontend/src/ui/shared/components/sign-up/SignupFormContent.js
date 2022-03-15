@@ -1,6 +1,8 @@
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {FormDebugger} from "../FormDebugger";
 import React from "react";
+import {Button} from "react-bootstrap";
+import {SigninModal} from "../sign-in/SigninModal";
 
 export const SignupFormContent = (props) => {
     const {
@@ -17,13 +19,13 @@ export const SignupFormContent = (props) => {
     } = props;
     return (
         <>
-            <form onSubmit={handleSubmit}>
+            <form className="signupformid" onSubmit={handleSubmit}>
                 {/*controlId must match what is passed to the initialValues prop*/}
                 <div className="form-group">
                     <label htmlFor="profileEmail">Email Address</label>
                     <div className="input-group">
                         <input
-                            className="form-control"
+                            className="form-control my-3"
                             name="profileEmail"
                             type="email"
                             value={values.profileEmail}
@@ -48,7 +50,7 @@ export const SignupFormContent = (props) => {
                     <div className="input-group">
                         <input
                             name="profilePassword"
-                            className="form-control"
+                            className="form-control my-3"
                             type="password"
                             placeholder="Password"
                             value={values.profilePassword}
@@ -65,7 +67,7 @@ export const SignupFormContent = (props) => {
                     <div className="input-group">
                         <input
 
-                            className="form-control"
+                            className="form-control my-3"
                             type="password"
                             name="profilePasswordConfirm"
                             placeholder="Password Confirm"
@@ -84,7 +86,7 @@ export const SignupFormContent = (props) => {
                     <label htmlFor="profileName">Username</label>
                     <div className="input-group">
                         <input
-                            className="form-control"
+                            className="form-control my-3"
                             name="profileName"
                             type="text"
                             value={values.profileName}
@@ -103,18 +105,22 @@ export const SignupFormContent = (props) => {
                     }
                 </div>
 
-                <div className="form-group">
-                    <button className="mb-2" type="submit">Submit</button>
-                    <button
-                        className="btn btn-danger mb-2"
+                <div className="form-group mb-5">
+                    <Button className="" type="submit">Submit</Button>
+                    <Button
+                        className="btn btn-danger m-3"
                         onClick={handleReset}
                         disabled={!dirty || isSubmitting}
                     >Reset
-                    </button>
+                    </Button>
+                    <p>
+                        After creating a profile, click here to sign in!
+                    </p>
+                    <SigninModal/>
                 </div>
 
 
-                <FormDebugger {...props} />
+                {/*<FormDebugger {...props} />*/}
             </form>
             {
                 status && (<div className={status.type}>{status.message}</div>)

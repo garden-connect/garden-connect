@@ -27,7 +27,7 @@ export const NavBar = () => {
 
     return (
 
-    <Navbar expand="sm" className="navigation border border-2 border-dark mb-5">
+    <Navbar sticky="top" expand="sm" className="navigation border border-2 border-dark mb-5 ">
         <Container fluid>
             <Navbar.Brand>
                 <Image className="mb-3 me-3"  width="70 rem" height="auto" src={carrots} alt="carrots"/>
