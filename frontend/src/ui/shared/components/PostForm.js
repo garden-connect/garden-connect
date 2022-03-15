@@ -4,7 +4,7 @@ import * as Yup from "yup";
 import {Formik} from "formik";
 import {PostFormContent} from "./PostFormContent";
 import {useSelector, useDispatch} from "react-redux";
-import {fetchAllPosts} from "../../../store/posts";
+import {fetchAllPosts, fetchPostsByPostCategory} from "../../../store/posts";
 
 
 export const PostForm = () => {
@@ -37,7 +37,7 @@ export const PostForm = () => {
         const post = {postProfileId, postActive: 1, ...values}
         const submitPostWithImage = (submitPost) => {
 
-            httpConfig.post("/apis/post/", post)
+            httpConfig.post("/apis/post/", submitPost)
                 .then(reply => {
                         let {message, type} = reply;
 
@@ -56,15 +56,15 @@ export const PostForm = () => {
                             let {message, type} = reply;
 
                             if (reply.status === 200) {
-                                submitPostWithImage({...values, postPicture: message})
-                                dispatch(fetchAllPosts())
+                                submitPostWithImage({...post, postPicture: message})
+                                dispatch(fetchPostsByPostCategory(post.postCategory))
                             } else {
                                 setStatus({message, type});
                             }
                         }
                     );
             } else {
-                submitPostWithImage(...post);
+                submitPostWithImage(post);
             }
         }
     return (
