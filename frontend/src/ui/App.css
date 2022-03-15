@@ -39,13 +39,13 @@
 }
 
 .btn {
-    background-color: darkolivegreen;
+    background-color: #59271b;
     border-color: darkslategray;
-    font-family: Palatino;
+    font-family: Andale Mono;
 }
 
-.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
-    background-color: darkmagenta;
+.btn-primary:hover {
+    background-color: mediumseagreen;
 }
 
 h1 {
@@ -55,7 +55,7 @@ h1 {
 }
 
 h2 {
-    font-family: Palatino;
+    font-family: Andale Mono;
 }
 
 span.navbar-brand {
@@ -69,7 +69,8 @@ span.navbar-brand {
     border-color: darkolivegreen;
 }
  body {
-     font-family: Palatino;
+     font-family: Andale Mono;
+     background-color: #4e6157;
  }
 
 .modal-header, .modal-body {
@@ -80,6 +81,57 @@ span.navbar-brand {
     font-family: NavajoDeco;
     font-size: xxx-large;
 }
+
+.farm {
+    background-image: url("../images/farm2.jpg") ;
+}
+
+.description {
+    font-weight: bolder;
+    text-shadow:
+            0.07em 0 white,
+            0 0.07em white,
+            -0.07em 0 white,
+            0 -0.07em white;
+}
+
+.signupformid {
+    color: black;
+    font-size: large;
+    font-weight: bolder;
+}
+
+.please {
+    font-weight: bolder;
+    justify-content: center;
+    text-shadow:
+            0.05em 0 white ,
+            0 0.05em white,
+            -0.05em 0 white,
+            0 -0.05em white,
+            -0.05em -0.05em white,
+            -0.05em 0.05em white,
+            0.05em -0.05em white,
+            0.05em 0.05em white;
+}
+
+.dirt {
+    color: white;
+    background-color: #524339;
+}
+
+.nav-link {
+    color: #E9BD70;
+}
+
+.name {
+    color: #E9BD70;
+}
+
+.about-me {
+    color: #E9BD70;
+}
+
 
 
 

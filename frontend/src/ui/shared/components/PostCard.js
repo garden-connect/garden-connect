@@ -1,6 +1,7 @@
-import {Button, Col, Image, Row, Stack} from "react-bootstrap";
+
 import React, {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
+import {Button, Col, Container, Image, Row, Stack} from "react-bootstrap";
 import {StarRating} from "./StarRating";
 import {ConversationPost} from "../../Conversation";
 import {EditProfileForm} from "./profile/EditProfileForm";
@@ -49,24 +50,29 @@ export const PostCard = ({post}) => {
 
     return (
         <>
-            <Row className={"border border-dark p-3 m-5"}>
+            <Container className="post-card-container">
+            <Row className={"border border-dark rounded p-3 m-5 dirt"}>
                 <Col lg={3}>
-                    <Image fluid className={"d-block"} src={"https://via.placeholder.com/200"}/>
+                    <h4>{post.postCategory}</h4>
+                    <Image fluid className={"d-block"} src={post.postPicture}/>
                 {/*Change placeholder to post.postImage*/}
                 </Col>
-                <Col>
+                <Col className="card-name">
                     <Stack direction={"horizontal"} gap={3}>
                         {/*<p>{postCategory}</p><p>{postContent}</p>*/}
-                        <p>{post.postCategory}</p>
+
+                        {/*<h4>{post.postCategory}</h4>*/}
+                        <p><strong>{post.postTitle}</strong></p>
+
                         <FindProfileName/>
                         {/*{ratingsNumber.length && <StarRating avgRating={ratingsAverage(ratingsNumber)}/>}*/}
                         {ratingsNumber.length && <StarRating avgRating={ratingsAverage(ratingsNumber)}/> || <StarRating avgRating={0}/>}
                         <p>(reviews: {reviewCount})</p>
                         {/*<StarRating/>*/}
-                        <p>{dateShort.toLocaleDateString()}</p>
+                        {/*<p className="d-flex ml-auto">{dateShort.toLocaleDateString()}</p>*/}
                         {(auth !== null && auth.profileId === post.postProfileId && (
                             <>
-                                <Button onClick={() => showEditHideButton()}>{showEditButton ? "Edit Post" : "Done Editing"}</Button>
+                                <Button className="ms-auto" onClick={() => showEditHideButton()}>{showEditButton ? "Edit Post" : "Done Editing"}</Button>
                             </>
                         )) || (auth !== null &&
                             <>
@@ -79,11 +85,13 @@ export const PostCard = ({post}) => {
                     <div>
                         {(showEdit && (<EditPostForm post={post}/>)) || (post && (<h2>{post.postTitle}</h2>))}
                         {(showEdit && " ") || (post && (<p>{post.postContent}</p>))}
+                        <p className="">{dateShort.toLocaleDateString()}</p>
                         {/*<h3>{title}</h3>*/}
                         {/*<p>{content}</p>*/}
                     </div>
                 </Col>
             </Row>
+        </Container>
         </>
     );
 }

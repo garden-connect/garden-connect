@@ -24,7 +24,7 @@ export const EditPostFormContent = (props) => {
                     <label htmlFor="postTitle">Post Title</label>
                     <div className="input-group">
                         <input
-                            className="form-control"
+                            className="form-control my-2"
                             name="postTitle"
                             type="text"
                             value={values.postTitle}
@@ -46,7 +46,7 @@ export const EditPostFormContent = (props) => {
                     <label htmlFor="postContent">Post</label>
                     <div className="input-group">
                         <input
-                            className="form-control"
+                            className="form-control my-2"
                             name="postContent"
                             type="textarea"
                             value={values.postContent}
@@ -66,9 +66,9 @@ export const EditPostFormContent = (props) => {
                 </div>
 
                 <div className="form-group">
-                    <button className="btn btn-primary mb-2" onClick={handleSubmit}>Update Post</button>
+                    <button className="btn btn-primary m-2" onClick={handleSubmit}>Update Post</button>
                     <button
-                        className="btn btn-danger mb-2"
+                        className="btn btn-danger m-2"
                         onClick={handleReset}
                         disabled={!dirty || isSubmitting}
                     >Reset
