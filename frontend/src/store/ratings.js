@@ -9,21 +9,27 @@ const slice = createSlice({
     reducers: {
         setRatings: (ratings, action) => {
             // console.log(action.payload)
-            // const filteredReviewedRatings = ratings.filter(rating => (rating.ratingReviewedProfileId !== action.payload[0].ratingReviewedProfileId))
+            if (action.payload.length > 0) {
+                const filteredReviewedRatings = ratings.filter(rating => (rating.ratingReviewedProfileId !== action.payload[0].ratingReviewedProfileId))
+                if (filteredReviewedRatings === ratings)
+                    return [...new Set([...ratings, ...action.payload])]
+                else
+                    return [...new Set([...filteredReviewedRatings, ...action.payload])]
+            }
+
             // const filteredReviewingRatings = ratings.filter(rating => (rating.ratingReviewingProfileId !== action.payload[0].ratingReviewingProfileId))
             // console.log(ratings)
             // console.log(filteredReviewedRatings)
-            // if (filteredReviewedRatings === ratings)
-            //     return [...new Set([...ratings, ...action.payload])]
-            // else if (filteredReviewingRatings === ratings)
-            //     return action.payload
-            // else
-                return [...new Set([...ratings, ...action.payload])]
+
+        },
+        setIndividualRating: (ratings, action) => {
+            ratings.unshift(action.payload)
         }
+
     }
 })
 
-export const {setRatings} = slice.actions
+export const {setRatings, setIndividualRating} = slice.actions
 
 export const fetchRatingsByReviewedProfileId = (id) => async dispatch => {
     const {data} = await httpConfig(`/apis/rating/${id}`);

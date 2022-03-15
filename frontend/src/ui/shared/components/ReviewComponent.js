@@ -14,8 +14,7 @@ export const ReviewComponent = ({review}) => {
         if ((ref.current.offsetHeight < ref.current.scrollHeight || ref.current.offsetWidth < ref.current.scrollWidth)) {
             return setShowButton(true)
         }
-    }, [ref])
-
+    }, [ref, setShowButton])
 
 
     function handleClick(e) {
@@ -31,7 +30,6 @@ export const ReviewComponent = ({review}) => {
             <>
                 {profile && <a href={`/profile/${profile.profileId}`}>{profile.profileName}</a>}
             </>
-
         )
     }
     const ratersRatings = useSelector(state => (state.ratings ? state.ratings.filter(rating => rating.ratingReviewedProfileId === review.ratingReviewingProfileId) : []));
