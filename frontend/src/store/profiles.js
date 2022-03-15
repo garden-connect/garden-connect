@@ -22,6 +22,7 @@ export const {setProfiles} = slice.actions
 
 export const fetchProfileByProfileId = (id) => async dispatch => {
     const {data} = await httpConfig(`/apis/profile/${id}`);
+    // console.log(data)
     dispatch(setProfiles([data]))
 }
 

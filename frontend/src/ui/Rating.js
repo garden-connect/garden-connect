@@ -60,7 +60,7 @@ export const Rating = ({match}) => {
                             <Row>
                                 <Col>
                                     {/*Review Content - expands if you click on arrows on right that appear next to ... \/*/}
-                                    {ratings.map((review , index) =>  <ReviewComponent review={review} key={index}/>)}
+                                    {ratings.map((review) =>  <ReviewComponent review={review} key={review.ratingReviewingProfileId}/>)}
                                 </Col>
                             </Row>
                         </Container>

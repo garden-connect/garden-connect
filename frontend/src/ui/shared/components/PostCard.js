@@ -3,24 +3,13 @@ import React, {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {Button, Col, Container, Image, Row, Stack} from "react-bootstrap";
 import {StarRating} from "./StarRating";
-import {ConversationPost} from "../../Conversation";
-import {EditProfileForm} from "./profile/EditProfileForm";
 import {EditPostForm} from "./EditPostForm";
-import {fetchConversationsByPostId} from "../../../store/conversations";
+import {ConversationPost} from "../../ConversationPost";
 
 export const PostCard = ({post}) => {
     const [showEditButton, setShowEditButton] = useState(true);
     const [showEdit, setShowEdit] = useState(false)
     // const { postContent, postCategory} = post
-
-    const dispatch = useDispatch()
-
-    const sideEffects = () => {
-
-        dispatch(fetchConversationsByPostId(post.postId));
-        // dispatch()
-    }
-    useEffect(sideEffects, [post.postId, dispatch])
 
     const auth = useSelector(state => state.auth ? state.auth : null);
 
@@ -76,8 +65,8 @@ export const PostCard = ({post}) => {
                             </>
                         )) || (auth !== null &&
                             <>
-                            {/*<ConversationPost post={post}/>*/}
-                                <Button>Message Me</Button>
+                            <ConversationPost post={post}/>
+                                {/*<Button>Message Me</Button>*/}
                             </>
                         )}
                         {/*<Button>ConversationPost</Button>*/}

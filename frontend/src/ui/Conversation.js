@@ -3,7 +3,7 @@ import {Modal, Button, Row, Col, InputGroup, FormControl, Container} from "react
 import {useDispatch, useSelector} from "react-redux";
 import {fetchPostsRatingsProfilesByPostCategory} from "../store/posts";
 
-export const ConversationPost = ({post}) => {
+export const Conversation = ({post}) => {
     const [lgShow, setLgShow] = useState(false);
 
     const auth = useSelector(state => state.auth ? state.auth : null);

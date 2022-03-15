@@ -3,6 +3,7 @@ import {createSlice} from "@reduxjs/toolkit";
 import {httpConfig} from "../utils/http-config";
 import {fetchProfileByProfileId} from "./profiles";
 import {fetchRatingsByReviewedProfileId} from "./ratings";
+import {fetchConversationsByPostId} from "./conversations";
 
 const slice = createSlice({
     name: "posts",
@@ -37,14 +38,22 @@ export const fetchPostsByPostCategory = (category) => async dispatch => {
     const {data} = await httpConfig(`/apis/post/postCategory/${category}`);
     dispatch(getPostsByPostCategory(data))
 }
+
+
 export const fetchPostsRatingsProfilesByPostCategory = (category) => async (dispatch, getState) => {
     const {data} = await httpConfig(`/apis/post/postCategory/${category}`);
     // console.log(data)
     await dispatch(getPostsByPostCategory(data))
+    const postIds = _.uniq(_.map(getState().posts, "postId"));
+    postIds.forEach(id => dispatch(fetchConversationsByPostId(id)));
+// console.log(postIds)
     const profileIds = _.uniq(_.map(getState().posts, "postProfileId"));
     profileIds.forEach(id => dispatch(fetchProfileByProfileId(id)));
     profileIds.forEach(id => dispatch(fetchRatingsByReviewedProfileId(id)));
 }
+
+
+
 export const fetchPostByPostId = (id) => async dispatch => {
     const {data} = await httpConfig(`/apis/post/${id}`);
     dispatch(getPostByPostId(data))
