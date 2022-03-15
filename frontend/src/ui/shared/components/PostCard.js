@@ -63,7 +63,7 @@ export const PostCard = ({post}) => {
                         )) || (auth !== null &&
                             <>
                             {/*<ConversationPost post={post}/>*/}
-                                <Button>Message Me</Button>
+                                <Button className="ms-auto">Message Me</Button>
                             </>
                         )}
                         {/*<Button>ConversationPost</Button>*/}
