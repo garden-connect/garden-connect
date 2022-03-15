@@ -119,7 +119,7 @@ export const PostFormContent = (props) => {
                             className="btn btn-secondary m2-2" type="cancel"
                             onClick={handleReset}
                             // disabled={!dirty || isSubmitting}
-                        >Cancel
+                        >Reset form
                         </Button>
                     </div>
                     </div>
