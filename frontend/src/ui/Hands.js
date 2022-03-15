@@ -31,6 +31,8 @@ export const Hands = () => {
                 </Row>
 
 
+
+
             </Container>
             {postsActive.map((post , index) =>  <PostCard post={post} key={index}/>)}
         </>
