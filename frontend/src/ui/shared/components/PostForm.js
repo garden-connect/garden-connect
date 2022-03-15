@@ -20,46 +20,52 @@ export const PostForm = () => {
     const auth = useSelector(state => state.auth ? state.auth : null);
     const validator = Yup.object().shape({
         postContent: Yup.string()
-            .required("post content is required"),
+            .required("post content is required")
+            .max(512, "post content cannot exceed 512 characters"),
         postTitle: Yup.string()
-            .required("post title is required"),
+            .required("post title is required")
+            .max(50, "post title cannot exceed 50 characters"),
         postCategory: Yup.string()
             .required("post category is required"),
         postPicture: Yup.mixed()
     });
 
-    const submitPost = (values, {resetForm, setStatus}) => {
+    function submitPost (values, {resetForm, setStatus}) {
+
         const postProfileId = auth?.profileId ?? null
-        const post = {postProfileId, postActive:1, ...values}
-        httpConfig.post("/apis/post/", post)
-            .then(reply => {
-                let {message, type} = reply;
+        const post = {postProfileId, postActive: 1, ...values}
+        const submitPostWithImage = (submitPost) => {
 
-                if(reply.status === 200) {
-                    resetForm();
-                    dispatch(fetchAllPosts())
-                }
-                setStatus({message, type});
-            }
-        );
-    };
-    if (values.postPicture !== undefined) {
-        httpConfig.post(`/apis/image-upload/`, values.postPicture)
-            .then(reply => {
-                    let {message, type} = reply;
+            httpConfig.post("/apis/post/", post)
+                .then(reply => {
+                        let {message, type} = reply;
 
-                    if (reply.status === 200) {
-                        submitUpdatedProfile({...values, postPicture:message})
-                    } else {
+                        if (reply.status === 200) {
+                            resetForm();
+
+                        }
                         setStatus({message, type});
+                        return (reply)
                     }
-                }
-            );
-    } else {
-        submitPost(...post);
-    }
+                );
+        }
+            if (values.postPicture !== "") {
+                httpConfig.post(`/apis/image-upload/`, values.postPicture)
+                    .then(reply => {
+                            let {message, type} = reply;
 
-
+                            if (reply.status === 200) {
+                                submitPostWithImage({...values, postPicture: message})
+                                dispatch(fetchAllPosts())
+                            } else {
+                                setStatus({message, type});
+                            }
+                        }
+                    );
+            } else {
+                submitPostWithImage(...post);
+            }
+        }
     return (
         <Formik initialValues={post}
                 onSubmit={submitPost}

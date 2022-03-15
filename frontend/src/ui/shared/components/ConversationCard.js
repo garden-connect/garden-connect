@@ -1,7 +1,7 @@
 import {Button, Col, Image, Row, Stack} from "react-bootstrap";
 import React from "react";
 import {useSelector} from "react-redux";
-import {Conversation} from "/frontend/src/ui/Conversation";
+import {ConversationPost} from "../../ConversationPost";
 
 export const ConversationCard = ({conversation}) => {
 

@@ -11,10 +11,12 @@ import {
     Row
 } from "react-bootstrap";
 import {FormDebugger} from "./FormDebugger";
+import {ImageDropZone} from "./ImageDropZone";
 
 
 export const PostFormContent = (props) => {
     const {
+        setFieldValue,
         status,
         values,
         errors,
@@ -26,6 +28,10 @@ export const PostFormContent = (props) => {
         handleSubmit,
         handleReset
     } = props;
+    if (values.postPicture !== ""){
+        console.log(values.postPicture.get("image"))
+    }
+
     return (
         <>
             <form  onSubmit={handleSubmit}>
@@ -33,7 +39,7 @@ export const PostFormContent = (props) => {
                     <div>
 
                         {/*Title Input*/}
-                        <FormLabel>Create a post</FormLabel>
+                        <FormLabel>Post Title</FormLabel>
                         <input id={"postTitle"} placeholder={"Custom Title"}
                         className="form-control"
                         name="postTitle"
@@ -50,11 +56,14 @@ export const PostFormContent = (props) => {
                         }
                         {/*Image Input*/}
                         <FormLabel>Image</FormLabel>
-                        <input className="form-control" type={"file"} id="postPicture"
-                               placeholder="Add Image"
-                               value={values.postPicture}
-                               onChange={handleChange}
-                               onBlur={handleBlur}
+                        <ImageDropZone
+                            formikProps={{
+                                values,
+                                handleChange,
+                                handleBlur,
+                                setFieldValue,
+                                fieldValue:"postPicture"
+                            }}
                         />
                         {
                             errors.postPicture && touched.postPicture && (
@@ -129,7 +138,7 @@ export const PostFormContent = (props) => {
                     </div>
 
                     </InputGroup>
-            {/*<FormDebugger {...props} />*/}
+            <FormDebugger {...props} />
             {
                 status && (<div className={status.type}>{status.message}</div>)
             }

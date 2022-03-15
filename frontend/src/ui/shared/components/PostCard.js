@@ -3,6 +3,7 @@ import React from "react";
 import {useSelector} from "react-redux";
 import {StarRating} from "./StarRating";
 import {ConversationPost} from "../../ConversationPost";
+import * as url from "url";
 
 export const PostCard = ({post}) => {
     // const { postContent, postCategory} = post
@@ -32,13 +33,14 @@ export const PostCard = ({post}) => {
         <>
             <Row className={"border border-dark p-3 m-5"}>
                 <Col lg={3}>
-                    <Image fluid className={"d-block"} src={"https://via.placeholder.com/200"}/>
+                    <Image fluid className={"d-block"} src={post.postPicture}/>
                 {/*Change placeholder to post.postImage*/}
                 </Col>
                 <Col>
                     <Stack direction={"horizontal"} gap={3}>
                         {/*<p>{postCategory}</p><p>{postContent}</p>*/}
                         <p>{post.postCategory}</p>
+                        <p><strong>{post.postTitle}</strong></p>
                         <FindProfileName/>
                         {/*{ratingsNumber.length && <StarRating avgRating={ratingsAverage(ratingsNumber)}/>}*/}
                         {ratingsNumber.length && <StarRating avgRating={ratingsAverage(ratingsNumber)}/> || <StarRating avgRating={0}/>}
