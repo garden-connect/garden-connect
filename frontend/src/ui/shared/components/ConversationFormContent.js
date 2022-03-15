@@ -26,6 +26,7 @@ export const ConversationFormContent = (props) => {
         handleSubmit,
         handleReset
     } = props;
+
     return (
         <>
             <form  onSubmit={handleSubmit}>
@@ -33,7 +34,7 @@ export const ConversationFormContent = (props) => {
                     <div>
 
                         {/*Title Input*/}
-                        <FormLabel>Create a post</FormLabel>
+                        <FormLabel>Create a message</FormLabel>
                         <input id={"conversationContent"} placeholder={"Type your message here"}
                                className="form-control"
                                name="conversationContent"
