@@ -8,23 +8,28 @@ const slice = createSlice({
     initialState: [],
     reducers: {
         setRatings: (ratings, action) => {
-            let filteredRatings
-            if (action.payload.length) {
-            filteredRatings = ratings.filter(rating => (rating.ratingReviewedProfileId !== action.payload[0].ratingReviewedProfileId) && (rating.ratingReviewingProfileId !== action.payload[0].ratingReviewingProfileId))
-            } else {
-                return ratings
+            // console.log(action.payload)
+            if (action.payload.length > 0) {
+                const filteredReviewedRatings = ratings.filter(rating => (rating.ratingReviewedProfileId !== action.payload[0].ratingReviewedProfileId))
+                if (filteredReviewedRatings === ratings)
+                    return [...new Set([...ratings, ...action.payload])]
+                else
+                    return [...new Set([...filteredReviewedRatings, ...action.payload])]
             }
-            if (filteredRatings !== ratings) {
-                return [...new Set([...ratings, ...action.payload])]
-            } else {
-                return [...ratings, ...action.payload]
-            }
-    // return (action.payload)
+
+            // const filteredReviewingRatings = ratings.filter(rating => (rating.ratingReviewingProfileId !== action.payload[0].ratingReviewingProfileId))
+            // console.log(ratings)
+            // console.log(filteredReviewedRatings)
+
+        },
+        setIndividualRating: (ratings, action) => {
+            ratings.unshift(action.payload)
         }
+
     }
 })
 
-export const {setRatings} = slice.actions
+export const {setRatings, setIndividualRating} = slice.actions
 
 export const fetchRatingsByReviewedProfileId = (id) => async dispatch => {
     const {data} = await httpConfig(`/apis/rating/${id}`);

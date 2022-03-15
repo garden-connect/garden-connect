@@ -8,21 +8,16 @@ import {ConversationCard} from "./shared/components/ConversationCard";
 
 export const ConversationPost = ({post}) => {
     const [lgShow, setLgShow] = useState(false);
-    console.log(post)
+    // console.log(post)
 
 
     const auth = useSelector(state => state.auth ? state.auth : null);
 
-    // const dispatch = useDispatch()
-    //
-    // const sideEffects = () => {
-    //
-    //     dispatch(fetchConversationsByPostId(post.postId));
-    //     // dispatch()
-    // }
-    // useEffect(sideEffects, [post.postId, dispatch])
 
-    const conversation = useSelector(state => state.conversations ? state.conversations : []);
+    // const conversations = useSelector(state => (state.conversations ? state.conversations : []))
+    const conversations = useSelector(state => (state.conversations ? state.conversations.filter(conversation => conversation.conversationPostId === post.postId) : []));
+
+// console.log(conversations)
     return (
         <>
             <Container>
@@ -42,9 +37,9 @@ export const ConversationPost = ({post}) => {
                     <Modal.Body>
 
                         <Row>
-                            <Col xs={6} md={4}>
+                            <Col xs={12}>
                                 {/*ConversationPost History*/}
-                                {conversation.map((message , index) =>  <ConversationCard message={message} key={index}/>)}
+                                {conversations.map((message , index) =>  <ConversationCard message={message} key={index}/>)}
                             </Col>
                         </Row>
                         <Row>

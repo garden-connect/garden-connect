@@ -17,6 +17,9 @@ export const Harvest = () => {
     const posts = useSelector(state => (state.posts ? state.posts : []));
     const harvestPosts = posts.filter(post => post.postCategory === "harvest")
     const postsActive = harvestPosts.filter(post => post.postActive === 1);
+    const conversations = useSelector(state => (state.conversations ? state.conversations : []))
+    // console.log(conversations)
+    // console.log(state.conversations)
 
         const sideEffects = () => {
 
@@ -50,3 +53,4 @@ export const Harvest = () => {
             </>
         );
     }
+

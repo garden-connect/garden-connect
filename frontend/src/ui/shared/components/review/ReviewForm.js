@@ -3,7 +3,7 @@ import {httpConfig} from "../../../../utils/http-config";
 import * as Yup from "yup";
 import {Formik} from "formik";
 import {useDispatch, useSelector} from "react-redux";
-import {fetchRatingsByReviewedProfileId} from "../../../../store/ratings";
+import {fetchAllRatersRatings, fetchRatingsByReviewedProfileId, setIndividualRating} from "../../../../store/ratings";
 import {ReviewFormContent} from "./ReviewFormContent";
 
 export const ReviewForm = ({reviewedProfile}) => {
@@ -36,6 +36,7 @@ export const ReviewForm = ({reviewedProfile}) => {
     const submitReview = (values, {resetForm, setStatus}) => {
         const ratingReviewingProfileId = auth?.profileId ?? null
         const ratingReviewedProfileId = reviewedProfile.profileId
+
         const rating = {ratingReviewingProfileId, ratingReviewedProfileId, ...values}
         httpConfig.post(`/apis/rating/${reviewedProfile.profileId}`, rating)
             .then(reply => {
@@ -43,7 +44,8 @@ export const ReviewForm = ({reviewedProfile}) => {
 
                     if(reply.status === 200) {
                         // resetForm();
-                        dispatch(fetchRatingsByReviewedProfileId(profile.profileId))
+                        // dispatch(setIndividualRating({...rating, ratingDate: new Date().toLocaleString()}))
+                        dispatch(fetchAllRatersRatings(reviewedProfile.profileId))
                     }
                     setStatus({message, type});
                 }
