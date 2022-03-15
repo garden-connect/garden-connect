@@ -13,14 +13,14 @@ export const ConversationPost = ({post}) => {
 
     const auth = useSelector(state => state.auth ? state.auth : null);
 
-    const dispatch = useDispatch()
-
-    const sideEffects = () => {
-
-        dispatch(fetchConversationsByPostId(post.postId));
-        // dispatch()
-    }
-    useEffect(sideEffects, [post.postId, dispatch])
+    // const dispatch = useDispatch()
+    //
+    // const sideEffects = () => {
+    //
+    //     dispatch(fetchConversationsByPostId(post.postId));
+    //     // dispatch()
+    // }
+    // useEffect(sideEffects, [post.postId, dispatch])
 
     const conversation = useSelector(state => state.conversations ? state.conversations : []);
     return (

@@ -8,33 +8,14 @@ export const ReviewComponent = ({review}) => {
     const [showButton, setShowButton] = useState(false);
     const [moreLess, setMoreLess] = useState(true)
 
-    const[height, setHeight] = useState(0)
-    const measuredRef = useCallback(node => {
-        if (node !== null) {
-            setHeight(node.getBoundingClientRect().height)
+
+    const ref = useRef(null)
+    useEffect(() => {
+        if ((ref.current.offsetHeight < ref.current.scrollHeight || ref.current.offsetWidth < ref.current.scrollWidth)) {
+            return setShowButton(true)
         }
-    }, [])
-    console.log(height)
+    }, [ref])
 
-
-
-    // const ShowReadMoreButton = useCallback(node => {
-    //     // console.log(node)
-    //     // console.log(node.offsetHeight)
-    //     // console.log(node.scrollHeight)
-    //     if (node?.offsetHeight > 0) {
-    //         console.log("i made it")
-    //         // console.log(node)
-    //         // console.log(node.offsetHeight)
-    //         // console.log(node.innerHTML)
-    //         // console.log(node.scrollHeight)
-    //         // console.log(node.clientHeight)
-    //
-    //         setShowButton(true)
-    //     }
-    // }, []);
-
-//
 
 
     function handleClick(e) {
@@ -80,8 +61,8 @@ export const ReviewComponent = ({review}) => {
                     </Stack>
                     <div className={"rating-content"}>
                         <p
-                            ref={measuredRef}
-                           // className={clamped ? "clamped" : ""}
+                            ref={ref}
+                           className={clamped ? "clamped" : ""}
                         >{review.ratingContent}</p>
 
                         <a href={"#"} className={showButton ? "showButton" : ""} onClick={handleClick}>{moreLess ? "More" : "Less"}</a>

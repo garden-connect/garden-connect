@@ -1,15 +1,25 @@
 import {Button, Col, Image, Row, Stack} from "react-bootstrap";
-import React, {useState} from "react";
-import {useSelector} from "react-redux";
+import React, {useEffect, useState} from "react";
+import {useDispatch, useSelector} from "react-redux";
 import {StarRating} from "./StarRating";
 import {ConversationPost} from "../../Conversation";
 import {EditProfileForm} from "./profile/EditProfileForm";
 import {EditPostForm} from "./EditPostForm";
+import {fetchConversationsByPostId} from "../../../store/conversations";
 
 export const PostCard = ({post}) => {
     const [showEditButton, setShowEditButton] = useState(true);
     const [showEdit, setShowEdit] = useState(false)
     // const { postContent, postCategory} = post
+
+    const dispatch = useDispatch()
+
+    const sideEffects = () => {
+
+        dispatch(fetchConversationsByPostId(post.postId));
+        // dispatch()
+    }
+    useEffect(sideEffects, [post.postId, dispatch])
 
     const auth = useSelector(state => state.auth ? state.auth : null);
 
