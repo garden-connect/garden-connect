@@ -37,7 +37,7 @@ export const ConversationPost = ({post}) => {
                     <Modal.Body>
 
                         <Row>
-                            <Col xs={6} md={4}>
+                            <Col xs={12}>
                                 {/*ConversationPost History*/}
                                 {conversations.map((message , index) =>  <ConversationCard message={message} key={index}/>)}
                             </Col>

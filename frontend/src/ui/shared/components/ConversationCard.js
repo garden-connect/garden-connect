@@ -5,13 +5,16 @@ import {useDispatch, useSelector} from "react-redux";
 export const ConversationCard = ({message}) => {
     const auth = useSelector(state => state.auth ? state.auth : null);
     const profiles = useSelector(state => state.profiles ? state.profiles : [])
+    const conversation = useSelector(state => (state.conversations ? state.conversations.filter(conversation => conversation.conversationPostId === message.conversationPostId) : []));
+// console.log(message)
 
     const FindProfileName = () => {
-        const profileSenderId = message.find(conversation => conversation.conversationSendProfileId !== auth.profileId)
-        const profileSenderName = profiles.find(profile => profile.profileId === profileSenderId)
+        const profileSenderMessage = conversation.find(conversation => conversation.conversationSendProfileId !== auth.profileId)
+        const profileSenderId = profileSenderMessage.conversationSendProfileId
+        const profileSender = profiles.find(profile => profile.profileId === profileSenderId)
         return (
             <>
-                {profileSenderName}
+                {profileSender.profileName}
             </>
         )
     }
@@ -20,18 +23,20 @@ export const ConversationCard = ({message}) => {
         <>
             <Container>
                         <Row>
-                            <Col xs={2}>
+                            <Col xs={3}>
                                 {/*ConversationProfileName Auth*/}
-                                {message && auth.profileName === message.conversationSendProfileId && auth.profileName}
+                                {message && (auth.profileId === message.conversationSendProfileId) && auth.profileName}
                             </Col>
 
                             {/*Message*/}
-                            <Col xs={10}>
+                            <Col xs={6}>
+                                {message && message.conversationContent}
 
                             </Col>
-                            <Col xs={2}>
+                            <Col xs={3}>
                                 {/*ConversationProfileName Auth*/}
-                                {message && FindProfileName}
+                                {message && message.conversationSendProfileId !== auth.profileId && <FindProfileName/>}
+                                {/*{message && message.conversationSendProfileId}*/}
                             </Col>
                         </Row>
                 </Container>
