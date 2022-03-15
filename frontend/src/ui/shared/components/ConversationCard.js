@@ -4,7 +4,6 @@ import {useDispatch, useSelector} from "react-redux";
 
 export const ConversationCard = ({message}) => {
 
-
     const auth = useSelector(state => state.auth ? state.auth : null);
     const profiles = useSelector(state => state.profiles ? state.profiles : [])
 

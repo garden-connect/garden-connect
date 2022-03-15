@@ -8,9 +8,18 @@ const slice = createSlice({
     initialState: [],
     reducers: {
         setRatings: (ratings, action) => {
-            const filteredRatings = ratings.filter(rating => (rating.ratingReviewedProfileId !== action.payload[0].ratingReviewedProfileId) && (rating.ratingReviewingProfileId !== action.payload[0].ratingReviewingProfileId))
-            if (filteredRatings !== ratings)
+            let filteredRatings
+            if (action.payload.length) {
+            filteredRatings = ratings.filter(rating => (rating.ratingReviewedProfileId !== action.payload[0].ratingReviewedProfileId) && (rating.ratingReviewingProfileId !== action.payload[0].ratingReviewingProfileId))
+            } else {
+                return ratings
+            }
+            if (filteredRatings !== ratings) {
                 return [...new Set([...ratings, ...action.payload])]
+            } else {
+                return [...ratings, ...action.payload]
+            }
+    // return (action.payload)
         }
     }
 })
