@@ -9,7 +9,6 @@ import {ConversationPost} from "../../ConversationPost";
 export const PostCard = ({post}) => {
     const [showEditButton, setShowEditButton] = useState(true);
     const [showEdit, setShowEdit] = useState(false)
-    // const { postContent, postCategory} = post
 
     const auth = useSelector(state => state.auth ? state.auth : null);
 
@@ -53,6 +52,7 @@ export const PostCard = ({post}) => {
                         {/*<h4>{post.postCategory}</h4>*/}
                         {/*<p><strong>{post.postTitle}</strong></p>*/}
 
+
                         <FindProfileName/>
                         {/*{ratingsNumber.length && <StarRating avgRating={ratingsAverage(ratingsNumber)}/>}*/}
                         {ratingsNumber.length && <StarRating avgRating={ratingsAverage(ratingsNumber)}/> || <StarRating avgRating={0}/>}
@@ -74,7 +74,7 @@ export const PostCard = ({post}) => {
                         {/*<Button>ConversationPost</Button>*/}
                     </Stack>
                     <div>
-                        {(showEdit && (<EditPostForm post={post}/>)) || (post && (<h2>{post.postTitle}</h2>))}
+                        {(showEdit && (<EditPostForm post={post}/>)) || (post && (<h3>{post.postTitle}</h3>))}
                         {(showEdit && " ") || (post && (<p>{post.postContent}</p>))}
                         <p className="">{dateShort.toLocaleDateString()}</p>
                         {/*<h3>{title}</h3>*/}
