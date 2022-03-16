@@ -5,7 +5,6 @@ import {Formik} from "formik";
 import {ConversationFormContent} from "./ConversationFormContent";
 import {useSelector, useDispatch} from "react-redux";
 import {fetchConversationsContainingProfileId} from "../../../store/conversations";
-import {PostFormContent} from "./PostFormContent";
 
 
 export const ConversationForm = ({post}) => {
@@ -26,11 +25,13 @@ export const ConversationForm = ({post}) => {
     });
 
     const submitConversation = (values, {resetForm, setStatus}) => {
+
         const conversationSendProfileId = auth?.profileId ?? null
         const conversationReceiveProfileId = post.postProfileId
         const conversationPostId = post.postId
         const conversation = {conversationSendProfileId, conversationReceiveProfileId, conversationPostId, ...values}
         httpConfig.post("/apis/conversation/", conversation)
+
             .then(reply => {
                     let {message, type} = reply;
 

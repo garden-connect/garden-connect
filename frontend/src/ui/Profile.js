@@ -81,16 +81,18 @@ export const Profile = ({match}) => {
                         <Col xs={3}>
                             <Stack gap={1}>
                                 {profile && <ConversationProfile match={profile}/>}
+                                {profile && <Rating match={profile}/>}
                              {/*(When viewing other profiles, it will be a Leave Review Button)*/}
                             {(auth !== null && auth.profileId === match.params.profileId && (
                                 <>
                                     <Button onClick={() => showEditHideButton()}>{showEditButton ? "Edit Profile" : "Done Editing"}</Button>
                                 </>
-                            )) || (
-                                <>
-                                    {/*<Button href={`/rating/${match.params.profileId}`}>Ratings/Reviews</Button>{}*/}
-                                    {profile && <Rating match={profile}/>}
-                                </>
+                            )
+                            // ) || (
+                            //     <>
+                            //         {/*<Button href={`/rating/${match.params.profileId}`}>Ratings/Reviews</Button>{}*/}
+                            //         {profile && <Rating match={profile}/>}
+                            //     </>
                             )}
                             </Stack>
                         </Col>

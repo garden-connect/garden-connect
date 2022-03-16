@@ -7,8 +7,9 @@ import {useDispatch} from "react-redux";
 import jwtDecode from 'jwt-decode'
 import { getAuth } from '../../../../store/auth'
 
-export const SignInForm = () => {
+export const SignInForm = (props) => {
 
+    const {setModalShow} = props
     const dispatch = useDispatch()
 
     const validator = Yup.object().shape({
@@ -36,6 +37,7 @@ export const SignInForm = () => {
                 if(reply.status === 200 && reply.headers["authorization"]) {
                     window.localStorage.removeItem("authorization");
                     window.localStorage.setItem("authorization", reply.headers["authorization"]);
+                    setTimeout(() => {setModalShow(false)}, 1000 )
                     resetForm();
                     let jwtToken = jwtDecode(reply.headers["authorization"])
                     dispatch(getAuth(jwtToken))

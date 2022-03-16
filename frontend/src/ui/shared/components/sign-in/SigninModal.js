@@ -26,7 +26,7 @@ export function SigninModal() {
                     </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <SignInForm/>
+                    <SignInForm setModalShow={setModalShow}/>
                 </Modal.Body>
             </Modal>
         </>
