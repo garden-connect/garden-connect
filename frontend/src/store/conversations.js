@@ -14,12 +14,13 @@ const slice = createSlice({
         getConversationsContainingProfileId: (conversations, action) => {
             // return [...new Set([...conversations, ...action.payload])]
             if (action.payload.length > 0) {
-                const filteredConversations = conversations.filter(conversation => (conversation.conversationPostId !== action.payload[0].conversationPostId))
-                if (filteredConversations === conversations)
-                    return [...conversations, ...action.payload]
-                else
-                    return [...action.payload, ...filteredConversations]
+            //     const filteredConversations = conversations.filter(conversation => (conversation.conversationId !== action.payload[0].conversationId))
+            //     if (filteredConversations === conversations)
+            //         return [...conversations, ...action.payload]
+            //     else
+            //         return [...action.payload, ...filteredConversations]
             }
+                return action.payload
         },
         getConversationsByPostId: (conversations, action) => {
             // return [...new Set([...conversations, ...action.payload])]
