@@ -27,7 +27,7 @@ export const NavBar = () => {
 
     return (
 
-    <Navbar sticky="top" expand="sm" className="navigation border border-2 border-dark mb-5 ">
+    <Navbar sticky="top" expand="lg" className="navigation border border-2 border-dark mb-5 ">
         <Container fluid>
             <Navbar.Brand>
                 <Image className="mb-3 me-3"  width="70 rem" height="auto" src={carrots} alt="carrots"/>
@@ -51,7 +51,7 @@ export const NavBar = () => {
                     </Button>
                     </NavLink>
                     <NavLink href="/hands">
-                        <Button className="mt-2">Hands</Button>
+                        <Button className="mt-2 me-1">Hands</Button>
                     </NavLink>
                     {auth === null && (
                         <>
@@ -65,7 +65,7 @@ export const NavBar = () => {
                     )}
                     {auth !== null && (
                         <>
-                            <div className="mt-3">
+                            <div className="mt-3 me-1">
                                 <Post/>
                             </div>
                             <NavLink className="mt-2">

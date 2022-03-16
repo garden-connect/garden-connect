@@ -36,14 +36,14 @@ export const Hands = () => {
                     </>
                 )}
                 <Row>
-                    <Col sm={3}>
-                        <Image width="80rem" height="auto" className="d-flex justify-content-center" src={love} alt="love"/>
+                    <Col className="d-flex justify-content-center" sm={3}>
+                        <Image width="80rem" height="80rem" className="d-flex justify-content-center" src={love} alt="love"/>
                     </Col>
                     <Col sm={6}>
-                    <h2 className="d-flex justify-content-center harvest-shadow">You are on the Hands page!</h2>
+                    <h2 className="d-flex justify-content-center text-center">You are on the Hands page!</h2>
                     <h3 className="d-flex justify-content-center text-center">Here you will find members either in need of helping hands, or offering up their own! Message a fellow gardener to inquire about a post! </h3>
                     </Col>
-                    <Col sm={3} className="d-flex justify-content-end" >
+                    <Col sm={3} className="d-flex justify-content-center" >
                         <Image width="80rem" height="80rem"  src={love1} alt="love1"/>
                     </Col>
                 </Row>

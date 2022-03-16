@@ -27,7 +27,7 @@ export const ConversationProfile = ({match}) => {
     return (
         <>
             <Container>
-                <Button variant="primary" onClick={() => setLgShow(true)}>
+                <Button variant="primary" className="my-2" onClick={() => setLgShow(true)}>
                     Message History
                 </Button>
 

@@ -31,24 +31,26 @@ export const Harvest = () => {
         return (
             <>
                 <Container>
-                    {auth === null && (
-                        <>
-                            <NavLink title="Click me!" href={"/signup"}>
-                                <Button className="mt-2">New Here?</Button>
-                            </NavLink>
-                        </>
-                    )}
-
                     <Row>
                         <Col sm={3}>
-                            <Image width="80rem" height="auto" className="d-flex justify-content-center" src={tomatoes} alt="tomatoes"/>
+                    {auth === null && (
+                        <>
+                                <Button href={"/signup"} className="m-4">New Here?</Button>
+                        </>
+                    )}
+                        </Col>
+                    </Row>
+
+                    <Row>
+                        <Col sm={3} className="d-flex justify-content-center">
+                            <Image width="80rem" height="80rem"  src={tomatoes} alt="tomatoes"/>
                         </Col>
                         <Col sm={6}>
-                        <h2 className="d-flex justify-content-center harvest-shadow">You are on the Harvest page!</h2>
+                        <h2 className="d-flex justify-content-center text-center">You are on the Harvest page!</h2>
                         <h3 className="d-flex justify-content-center text-center">Here you will find local bounty for
                             trade, sell, or giveaway. Message the member to inquire about a post! </h3>
                             </Col>
-                        <Col sm={3} className="d-flex justify-content-end" >
+                        <Col sm={3} className="d-flex justify-content-center" >
                             <Image width="80rem" height="80rem"  src={tomatoes} alt="tomatoes"/>
                         </Col>
                     </Row>
