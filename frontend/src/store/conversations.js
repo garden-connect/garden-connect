@@ -12,7 +12,14 @@ const slice = createSlice({
     initialState: [],
     reducers: {
         getConversationsContainingProfileId: (conversations, action) => {
-            return [...new Set([...conversations, ...action.payload])]
+            // return [...new Set([...conversations, ...action.payload])]
+            if (action.payload.length > 0) {
+                const filteredConversations = conversations.filter(conversation => (conversation.conversationPostId !== action.payload[0].conversationPostId))
+                if (filteredConversations === conversations)
+                    return [...conversations, ...action.payload]
+                else
+                    return [...action.payload, ...filteredConversations]
+            }
         },
         getConversationsByPostId: (conversations, action) => {
             // return [...new Set([...conversations, ...action.payload])]

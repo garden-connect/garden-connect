@@ -16,19 +16,20 @@ export const ConversationPost = ({post}) => {
 
     // const conversations = useSelector(state => (state.conversations ? state.conversations : []))
     const conversations = useSelector(state => (state.conversations ? state.conversations.filter(conversation => conversation.conversationPostId === post.postId) : []));
+    const ourConversations = conversations.filter(conversation => conversation.conversationSendProfileId === auth.profileId || conversation.conversationReceiveProfileId === auth.profileId)
 
     const dateShort = new Date(post.postDate)
 // console.log(conversations)
-    const profiles = useSelector(state => state.profiles ? state.profiles : [])
-    const FindProfileName = () => {
-        const profile = profiles.find(profile => post.postProfileId === profile.profileId)
-        return (
-            <>
-                {/*{profile && <h3>{profile.profileName}</h3>}*/}
-                {profile && <a href={`/profile/${profile.profileId}`}>{profile.profileName}</a>}
-            </>
-        )
-    }
+    const profile = useSelector(state => state.profiles ? state.profiles.filter(profile => profile.profileId === post.postProfileId)[0] : [])
+    // const FindProfileName = () => {
+    //     const profile = profiles.find(profile => post.postProfileId === profile.profileId)
+    //     return (
+    //         <>
+    //             {/*{profile && <h3>{profile.profileName}</h3>}*/}
+    //             {profile && <a href={`/profile/${profile.profileId}`}>{profile.profileName}</a>}
+    //         </>
+    //     )
+    // }
     return (
         <>
             <Container>
@@ -51,7 +52,8 @@ export const ConversationPost = ({post}) => {
                                 {post && <p><strong>{post.postTitle}</strong></p>}
                             </Col>
                             <Col>
-                                <FindProfileName/>
+                                {/*<FindProfileName/>*/}
+                                {profile && <a href={`/profile/${profile.profileId}`}>{profile.profileName}</a>}
                             </Col>
                             <Col>
                                 {post && dateShort.toLocaleDateString()}
@@ -60,11 +62,11 @@ export const ConversationPost = ({post}) => {
                         <Row>
                             <Col xs={12}>
                                 {/*ConversationPost History*/}
-                                {conversations.map((message , index) =>  <ConversationCard message={message} key={index}/>)}
+                                {ourConversations.map((message , index) =>  <ConversationCard message={message} key={index}/>)}
                             </Col>
                         </Row>
                         <Row>
-                            {post && <ConversationForm/>}
+                            {post && <ConversationForm post={post}/>}
                         </Row>
                     </Modal.Body>
                 </Modal>

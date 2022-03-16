@@ -33,7 +33,6 @@ export const ConversationFormContent = (props) => {
                     <div>
 
                         {/*Title Input*/}
-                        <FormLabel>Create a post</FormLabel>
                         <input id={"conversationContent"} placeholder={"Type your message here"}
                                className="form-control"
                                name="conversationContent"
@@ -64,7 +63,7 @@ export const ConversationFormContent = (props) => {
                 </InputGroup>
                 {/*<FormDebugger {...props} />*/}
                 {
-                    status && (<div className={status.type}>{status.message}</div>)
+                    // status && (<div className={status.type}>{status.message}</div>)
                 }
             </form>
         </>
