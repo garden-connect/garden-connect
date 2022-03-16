@@ -3,29 +3,32 @@ import {Modal, Button, Row, Col, InputGroup, FormControl, Container} from "react
 import {useDispatch, useSelector} from "react-redux";
 import {fetchPostsRatingsProfilesByPostCategory} from "../store/posts";
 import {fetchConversationsContainingProfileId} from "../store/conversations";
+import {ReviewComponent} from "./shared/components/ReviewComponent";
+import {ConversationProfileCard} from "./shared/components/ConversationProfileCard";
+import {ConversationCard} from "./shared/components/ConversationCard";
 
-export const ConversationPost = ({post}) => {
+export const ConversationProfile = ({match}) => {
     const [lgShow, setLgShow] = useState(false);
-    // console.log(post)
+    // console.log(match)
 
 
     const auth = useSelector(state => state.auth ? state.auth : null);
-
-    const dispatch = useDispatch()
-
-    const sideEffects = () => {
-
-        dispatch(fetchConversationsContainingProfileId(auth.profileId));
-    }
-    useEffect(sideEffects, [auth.profileId, dispatch])
-
-    const conversations = useSelector(state => (state.conversations ? state.conversations.filter(conversation => (conversation.conversationReceiveProfileId === post.postProfileId) || (conversation.conversationSendProfileId === post.postProfileId)) : []));
-
+    const profile = useSelector(state => (state.profiles ? state.profiles.filter(profile => profile.profileId === match.profileId) : []))[0]
+    // console.log(profile)
+    const myConversations = useSelector(state => (state.conversations ? state.conversations.filter(conversation => (conversation.conversationReceiveProfileId === auth.profileId) || (conversation.conversationSendProfileId === auth.profileId)) : []));
+    // console.log(myConversations)
+    const conversations = myConversations.filter(conversation => (conversation.conversationReceiveProfileId === profile.profileId) || (conversation.conversationSendProfileId === profile.profileId))
+    // console.log(conversations)
+    const convoPostIds = conversations.map(conversation => conversation.conversationPostId)
+    // console.log(convoPostIds)
+    // const posts = useSelector(state => (state.posts ? state.posts.filter(post => convoPostIds.forEach(id => post.postId === convoPostIds[id])) : []))
+    const posts = useSelector(state => state.posts ? state.posts.filter(post => convoPostIds.includes(post.postId)) : [])
+// console.log(posts)
     return (
         <>
             <Container>
                 <Button variant="primary" onClick={() => setLgShow(true)}>
-                    Send Me a Message
+                    Message History
                 </Button>
 
                 <Modal
@@ -40,34 +43,10 @@ export const ConversationPost = ({post}) => {
                     <Modal.Body>
 
                         <Row>
-                            <Col xs={6} md={4}>
-                                {/*ConversationPost History*/}
-                                <ul className="nav nav-pills flex-column mb-auto">
-                                    <li>
-                                        <h5>Message History of Posts</h5>
-                                    </li>
-                                    <li className="nav-item">
-                                        <a href="#" className="nav-link active" aria-current="page">
-                                            Carrots by Old McDonald
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" className="nav-link link-dark">
-                                            Dashboard
-                                        </a>
-                                    </li>
-                                </ul>
+                            <Col>
+                                {posts.map((post) =>  <ConversationProfileCard post={post} key={post.postId}/>)}
                             </Col>
 
-                            {/*Chat Box*/}
-                            <Col>
-                                <h6 align={"center"}>Carrots chat with Old Mcdonald</h6>
-                                {/*input message*/}
-                                <InputGroup className={"justify-content-end"}>
-                                    <FormControl/>
-                                    <Button>Send</Button>
-                                </InputGroup>
-                            </Col>
                         </Row>
                     </Modal.Body>
                 </Modal>

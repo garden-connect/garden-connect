@@ -2,13 +2,14 @@ import React, {useEffect, useState} from "react";
 import {Container, Row, Col, Button, Tabs, Tab, Stack} from "react-bootstrap";
 import {PostCard} from "./shared/components/PostCard";
 import {useDispatch, useSelector} from "react-redux";
-import {fetchPostsByPostProfileId} from "../store/posts";
+import {fetchAllPosts, fetchPostsByPostProfileId} from "../store/posts";
 import {fetchProfileByProfileId} from "../store/profiles";
 import {fetchAllRatersRatings, fetchRatingsByReviewedProfileId} from "../store/ratings";
 import {StarRating} from "./shared/components/StarRating";
 import {EditProfileForm} from "./shared/components/profile/EditProfileForm";
 import {Rating} from "./Rating";
-import {fetchConversationsContainingProfileId} from "../store/conversations";
+import {fetchConversationsAndPosts, fetchConversationsContainingProfileId} from "../store/conversations";
+import {ConversationProfile} from "./ConversationProfile";
 
 export const Profile = ({match}) => {
     const [showEditButton, setShowEditButton] = useState(true);
@@ -28,11 +29,14 @@ export const Profile = ({match}) => {
     // useEffect(editThisPage)
 
     const sideEffects = () => {
-        dispatch(fetchPostsByPostProfileId(match.params.profileId));
-        dispatch(fetchProfileByProfileId(match.params.profileId));
-        // dispatch(fetchRatingsByReviewedProfileId(match.params.profileId));
-        dispatch(fetchAllRatersRatings(match.params.profileId))
+        // dispatch(fetchConversationsAndPosts(match.params.profileId))
+        // dispatch(fetchPostsByPostProfileId(match.params.profileId));
+        dispatch(fetchAllPosts())
         dispatch(fetchConversationsContainingProfileId(match.params.profileId))
+        dispatch(fetchProfileByProfileId(match.params.profileId));
+        dispatch(fetchRatingsByReviewedProfileId(match.params.profileId));
+        dispatch(fetchAllRatersRatings(match.params.profileId))
+
     }
     useEffect(sideEffects, [match.params.profileId, dispatch])
 
@@ -59,6 +63,7 @@ export const Profile = ({match}) => {
     // console.log(filteredReviews)
     const reviewCount = filteredReviews.length
     // console.log(reviewCount)
+
     return (
             <main>
                 <Container fluid>
@@ -75,7 +80,7 @@ export const Profile = ({match}) => {
                         </Col>
                         <Col xs={3}>
                             <Stack gap={1}>
-                            <Button href={"/message"}>Message History</Button>{}
+                                {profile && <ConversationProfile match={profile}/>}
                              {/*(When viewing other profiles, it will be a Leave Review Button)*/}
                             {(auth !== null && auth.profileId === match.params.profileId && (
                                 <>
