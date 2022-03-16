@@ -89,7 +89,6 @@ export const Profile = ({match}) => {
                                         <Button onClick={() => showEditHideButton()}>{showEditButton ? "Edit Profile" : "Done Editing"}</Button>
                                     </div>
                                 </>
-
                             )
                             // ) || (
                             //     <>
