@@ -10,7 +10,7 @@ export function SignUp() {
     return (
         <>
 
-            <Container className="farm border-2 border border-rounded" >
+            <Container className="farm border-2 border rounded" >
                 <Row>
                 <h1 className="d-flex justify-content-center my-3">Welcome to Garden Connect!</h1>
                 </Row>

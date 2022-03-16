@@ -17,7 +17,6 @@ export const PostCard = ({post}) => {
         const profile = profiles.find(profile => post.postProfileId === profile.profileId)
         return (
             <>
-                {/*{profile && <h3>{profile.profileName}</h3>}*/}
                 {profile && <a href={`/profile/${profile.profileId}`}>{profile.profileName}</a>}
             </>
         )
@@ -38,50 +37,59 @@ export const PostCard = ({post}) => {
 
     return (
         <>
-            <Container className="post-card-container">
-            <Row className={"border border-dark rounded p-3 m-5 dirt"}>
-                <Col lg={3}>
-                    <h4>{post.postCategory}</h4>
-                    <Image fluid className={"d-block"} src={post.postPicture}/>
-                {/*Change placeholder to post.postImage*/}
+            <Container className="post-card-container border border-dark rounded dirt my-5">
+            <Row className="my-3">
+                <Col xs={4} className="me-auto">
+
+                    <FindProfileName/>
+
+                    {ratingsNumber.length && <StarRating avgRating={ratingsAverage(ratingsNumber)}/> || <StarRating avgRating={0}/>}
+                    <p>(reviews: {reviewCount})</p>
                 </Col>
-                <Col className="card-name">
-                    <Stack direction={"horizontal"} gap={3}>
-                        {/*<p>{postCategory}</p><p>{postContent}</p>*/}
+                <Col xs={4} className="d-flex justify-content-center">
+                    <h4>{post.postCategory}</h4>
+                </Col>
+                <Col xs={4} className="d-flex justify-content-end">
 
-                        {/*<h4>{post.postCategory}</h4>*/}
-                        {/*<p><strong>{post.postTitle}</strong></p>*/}
-
-
-                        <FindProfileName/>
-                        {/*{ratingsNumber.length && <StarRating avgRating={ratingsAverage(ratingsNumber)}/>}*/}
-                        {ratingsNumber.length && <StarRating avgRating={ratingsAverage(ratingsNumber)}/> || <StarRating avgRating={0}/>}
-                        <p>(reviews: {reviewCount})</p>
-                        {/*<StarRating/>*/}
-                        {/*<p className="d-flex ml-auto">{dateShort.toLocaleDateString()}</p>*/}
-                        {(auth !== null && auth.profileId === post.postProfileId && (
-                            <>
-                                <Button className="ms-auto" onClick={() => showEditHideButton()}>{showEditButton ? "Edit Post" : "Done Editing"}</Button>
-                            </>
-                        )) || (auth !== null &&
-                            <>
-
+                    {(auth !== null && auth.profileId === post.postProfileId && (
+                        <>
+                            <Button className="ms-auto" size="sm" onClick={() => showEditHideButton()}>{showEditButton ? "Edit Post" : "Done Editing"}</Button>
+                        </>
+                    )) || (auth !== null &&
+                        <>
                             <ConversationPost post={post}/>
-                                {/*<Button>Message Me</Button>*/}
-
-                            </>
-                        )}
-                        {/*<Button>ConversationPost</Button>*/}
-                    </Stack>
-                    <div>
-                        {(showEdit && (<EditPostForm post={post}/>)) || (post && (<h3>{post.postTitle}</h3>))}
-                        {(showEdit && " ") || (post && (<p>{post.postContent}</p>))}
-                        <p className="">{dateShort.toLocaleDateString()}</p>
-                        {/*<h3>{title}</h3>*/}
-                        {/*<p>{content}</p>*/}
-                    </div>
+                        </>
+                    )}
                 </Col>
             </Row>
+                <Row>
+                    <Col xs={12} className="d-flex justify-content-center my-3">
+                    {(showEdit && "") || (post && (<h3>{post.postTitle}</h3>))}
+                    </Col>
+
+                </Row>
+                <Row>
+
+                <Col xs={6}>
+                    <Image fluid className={"d-block border border-dark rounded mb-2"} src={post.postPicture}/>
+                </Col>
+                    <Col xs={6} className="d-flex justify-content-center my-3">
+                        {(showEdit && (<EditPostForm post={post}/>)) || (post && (<p>{post.postContent}</p>))}
+                    </Col>
+                </Row>
+                <Row className="my-3">
+                    <Col lg={12} className="d-flex justify-content-start">
+                        <p className="">{dateShort.toLocaleDateString()}</p>
+                    </Col>
+
+                </Row>
+
+
+                    {/*<div>*/}
+                    {/*    {(showEdit && (<EditPostForm post={post}/>)) || (post && (<h3>{post.postTitle}</h3>))}*/}
+                    {/*    {(showEdit && " ") || (post && (<p>{post.postContent}</p>))}*/}
+                    {/*    <p className="">{dateShort.toLocaleDateString()}</p>*/}
+                    {/*</div>*/}
         </Container>
         </>
     );
