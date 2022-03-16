@@ -113,10 +113,6 @@ export const SignupFormContent = (props) => {
                         disabled={!dirty || isSubmitting}
                     >Reset
                     </Button>
-                    <p>
-                        After creating a profile, click here to sign in!
-                    </p>
-                    <SigninModal/>
                 </div>
 
 
