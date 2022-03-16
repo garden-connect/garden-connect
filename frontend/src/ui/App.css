@@ -32,16 +32,17 @@
     cursor: pointer;
 }
 .on {
-    color: #000;
+    color: mediumseagreen;
 }
 .off {
-    color: #ccc;
+    color: blanchedalmond;
 }
 
 .btn {
     background-color: #59271b;
     border-color: darkslategray;
     font-family: Andale Mono;
+    color: blanchedalmond;
 }
 
 .btn-primary:hover {
@@ -116,13 +117,14 @@ span.navbar-brand {
 }
 
 .dirt {
-    color: white;
+    color: blanchedalmond;
     background-color: #524339;
 }
 
 .nav-link {
     color: #E9BD70;
 }
+
 
 .name {
     color: #E9BD70;
@@ -157,7 +159,7 @@ img {
     color: black;
     font-family: "Bookman Old Style";
     font-weight: bold;
-    font-size: xx-large;
+    font-size: large;
     text-decoration: none;
 }
 .showButton:hover{
