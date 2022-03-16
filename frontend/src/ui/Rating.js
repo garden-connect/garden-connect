@@ -10,6 +10,7 @@ import {ReviewForm} from "./shared/components/review/ReviewForm";
 export const Rating = ({match}) => {
     const [modalShow, setModalShow] = useState(false);
     const [showForm, setShowForm] = useState(false)
+    const auth = useSelector(state => state.auth ? state.auth : null);
     const profile = useSelector(state => (state.profiles ? state.profiles.filter(profile => profile.profileId === match.profileId)[0] : null));
     const ratings = useSelector(state => (state.ratings ? state.ratings.filter(rating => rating.ratingReviewedProfileId === match.profileId) : []));
     // console.log("rating: " + ratings)
@@ -49,7 +50,12 @@ export const Rating = ({match}) => {
                                 </Col>
                                 {/*Leave Review Button*/}
                                 <Col xs={3}>
-                                    <Button onClick={() => setShowForm(true)}>Leave Review</Button>
+                                    {(auth !== null && auth.profileId !== match.profileId && (
+                                        <>
+                                            <Button onClick={() => setShowForm(!showForm)}>{showForm ? "Done" : "Leave Review" }</Button>
+                                        </>
+                                    ))}
+
                                     {/*Won't be visible when viewing your own Reviews. Pressing button opens 5 empty stars, a input text box, and a submit button*/}
                                 </Col>
                             </Row>
