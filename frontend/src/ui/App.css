@@ -1,0 +1,179 @@
+@font-face {
+    src: url(../fonts/NavajoDeco.ttf);
+    font-family: NavajoDeco;
+}
+
+
+.rating-content p {
+    -webkit-line-clamp: none;
+}
+.rating-content .clamped {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    overflow-wrap: break-word;
+}
+.rating-content {
+    display: flex;
+}
+.rating-content a {
+    display: none;
+}
+.rating-content .showButton {
+    display: flex;
+}
+
+.star-rating button {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+.on {
+    color: mediumseagreen;
+}
+.off {
+    color: blanchedalmond;
+}
+
+.btn {
+    background-color: #59271b;
+    border-color: darkslategray;
+    color: blanchedalmond;
+    font-family: Andale Mono, "Lucida Console";
+}
+
+.btn-primary:hover {
+    background-color: mediumseagreen;
+}
+
+h1 {
+    font-family: NavajoDeco;
+    font-size: xxx-large;
+
+}
+
+h2 {
+    font-family: Andale Mono;
+}
+
+span.navbar-brand {
+    font-family: NavajoDeco;
+    font-size: xxx-large;
+}
+
+
+.navigation {
+    background-color: #E9BD70;
+    border-color: darkolivegreen;
+}
+ body {
+     font-family: Andale Mono;
+     background-color: #4e6157;
+ }
+
+.modal-header, .modal-body {
+    background-color: #E9BD70;
+}
+
+.modal-title {
+    font-family: NavajoDeco;
+    font-size: xxx-large;
+}
+
+.farm {
+    background-image: url("../images/farm2.jpg") ;
+}
+
+.description {
+    font-weight: bolder;
+    text-shadow:
+            0.07em 0 white,
+            0 0.07em white,
+            -0.07em 0 white,
+            0 -0.07em white;
+}
+
+.signupformid {
+    color: black;
+    font-size: large;
+    font-weight: bolder;
+}
+
+.please {
+    font-weight: bolder;
+    justify-content: center;
+    text-shadow:
+            0.05em 0 white ,
+            0 0.05em white,
+            -0.05em 0 white,
+            0 -0.05em white,
+            -0.05em -0.05em white,
+            -0.05em 0.05em white,
+            0.05em -0.05em white,
+            0.05em 0.05em white;
+}
+
+.dirt {
+    color: blanchedalmond;
+    background-color: #524339;
+}
+
+.nav-link {
+    color: #E9BD70;
+}
+
+
+.name {
+    color: #E9BD70;
+}
+
+.about-me {
+    color: #E9BD70;
+}
+
+
+img {
+    height: 150px;
+    width: auto;
+}
+
+.img-fluid {
+    max-height: 300px;
+}
+
+
+
+.leftTalking {
+    background-color: #556B2FFF;
+    color: blanchedalmond;
+}
+.rightTalking {
+    background-color: #4e6157;
+    color: blanchedalmond;
+}
+
+.showButton{
+    color: black;
+    font-family: "Bookman Old Style";
+    font-weight: bold;
+    font-size: large;
+    text-decoration: none;
+}
+.showButton:hover{
+    color: black;
+    text-decoration: none;
+}
+
+StarRating {
+    display: flex;
+    align-items: baseline;
+}
+a {
+    color: blanchedalmond;
+}
+.dark-a {
+    color: #4e6157;
+}

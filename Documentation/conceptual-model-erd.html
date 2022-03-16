@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Conceptual Model and ERD</title>
+</head>
+<body>
+<h1>ERD Diagram</h1>
+<img src="../Garden%20Pics/ERD.png" alt="ERD Diagram">
+<h1>Conceptual Model</h1>
+    <ol>
+        <h4>Profile</h4>
+            <ul>
+                <li>profileId (primary key)</li>
+                <li>profileAbout</li>
+                <li>profileActivationToken (for account verification)</li>
+                <li>profileEmail</li>
+                <li>profileHash (for account password)</li>
+                <li>profileName</li>
+            </ul>
+        <h4>Posts</h4>
+            <ul>
+                <li>postId (primary key)</li>
+                <li>postProfileId (foreign key)</li>
+                <li>postActive</li>
+                <li>postCategory</li>
+                <li>postContent</li>
+                <li>postDate</li>
+                <li>postPicture</li>
+                <li>postTitle</li>
+            </ul>
+        <h4>ConversationPost</h4>
+            <ul>
+                <li>conversationId (primary key)</li>
+                <li>conversationPostID (foreign key)</li>
+                <li>conversationReceiveProfileId (foreign key)</li>
+                <li>conversationSendProfileId (foreign key)</li>
+                <li>conversationContent</li>
+                <li>conversationDate</li>
+            </ul>
+        <h4>Rating/Review</h4>
+            <ul>
+                <li>ratingReviewedProfileId (foreign key)</li>
+                <li>ratingReviewingProfileId (foreign key)</li>
+                <li>ratingAmount</li>
+                <li>ratingContent</li>
+                <li>ratingDate</li>
+            </ul>
+    </ol>
+</body>
+</html>
