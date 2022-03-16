@@ -10,9 +10,10 @@ export const SignOutComponent = () => {
     const signOut = () => {
         httpConfig.get('/apis/sign-out/').then(reply => {
             if (reply.status === 200) {
+                window.location = '/'
                 window.localStorage.removeItem('authorization')
                 dispatch(getAuth(null))
-                window.location = '/'
+                // window.location = '/'
             }
         })
     }

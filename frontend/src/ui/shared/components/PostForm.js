@@ -4,7 +4,7 @@ import * as Yup from "yup";
 import {Formik} from "formik";
 import {PostFormContent} from "./PostFormContent";
 import {useSelector, useDispatch} from "react-redux";
-import {fetchAllPosts, fetchPostsByPostCategory} from "../../../store/posts";
+import {fetchAllPosts, fetchPostsByPostCategory, fetchPostsRatingsProfilesByPostCategory} from "../../../store/posts";
 
 
 export const PostForm = (props) => {
@@ -45,7 +45,12 @@ export const PostForm = (props) => {
                         if (reply.status === 200) {
                             setTimeout(() => {setModalShow(false)}, 1000 )
                             resetForm();
-                            dispatch(fetchPostsByPostCategory(post.postCategory))
+                            if (post.postCategory === "harvest") {
+                                window.location = '/'
+                            }
+                            else
+                                window.location = '/hands'
+                            dispatch(fetchPostsRatingsProfilesByPostCategory(post.postCategory))
 
                         }
                         setStatus({message, type});
