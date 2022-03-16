@@ -153,6 +153,18 @@ img {
     color: blanchedalmond;
 }
 
+.showButton{
+    color: black;
+    font-family: "Bookman Old Style";
+    font-weight: bold;
+    font-size: xx-large;
+    text-decoration: none;
+}
+.showButton:hover{
+    color: black;
+    text-decoration: none;
+}
+
 StarRating {
     display: flex;
     align-items: baseline;

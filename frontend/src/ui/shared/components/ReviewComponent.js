@@ -40,6 +40,7 @@ export const ReviewComponent = ({review}) => {
     const filteredReviews = ratingReviews.filter(entry => entry.length > 0)
     const reviewCount = filteredReviews.length
     const dateShort = new Date(review.ratingDate)
+    const more = <span>\u2228</span>
 
     return (
         <>
@@ -63,7 +64,7 @@ export const ReviewComponent = ({review}) => {
                            className={clamped ? "clamped" : ""}
                         >{review.ratingContent}</p>
 
-                        <a href={"#"} className={showButton ? "showButton" : ""} onClick={handleClick}>{moreLess ? "More" : "Less"}</a>
+                        <a href={"#"} className={showButton ? "showButton" : ""} onClick={handleClick}>{moreLess ? "\u2BEF" : "\u2BED"}</a>
                     </div>
                 </Col>
             </Row>
