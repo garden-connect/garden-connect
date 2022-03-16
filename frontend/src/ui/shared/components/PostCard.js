@@ -50,11 +50,13 @@ export const PostCard = ({post}) => {
                 <Col xs={4} className="d-flex justify-content-center">
                     <h4>{post.postCategory}</h4>
                 </Col>
-                <Col xs={4} className="d-flex justify-content-end">
+                <Col xs={4}>
 
                     {(auth !== null && auth.profileId === post.postProfileId && (
                         <>
-                            <Button className="ms-auto" size="sm" onClick={() => showEditHideButton()}>{showEditButton ? "Edit Post" : "Done Editing"}</Button>
+
+                            <Button className="ms-auto" onClick={() => showEditHideButton()}>{showEditButton ? "Edit Post" : "Done Editing"}</Button>
+
                         </>
                     )) || (auth !== null &&
                         <>
@@ -64,19 +66,29 @@ export const PostCard = ({post}) => {
                 </Col>
             </Row>
                 <Row>
-                    <Col xs={12} className="d-flex justify-content-center my-3">
+                    <Col xs={12} className="d-flex justify-content-start my-1">
                     {(showEdit && "") || (post && (<h3>{post.postTitle}</h3>))}
                     </Col>
 
                 </Row>
-                <Row>
 
-                <Col xs={6}>
-                    <Image fluid className={"d-block border border-dark rounded mb-2"} src={post.postPicture}/>
-                </Col>
-                    <Col xs={6} className="d-flex justify-content-center my-3">
-                        {(showEdit && (<EditPostForm post={post}/>)) || (post && (<p>{post.postContent}</p>))}
-                    </Col>
+                <Row>
+                    {post.postPicture
+                    ? <> <Col xs={3}>
+                            <Image fluid src={post.postPicture}/>
+                        </Col>
+                        <Col xs={9}>
+                            {(showEdit && (<EditPostForm post={post}/>)) || (post && (<p>{post.postContent}</p>))}
+                        </Col>
+                        </>:
+                        <Col xs={12} className="my-1">
+                            {(showEdit && (<EditPostForm post={post}/>)) || (post && (<p>{post.postContent}</p>))}
+                        </Col>
+
+                    }
+
+
+
                 </Row>
                 <Row className="my-3">
                     <Col lg={12} className="d-flex justify-content-start">
@@ -84,13 +96,6 @@ export const PostCard = ({post}) => {
                     </Col>
 
                 </Row>
-
-
-                    {/*<div>*/}
-                    {/*    {(showEdit && (<EditPostForm post={post}/>)) || (post && (<h3>{post.postTitle}</h3>))}*/}
-                    {/*    {(showEdit && " ") || (post && (<p>{post.postContent}</p>))}*/}
-                    {/*    <p className="">{dateShort.toLocaleDateString()}</p>*/}
-                    {/*</div>*/}
         </Container>
         </>
     );

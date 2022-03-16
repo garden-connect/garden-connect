@@ -32,10 +32,15 @@ export const ConversationPost = ({post}) => {
     // }
     return (
         <>
-            <Container>
-                <Button variant="primary" onClick={() => setLgShow(true)}>
+            <Container className="m-0 p-0">
+                <Row>
+                <Col xs={4} className="ms-">
+
+                <Button onClick={() => setLgShow(true)}>
                     Message
                 </Button>
+                </Col>
+                </Row>
 
                 <Modal
                     size={"lg"}
