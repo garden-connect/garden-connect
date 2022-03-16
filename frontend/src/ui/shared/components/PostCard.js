@@ -41,12 +41,12 @@ export const PostCard = ({post}) => {
         <>
             <Container className="post-card-container border border-dark rounded dirt my-5">
             <Row className="my-3">
-
+                <Col xs={4} className={"me-auto"}>
                     <FindProfileName/>
 
                     {ratingsNumber.length && <StarRating avgRating={ratingsAverage(ratingsNumber)}/> || <StarRating avgRating={0}/>}
                     <p>(reviews: {reviewCount})</p>
-
+                </Col>
                 <Col xs={4} className="d-flex justify-content-center">
                     <h4>{post.postCategory}</h4>
                 </Col>

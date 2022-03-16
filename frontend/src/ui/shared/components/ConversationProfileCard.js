@@ -39,7 +39,7 @@ export const ConversationProfileCard = ({post}) => {
                             </Col>
                             <Col>
                                 {/*<FindProfileName/>*/}
-                                {profile && <a href={`/profile/${profile.profileId}`}>{profile.profileName}</a>}
+                                {profile && <a className={"dark-a"} href={`/profile/${profile.profileId}`}>{profile.profileName}</a>}
                             </Col>
                             <Col>
                                 {post && dateShort.toLocaleDateString()}

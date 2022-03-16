@@ -146,14 +146,20 @@ img {
 
 .leftTalking {
     background-color: #556B2FFF;
-    color: white;
+    color: blanchedalmond;
 }
 .rightTalking {
     background-color: #4e6157;
-    color: white;
+    color: blanchedalmond;
 }
 
 StarRating {
     display: flex;
     align-items: baseline;
+}
+a {
+    color: blanchedalmond;
+}
+.dark-a {
+    color: #4e6157;
 }

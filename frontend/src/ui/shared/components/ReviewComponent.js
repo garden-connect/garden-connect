@@ -28,7 +28,7 @@ export const ReviewComponent = ({review}) => {
         const profile = profiles.find(profile => review.ratingReviewingProfileId === profile.profileId)
         return (
             <>
-                {profile && <a href={`/profile/${profile.profileId}`}>{profile.profileName}</a>}
+                {profile && <a className={"dark-a"} href={`/profile/${profile.profileId}`}>{profile.profileName}</a>}
             </>
         )
     }
