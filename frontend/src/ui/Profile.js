@@ -85,8 +85,11 @@ export const Profile = ({match}) => {
                              {/*(When viewing other profiles, it will be a Leave Review Button)*/}
                             {(auth !== null && auth.profileId === match.params.profileId && (
                                 <>
-                                    <Button onClick={() => showEditHideButton()}>{showEditButton ? "Edit Profile" : "Done Editing"}</Button>
+                                    <div>
+                                        <Button onClick={() => showEditHideButton()}>{showEditButton ? "Edit Profile" : "Done Editing"}</Button>
+                                    </div>
                                 </>
+
                             )
                             // ) || (
                             //     <>
