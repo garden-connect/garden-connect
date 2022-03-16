@@ -132,7 +132,14 @@ span.navbar-brand {
     color: #E9BD70;
 }
 
-
+.leftTalking {
+    background-color: #556B2FFF;
+    color: white;
+}
+.rightTalking {
+    background-color: #4e6157;
+    color: white;
+}
 
 
 
