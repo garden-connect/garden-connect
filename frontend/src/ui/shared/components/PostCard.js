@@ -9,18 +9,20 @@ import {ConversationPost} from "../../ConversationPost";
 export const PostCard = ({post}) => {
     const [showEditButton, setShowEditButton] = useState(true);
     const [showEdit, setShowEdit] = useState(false)
-
     const auth = useSelector(state => state.auth ? state.auth : null);
 
     const profiles = useSelector(state => state.profiles ? state.profiles : [])
     const FindProfileName = () => {
         const profile = profiles.find(profile => post.postProfileId === profile.profileId)
-        return (
-            <>
-                {profile && <a href={`/profile/${profile.profileId}`}>{profile.profileName}</a>}
-            </>
-        )
-    }
+
+            return (
+                <>
+                    {(auth !== null && profile && <a href={`/profile/${profile.profileId}`}>{profile.profileName}</a>) ||
+                    (profile && <p>{profile.profileName}</p>)}
+                </>
+            )
+        }
+
     const ratings = useSelector(state => (state.ratings ? state.ratings.filter(rating => rating.ratingReviewedProfileId === post.postProfileId) : []));
     const ratingsAmount = ratings.map(rating => rating.ratingAmount)
     const ratingsNumber = ratingsAmount.map(x => parseInt(x, 10))
@@ -39,13 +41,12 @@ export const PostCard = ({post}) => {
         <>
             <Container className="post-card-container border border-dark rounded dirt my-5">
             <Row className="my-3">
-                <Col xs={4} className="me-auto">
 
                     <FindProfileName/>
 
                     {ratingsNumber.length && <StarRating avgRating={ratingsAverage(ratingsNumber)}/> || <StarRating avgRating={0}/>}
                     <p>(reviews: {reviewCount})</p>
-                </Col>
+
                 <Col xs={4} className="d-flex justify-content-center">
                     <h4>{post.postCategory}</h4>
                 </Col>
