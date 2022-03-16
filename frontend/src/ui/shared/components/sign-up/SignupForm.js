@@ -5,7 +5,8 @@ import {Formik} from "formik";
 
 import {SignupFormContent} from "./SignupFormContent";
 
-export const SignupForm = (setShowForm) => {
+export const SignupForm = (props) => {
+    const {setShowForm} = props
     const signUp = {
         profileEmail: "",
         profileName: "",
@@ -36,7 +37,7 @@ export const SignupForm = (setShowForm) => {
 
                     if(reply.status === 200) {
                         resetForm();
-                        setTimeout(() => {setShowForm(false)}, 10 )
+                        setShowForm(false)
                     }
                     setStatus({message, type});
                 }
