@@ -34,13 +34,13 @@ const slice = createSlice({
 
 export const {getConversationsContainingProfileId, getConversationsByPostId} = slice.actions
 
-
 export const fetchConversationsContainingProfileId = (id) => async (dispatch, getState) => {
     const {data} = await httpConfig(`/apis/conversation/conversationProfileId/${id}`);
     await dispatch(getConversationsContainingProfileId(data))
-    const conversationIds = _.uniq(_.map(getState().conversations, "conversationSendProfileId"))
-    conversationIds.forEach(id=> dispatch(fetchProfileByProfileId(id)))
-
+    const conversationSendIds = _.uniq(_.map(getState().conversations, "conversationSendProfileId"))
+    const conversationReceiveIds = _.uniq(_.map(getState().conversations, "conversationReceiveProfileId"))
+    conversationSendIds.forEach(id=> dispatch(fetchProfileByProfileId(id)))
+    conversationReceiveIds.forEach(id => dispatch(fetchProfileByProfileId(id)))
 }
 
 export const fetchConversationsAndPosts = (id) => async (dispatch, getState) => {
