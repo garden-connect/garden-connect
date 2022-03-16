@@ -51,7 +51,7 @@ export const PostCard = ({post}) => {
                         {/*<p>{postCategory}</p><p>{postContent}</p>*/}
 
                         {/*<h4>{post.postCategory}</h4>*/}
-                        <p><strong>{post.postTitle}</strong></p>
+                        {/*<p><strong>{post.postTitle}</strong></p>*/}
 
                         <FindProfileName/>
                         {/*{ratingsNumber.length && <StarRating avgRating={ratingsAverage(ratingsNumber)}/>}*/}
@@ -65,8 +65,10 @@ export const PostCard = ({post}) => {
                             </>
                         )) || (auth !== null &&
                             <>
+
                             <ConversationPost post={post}/>
                                 {/*<Button>Message Me</Button>*/}
+
                             </>
                         )}
                         {/*<Button>ConversationPost</Button>*/}

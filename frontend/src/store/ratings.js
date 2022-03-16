@@ -22,9 +22,9 @@ const slice = createSlice({
             // console.log(filteredReviewedRatings)
 
         },
-        setIndividualRating: (ratings, action) => {
-            ratings.unshift(action.payload)
-        }
+        // setIndividualRating: (ratings, action) => {
+        //     ratings.unshift(action.payload)
+        // }
 
     }
 })

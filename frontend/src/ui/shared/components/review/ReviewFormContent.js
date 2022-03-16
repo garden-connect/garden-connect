@@ -59,7 +59,7 @@ export const ReviewFormContent = (props) => {
                     </button>
                 </div>
             </form>
-            <FormDebugger {...props} />
+            {/*<FormDebugger {...props} />*/}
             {
                 status && (<div className={status.type}>{status.message}</div>)
             }

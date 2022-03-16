@@ -8,29 +8,35 @@ import {fetchConversationsContainingProfileId} from "../../../store/conversation
 import {PostFormContent} from "./PostFormContent";
 
 
-export const ConversationForm = () => {
+export const ConversationForm = ({post}) => {
 
     const dispatch = useDispatch()
 
-    const conversation = {
+    const initial = {
         conversationContent: ""
     };
 
 
     const auth = useSelector(state => state.auth ? state.auth : null);
+
+
     const validator = Yup.object().shape({
+        conversationContent: Yup.string()
+            .max(2000, "Message cannot be more than two thousand characters")
     });
 
     const submitConversation = (values, {resetForm, setStatus}) => {
         const conversationSendProfileId = auth?.profileId ?? null
-        const conversation = {conversationSendProfileId, ...values}
-        httpConfig.conversation("/apis/conversation/", conversation)
+        const conversationReceiveProfileId = post.postProfileId
+        const conversationPostId = post.postId
+        const conversation = {conversationSendProfileId, conversationReceiveProfileId, conversationPostId, ...values}
+        httpConfig.post("/apis/conversation/", conversation)
             .then(reply => {
                     let {message, type} = reply;
 
                     if(reply.status === 200) {
                         resetForm();
-                        dispatch(fetchConversationsContainingProfileId())
+                        dispatch(fetchConversationsContainingProfileId(auth.profileId))
                     }
                     setStatus({message, type});
                 }
@@ -38,7 +44,7 @@ export const ConversationForm = () => {
     };
 
     return (
-        <Formik initialValues={conversation}
+        <Formik initialValues={initial}
                 onSubmit={submitConversation}
                 validationSchema={validator}
         >
