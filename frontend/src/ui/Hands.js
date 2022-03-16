@@ -3,13 +3,15 @@ import {PostCard} from "./shared/components/PostCard";
 import {useDispatch, useSelector} from "react-redux";
 import {fetchPostsRatingsProfilesByPostCategory} from "../store/posts";
 import {Post} from "./Post";
-import {Col, Container, Image, Row} from "react-bootstrap";
+import {Button, Col, Container, Image, Row} from "react-bootstrap";
 import love from "../images/love.png"
 import love1 from "../images/give-love.png"
+import NavLink from "react-bootstrap/NavLink";
 
 
 export const Hands = () => {
 
+    const auth = useSelector(state => state.auth);
     const dispatch = useDispatch()
 
 
@@ -26,6 +28,13 @@ export const Hands = () => {
     return (
         <>
             <Container>
+                {auth === null && (
+                    <>
+                        <NavLink title="Click me!" href={"/signup"}>
+                            <Button className="mt-2">New Here?</Button>
+                        </NavLink>
+                    </>
+                )}
                 <Row>
                     <Col sm={3}>
                         <Image width="80rem" height="auto" className="d-flex justify-content-center" src={love} alt="love"/>
