@@ -19,7 +19,7 @@ const slice = createSlice({
             return action.payload
         },
         getPostByPostId: (posts, action) => {
-            return action.payload
+            return [...posts, action.payload]
         },
     }
 })
@@ -28,6 +28,7 @@ export const {getAllPosts, getPostsByPostCategory, getPostsByPostProfileId, getP
 
 export const fetchAllPosts = () => async dispatch => {
     const {data} = await httpConfig(`/apis/post/`);
+    // console.log(data)
     dispatch(getAllPosts(data))
 }
 export const fetchPostsByPostProfileId = (id) => async dispatch => {

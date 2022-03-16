@@ -1,13 +1,11 @@
 import React, {useEffect, useState} from "react";
 import {Modal, Button, Row, Col, InputGroup, FormControl, Container} from "react-bootstrap";
 import {useDispatch, useSelector} from "react-redux";
-import {PostCard} from "./shared/components/PostCard";
-import {ConversationForm} from "./shared/components/ConversationForm";
-import {fetchConversationsByPostId} from "../store/conversations";
-import {ConversationCard} from "./shared/components/ConversationCard";
+import {ConversationCard} from "./ConversationCard";
+import {ConversationForm} from "./ConversationForm";
 
-export const ConversationPost = ({post}) => {
-    const [lgShow, setLgShow] = useState(false);
+export const ConversationProfileCard = ({post}) => {
+    const [showConvo, setShowConvo] = useState(false);
     // console.log(post)
 
 
@@ -32,22 +30,8 @@ export const ConversationPost = ({post}) => {
     return (
         <>
             <Container>
-                <Button variant="primary" onClick={() => setLgShow(true)}>
-                    Message
-                </Button>
-
-                <Modal
-                    size={"lg"}
-                    show={lgShow}
-                    onHide={() => setLgShow(false)}
-                    dialogClassName="modal-90w"
-                    aria-labelledby="example-custom-modal-styling-title"
-                >
-                    <Modal.Header closeButton>
-                    </Modal.Header>
-                    <Modal.Body>
                         <Row>
-                            <Col xs={2}>
+                            <Col>
                                 {post && <p><strong>{post.postTitle}</strong></p>}
                             </Col>
                             <Col>
@@ -56,18 +40,19 @@ export const ConversationPost = ({post}) => {
                             <Col>
                                 {post && dateShort.toLocaleDateString()}
                             </Col>
+                            <Col>
+                                <Button onClick={() => setShowConvo(true) }>View Conversation</Button>
+                            </Col>
                         </Row>
                         <Row>
                             <Col xs={12}>
                                 {/*ConversationPost History*/}
-                                {conversations.map((message , index) =>  <ConversationCard message={message} key={index}/>)}
+                                {showConvo && conversations.map((message , index) =>  <ConversationCard message={message} key={index}/>)}
                             </Col>
                         </Row>
                         <Row>
-                            {post && <ConversationForm/>}
+                            {showConvo && <ConversationForm/>}
                         </Row>
-                    </Modal.Body>
-                </Modal>
             </Container>
         </>
     )
