@@ -34,7 +34,7 @@ export const Profile = ({match}) => {
         dispatch(fetchAllPosts())
         dispatch(fetchConversationsContainingProfileId(match.params.profileId))
         dispatch(fetchProfileByProfileId(match.params.profileId));
-        dispatch(fetchRatingsByReviewedProfileId(match.params.profileId));
+        // dispatch(fetchRatingsByReviewedProfileId(match.params.profileId));
         dispatch(fetchAllRatersRatings(match.params.profileId))
 
     }

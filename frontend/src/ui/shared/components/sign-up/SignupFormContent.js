@@ -113,18 +113,14 @@ export const SignupFormContent = (props) => {
                         disabled={!dirty || isSubmitting}
                     >Reset
                     </Button>
-                    <p>
-                        After creating a profile, click here to sign in!
-                    </p>
-                    <SigninModal/>
                 </div>
-
+                {
+                    status && (<div className={status.type}>{status.message}</div>)
+                }
 
                 {/*<FormDebugger {...props} />*/}
             </form>
-            {
-                status && (<div className={status.type}>{status.message}</div>)
-            }
+
         </>
 
 
