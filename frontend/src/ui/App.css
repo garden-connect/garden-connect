@@ -41,7 +41,7 @@
 .btn {
     background-color: #59271b;
     border-color: darkslategray;
-    font-family: Andale Mono;
+    font-family: Andale Mono, "Lucida Console";
 }
 
 .btn-primary:hover {
