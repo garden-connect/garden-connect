@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import {
     Button,
     Dropdown,
@@ -16,6 +16,9 @@ import {ImageDropZone} from "./ImageDropZone";
 
 
 export const PostFormContent = (props) => {
+
+   const [selectedImage, setSelectedImage] = useState(null)
+
     const {
         setFieldValue,
         status,
@@ -32,6 +35,8 @@ export const PostFormContent = (props) => {
     if (values.postPicture !== ""){
         console.log(values.postPicture.get("image"))
     }
+
+    console.log(values.postPicture)
 
     return (
         <>
@@ -66,10 +71,19 @@ export const PostFormContent = (props) => {
                                 handleBlur,
                                 setFieldValue,
                                 fieldValue:"postPicture",
+                                setSelectedImage: setSelectedImage
+
+
 
                             }}
+                            >
 
-                        />
+                        </ImageDropZone>
+                            <div>
+                                {selectedImage !== null ? <img src={selectedImage}/> : ""}
+                            </div>
+
+
                         </div>
                         {
                             errors.postPicture && touched.postPicture && (

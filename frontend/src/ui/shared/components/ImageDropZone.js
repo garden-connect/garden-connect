@@ -9,6 +9,11 @@ export function ImageDropZone({formikProps}) {
         const formData = new FormData();
         formData.append('image', acceptedFiles[0]);
 
+        const fileReader = new FileReader()
+        fileReader.readAsDataURL(acceptedFiles[0])
+        fileReader.addEventListener("load", () => {
+           formikProps.setSelectedImage(fileReader.result)
+        })
 
         formikProps.setFieldValue(formikProps.fieldValue, formData)
 
@@ -28,8 +33,8 @@ export function ImageDropZone({formikProps}) {
                 />
                 {
                     isDragActive ?
-                        <p>Drop the files here ...</p> :
-                        <p>Drag 'n' drop some files here, or click to select files</p>
+                        <p>Drop the picture here ...</p> :
+                        <p>Drag and drop a picture, or click to select from file</p>
                 }
             </div>
         </div>
