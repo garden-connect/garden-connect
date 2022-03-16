@@ -132,6 +132,7 @@ span.navbar-brand {
     color: #E9BD70;
 }
 
+
 img {
     height: 150px;
     width: auto;
@@ -143,19 +144,15 @@ img {
 
 
 
+.leftTalking {
+    background-color: #556B2FFF;
+    color: white;
+}
+.rightTalking {
+    background-color: #4e6157;
+    color: white;
+}
 
-
-
-
-
-
-
-/*.showEditButton {*/
-/*    display: flex;*/
-/*}*/
-/*.hideEditButton {*/
-/*    display: none;*/
-/*}*/
 StarRating {
     display: flex;
     align-items: baseline;
