@@ -32,6 +32,9 @@ export const ConversationProfileCard = ({post}) => {
             <Container>
                         <Row>
                             <Col>
+                                <Button onClick={() => setShowConvo(!showConvo) }>{showConvo ? "Hide Conversation" : "View Conversation"}</Button>
+                            </Col>
+                            <Col>
                                 {post && <p><strong>{post.postTitle}</strong></p>}
                             </Col>
                             <Col>
@@ -40,9 +43,6 @@ export const ConversationProfileCard = ({post}) => {
                             </Col>
                             <Col>
                                 {post && dateShort.toLocaleDateString()}
-                            </Col>
-                            <Col>
-                                <Button onClick={() => setShowConvo(true) }>View Conversation</Button>
                             </Col>
                         </Row>
                         <Row>
