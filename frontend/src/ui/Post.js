@@ -6,22 +6,24 @@ import {Link} from "react-router-dom";
 //This is for creating post
 
 export const Post = () => {
-    const [lgShow, setLgShow] = useState(false);
+    const [modalShow, setModalShow] = useState(false);
     return (
         <>
-            <main>
-                <Container>
+            {/*<main>*/}
+            {/*    <Container>*/}
                     {/*Modal pop up button*/}
-                    <Button variant="primary" onClick={() => setLgShow(true)}>
+                    <Button variant="primary"
+                            onClick={() => setModalShow(true)}>
                         Create Post
                     </Button>
+
                     {/*Modal*/}
                     <Modal
                         size={"lg"}
-                        show={lgShow}
-                        onHide={() => setLgShow(false)}
-                        dialogClassName="modal-90w"
-                        aria-labelledby="example-custom-modal-styling-title"
+                        show={modalShow}
+                        onHide={() => setModalShow(false)}
+                        // dialogClassName="modal-90w"
+                        aria-labelledby="example-modal-styling-title"
                     >
                         <Modal.Header closeButton>
                             <Modal.Title id="example-modal-sizes-title-lg">
@@ -30,12 +32,12 @@ export const Post = () => {
                         </Modal.Header>
                         <Modal.Body>
 
-                <PostForm/>
+                <PostForm setModalShow={setModalShow}/>
 
                         </Modal.Body>
                     </Modal>
-                </Container>
-            </main>
+            {/*    </Container>*/}
+            {/*</main>*/}
         </>
-    )
+    );
 }

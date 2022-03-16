@@ -7,7 +7,8 @@ import {useSelector, useDispatch} from "react-redux";
 import {fetchAllPosts, fetchPostsByPostCategory} from "../../../store/posts";
 
 
-export const PostForm = () => {
+export const PostForm = (props) => {
+    const {setModalShow} = props
     const dispatch = useDispatch()
 
     const post = {
@@ -42,7 +43,9 @@ export const PostForm = () => {
                         let {message, type} = reply;
 
                         if (reply.status === 200) {
+                            setTimeout(() => {setModalShow(false)}, 1000 )
                             resetForm();
+                            dispatch(fetchPostsByPostCategory(post.postCategory))
 
                         }
                         setStatus({message, type});
@@ -57,7 +60,7 @@ export const PostForm = () => {
 
                             if (reply.status === 200) {
                                 submitPostWithImage({...post, postPicture: message})
-                                dispatch(fetchPostsByPostCategory(post.postCategory))
+
                             } else {
                                 setStatus({message, type});
                             }
@@ -68,11 +71,13 @@ export const PostForm = () => {
             }
         }
     return (
-        <Formik initialValues={post}
-                onSubmit={submitPost}
-                validationSchema={validator}
-                >
-            {PostFormContent}
-        </Formik>
+        <>
+            <Formik initialValues={post}
+                    onSubmit={submitPost}
+                    validationSchema={validator}
+                    >
+                {PostFormContent}
+            </Formik>
+        </>
     )
 };

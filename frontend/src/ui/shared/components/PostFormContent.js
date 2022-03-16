@@ -14,6 +14,7 @@ import {FormDebugger} from "./FormDebugger";
 import {ImageDropZone} from "./ImageDropZone";
 
 
+
 export const PostFormContent = (props) => {
     const {
         setFieldValue,
@@ -56,15 +57,20 @@ export const PostFormContent = (props) => {
                         }
                         {/*Image Input*/}
                         <FormLabel>Image</FormLabel>
+                        <div className="form-group">
                         <ImageDropZone
+
                             formikProps={{
                                 values,
                                 handleChange,
                                 handleBlur,
                                 setFieldValue,
-                                fieldValue:"postPicture"
+                                fieldValue:"postPicture",
+
                             }}
+
                         />
+                        </div>
                         {
                             errors.postPicture && touched.postPicture && (
                                 <div className="alert alert-danger">
@@ -96,14 +102,6 @@ export const PostFormContent = (props) => {
                         }
                         <FormLabel className="my-2">Harvest or Hands</FormLabel>
                     <div>
-                        {/*<DropdownButton*/}
-                        {/*    variant="outline-secondary"*/}
-                        {/*    title="Dropdown"*/}
-                        {/*    id="input-group-dropdown-1"*/}
-                        {/*>*/}
-                        {/*    <Dropdown.Item href="#harvest">Harvest</Dropdown.Item>*/}
-                        {/*    <Dropdown.Item href="#hands">Hands</Dropdown.Item>*/}
-                        {/*</DropdownButton>*/}
                         <FormSelect
                             className="form-control"
                             name="postCategory"
@@ -126,66 +124,27 @@ export const PostFormContent = (props) => {
                         }
 
                     <div className={"mt-3"}>
-                        <Button className="btn btn-primary m-2" type="submit">Post</Button>
+                        <Button className="btn btn-primary m-2" type="submit" onClick={handleSubmit}>Post</Button>
 
                         <Button
                             className="btn btn-secondary m2-2" type="cancel"
                             onClick={handleReset}
-                            // disabled={!dirty || isSubmitting}
+                            disabled={!dirty || isSubmitting}
                         >Reset form
                         </Button>
                     </div>
                     </div>
 
                     </InputGroup>
-            <FormDebugger {...props} />
+            </form>
+            {/*<FormDebugger {...props} />*/}
             {
                 status && (<div className={status.type}>{status.message}</div>)
             }
-            </form>
+
         </>
         )
-        };
-{/*        <div className={"form-group"}>*/}
-{/*            <label htmlFor={"profileHandle"}>Create a Post</label>*/}
-{/*            <div className={"input-group"}>*/}
-{/*                <div className={"input-group-prepend"}>*/}
-{/*                    <div className={"input-group-text"}></div>*/}
-{/*                </div>*/}
-{/*                <input*/}
-{/*                    className="form-control"*/}
-{/*                    name="postContent"*/}
-{/*                    type="text"*/}
-{/*                    value={values.postContent}*/}
-{/*                    placeholder="What do you want to say?"*/}
-{/*                    onChange={handleChange}*/}
-{/*                    onBlur={handleBlur}*/}
-{/*                />*/}
-{/*            </div>*/}
-{/*            {*/}
-{/*                errors.postContent && touched.postContent && (*/}
-{/*                    <div className="alert alert-danger">*/}
-{/*                        {errors.postContent}*/}
-{/*                    </div>*/}
-{/*                )*/}
-{/*            }*/}
-{/*        </div>*/}
-
-{/*        <div className="form-group">*/}
-{/*            <button className="btn btn-primary mb-2" type="submit">Submit</button>*/}
-{/*            <button*/}
-{/*                className="btn btn-secondary mb-2"*/}
-{/*                onClick={handleReset}*/}
-{/*                disabled={!dirty || isSubmitting}*/}
-{/*            >Reset*/}
-{/*            </button>*/}
-{/*        </div>*/}
-
-{/*    </form>*/}
-{/*    {*/}
-{/*        status && (<div className={status.type}>{status.message}</div>)*/}
-{/*    }*/}
-{/*</>*/}
+};
 
 
 
