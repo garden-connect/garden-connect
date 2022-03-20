@@ -32,7 +32,10 @@ export const ConversationProfileCard = ({post}) => {
             <Container>
                         <Row>
                             <Col>
-                                <Button onClick={() => setShowConvo(!showConvo) }>{showConvo ? "Hide Conversation" : "View Conversation"}</Button>
+                                <Button onClick={() => setShowConvo(!showConvo) }>{showConvo ? "Hide Conversation" : `View Conversation`}</Button>
+                            </Col>
+                            <Col>
+
                             </Col>
                             <Col>
                                 {post && <p><strong>{post.postTitle}</strong></p>}
