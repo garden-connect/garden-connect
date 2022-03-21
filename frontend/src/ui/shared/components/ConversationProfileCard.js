@@ -40,16 +40,16 @@ export const ConversationProfileCard = ({post}) => {
     const dateShort = new Date(post.postDate)
 // console.log(conversations)
     const postersProfile = useSelector(state => state.profiles ? state.profiles.filter(profile => profile.profileId === post.postProfileId)[0] : [])
-    const handleClick = (profile) => {
-        setSelectedProfile(profile)
-    }
+    // const handleClick = (profile) => {
+    //     setSelectedProfile(profile)
+    // }
 
 
     const ConversationDropdown = ({props}) => {
 
         return (
             <>
-                <Dropdown.Item as={"button"} onClick={() => handleClick(props)}>{props.profileName}</Dropdown.Item>
+                <Dropdown.Item as={"button"} onClick={() => setSelectedProfile(props)}>{props.profileName}</Dropdown.Item>
             </>
         )
     }
