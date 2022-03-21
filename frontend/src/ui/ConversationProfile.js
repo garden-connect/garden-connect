@@ -20,10 +20,10 @@ export const ConversationProfile = ({match}) => {
     const conversations = myConversations.filter(conversation => (conversation.conversationReceiveProfileId === profile.profileId) || (conversation.conversationSendProfileId === profile.profileId))
     // console.log(conversations)
     const convoPostIds = conversations.map(conversation => conversation.conversationPostId)
-    console.log(convoPostIds)
+    // console.log(convoPostIds)
     // const posts = useSelector(state => (state.posts ? state.posts.filter(post => convoPostIds.forEach(id => post.postId === convoPostIds[id])) : []))
     const posts = useSelector(state => state.posts ? state.posts.filter(post => convoPostIds.includes(post.postId)) : [])
-console.log(posts)
+// console.log(posts)
     return (
         <>
             <Container className={"m-0 ps-0"}>
