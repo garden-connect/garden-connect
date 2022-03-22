@@ -69,7 +69,7 @@ export const Profile = ({match}) => {
                 <Container fluid>
                     {/*ProfileId Rating/Review Header and About Me*/}
                     <Row>
-                        <Col className="about-me" xs={9}>
+                        <Col className="about-me" xs={7} md={9}>
                             <div className={"hstack gap-3 d-flex align-items-baseline"}>
                                 {(showEdit && (<EditProfileForm/>)) || (profile && (<h2 className="name">{profile.profileName}</h2>))}
                                 {/*{profile && (<h2>{profile.profileName}</h2>)}*/}
@@ -78,16 +78,16 @@ export const Profile = ({match}) => {
                             </div>
                             {(showEdit && " ") || (profile && (<p>About Me:<br/> {profile.profileAbout}</p>))}
                         </Col>
-                        <Col xs={3}>
-                            <Stack gap={1}>
+                        <Col xs={5} md={3}>
+                            <div className={"d-grid gap-2"}>
                                 {profile && <ConversationProfile match={profile}/>}
                                 {profile && <Rating match={profile}/>}
                              {/*(When viewing other profiles, it will be a Leave Review Button)*/}
                             {(auth !== null && auth.profileId === match.params.profileId && (
                                 <>
-                                    <div>
+                                    {/*<div>*/}
                                         <Button onClick={() => showEditHideButton()}>{showEditButton ? "Edit Profile" : "Done Editing"}</Button>
-                                    </div>
+                                    {/*</div>*/}
                                 </>
                             )
                             // ) || (
@@ -96,7 +96,7 @@ export const Profile = ({match}) => {
                             //         {profile && <Rating match={profile}/>}
                             //     </>
                             )}
-                            </Stack>
+                            </div>
                         </Col>
                     </Row>
                     {/*Posts Section*/}
