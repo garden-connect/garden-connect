@@ -53,7 +53,6 @@ export const fetchConversationsAndPosts = (id) => async (dispatch, getState) => 
 
 export const fetchConversationsByPostId = (id) => async dispatch => {
     const {data} = await httpConfig(`/apis/conversation/${id}`);
-    // console.log(data)
     dispatch(getConversationsByPostId(data))
 }
 
