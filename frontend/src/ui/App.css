@@ -177,3 +177,8 @@ a {
 .dark-a {
     color: #4e6157;
 }
+.dropdown-toggle {
+    /*width: 120px;*/
+    white-space: normal;
+    word-break: normal;
+}

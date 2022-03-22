@@ -62,26 +62,26 @@ export const ConversationProfileCard = ({post}) => {
     }
     return (
         <>
-            <Container>
+            <div>
                         <Row>
                             {/*<Col xs={3}>*/}
                             {/*    <Button onClick={() => setShowConvo(!showConvo) }>{showConvo ? "Hide Conversation" : `View Conversation`}</Button>*/}
                             {/*</Col>*/}
-                            <Col>
-                                {otherProfiles[0] && otherProfiles.length === 1 && <Button onClick={() => toggleClick(otherProfiles[0])}>{showConvo ? "Hide Conversation" : `View Conversation With ${otherProfiles[0].profileName}`}</Button>}
+                            <div className={"col mb-4"}>
+                                {otherProfiles[0] && otherProfiles.length === 1 && <Button size={"sm"} onClick={() => toggleClick(otherProfiles[0])}>{showConvo ? "Hide Conversation" : `View Conversation With ${otherProfiles[0].profileName}`}</Button>}
                                 {/*&& setSelectedProfile(otherProfiles[0])*/}
 
                                 {otherProfiles[0] && otherProfiles.length > 1 &&
                                     <>
-                                    <DropdownButton id={"dropdown-item-button"} title={"View Conversation With:"}>
+                                    <DropdownButton id={"dropdown-item-button"} size={"sm"} title={`View Conversation With:`}>
                                         {showConvo && <Dropdown.Item as={"button"} onClick={() => setShowConvo(false)}>Hide Conversation</Dropdown.Item>}
                                         {otherProfiles.map((props) => <ConversationDropdown props={props} key={props.profileId}/>)}
                                     </DropdownButton>
                                     </>
                                     }
-                            </Col>
+                            </div>
                             <Col>
-                                {post && <p>About: <strong>{post.postTitle}</strong></p>}
+                                {post && <p className={"mb-0"}>About: <strong>{post.postTitle}</strong></p>}
                             </Col>
                             <Col>
                                 {/*<FindProfileName/>*/}
@@ -100,7 +100,7 @@ export const ConversationProfileCard = ({post}) => {
                         <Row>
                             {showConvo && <ConversationProfileForm props={postAndProfile}/>}
                         </Row>
-            </Container>
+            </div>
         </>
     )
 }
