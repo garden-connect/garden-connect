@@ -40,16 +40,17 @@ export const ConversationProfileCard = ({post}) => {
     const dateShort = new Date(post.postDate)
 // console.log(conversations)
     const postersProfile = useSelector(state => state.profiles ? state.profiles.filter(profile => profile.profileId === post.postProfileId)[0] : [])
-    // const handleClick = (profile) => {
-    //     setSelectedProfile(profile)
-    // }
+    const handleClick = (profile) => {
+        setSelectedProfile(profile)
+        setShowConvo(true)
+    }
 
 
     const ConversationDropdown = ({props}) => {
 
         return (
             <>
-                <Dropdown.Item as={"button"} onClick={() => setSelectedProfile(props)}>{props.profileName}</Dropdown.Item>
+                <Dropdown.Item as={"button"} onClick={() => handleClick(props)}>{props.profileName}</Dropdown.Item>
             </>
         )
     }
@@ -57,34 +58,35 @@ export const ConversationProfileCard = ({post}) => {
         <>
             <Container>
                         <Row>
-                            <Col>
-                                <Button onClick={() => setShowConvo(!showConvo) }>{showConvo ? "Hide Conversation" : `View Conversation`}</Button>
-                            </Col>
+                            {/*<Col xs={3}>*/}
+                            {/*    <Button onClick={() => setShowConvo(!showConvo) }>{showConvo ? "Hide Conversation" : `View Conversation`}</Button>*/}
+                            {/*</Col>*/}
                             <Col>
                                 {/*{otherProfiles[0] && otherProfiles.length === 1 && <p>with: {otherProfiles[0].profileName}</p>}*/}
                                 {/*&& setSelectedProfile(otherProfiles[0])*/}
                                 {/*&& otherProfiles.length > 1*/}
                                 {otherProfiles[0] &&
                                     <>
-                                    <DropdownButton id={"dropdown-item-button"} title={"With:"}>
+                                    <DropdownButton id={"dropdown-item-button"} title={"View Conversation With:"}>
+                                        {showConvo && <Dropdown.Item as={"button"} onClick={() => setShowConvo(false)}>Hide Conversation</Dropdown.Item>}
                                         {otherProfiles.map((props) => <ConversationDropdown props={props} key={props.profileId}/>)}
                                     </DropdownButton>
                                     </>
                                     }
                             </Col>
                             <Col>
-                                {post && <p>about: <strong>{post.postTitle}</strong></p>}
+                                {post && <p>About: <strong>{post.postTitle}</strong></p>}
                             </Col>
                             <Col>
                                 {/*<FindProfileName/>*/}
-                                {postersProfile && <p>posted by: <a className={"dark-a"} href={`/profile/${postersProfile.profileId}`}>{postersProfile.profileName}</a></p>}
+                                {postersProfile && <p>Posted by: <a className={"dark-a"} href={`/profile/${postersProfile.profileId}`}>{postersProfile.profileName}</a></p>}
                             </Col>
                             <Col>
-                                {post && <p>on: {dateShort.toLocaleDateString()}</p> }
+                                {post && <p>On: {dateShort.toLocaleDateString()}</p> }
                             </Col>
                         </Row>
                         <Row>
-                            <Col xs={12}>
+                            <Col>
                                 {/*ConversationPost History*/}
                                 {showConvo && oursAndSelectedConversations && oursAndSelectedConversations.map((message , index) =>  <ConversationCard message={message} key={index}/>)}
                             </Col>
