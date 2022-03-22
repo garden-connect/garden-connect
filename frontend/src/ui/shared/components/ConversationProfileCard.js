@@ -2,10 +2,11 @@ import React, {useEffect, useState} from "react";
 import {Modal, Button, Row, Col, InputGroup, FormControl, Container, DropdownButton} from "react-bootstrap";
 import {useDispatch, useSelector} from "react-redux";
 import {ConversationCard} from "./ConversationCard";
-import {ConversationForm} from "./ConversationForm";
+import {ConversationPostForm} from "./ConversationPostForm";
 // import {ConversationDropdown} from "./ConversationDropdown";
 import {Dropdown} from "react-bootstrap";
 import profiles from "../../../store/profiles";
+import {ConversationProfileForm} from "./ConversationProfileForm";
 
 export const ConversationProfileCard = ({post}) => {
     const [showConvo, setShowConvo] = useState(false);
@@ -38,12 +39,17 @@ export const ConversationProfileCard = ({post}) => {
     // console.log(selectedProfile)
     const oursAndSelectedConversations = otherProfiles[0] ? ourConversations.filter(conversation => conversation.conversationSendProfileId === selectedProfile.profileId || conversation.conversationReceiveProfileId === selectedProfile.profileId) : []
     const dateShort = new Date(post.postDate)
-// console.log(conversations)
+// console.log(oursAndSelectedConversations)
     const postersProfile = useSelector(state => state.profiles ? state.profiles.filter(profile => profile.profileId === post.postProfileId)[0] : [])
     const handleClick = (profile) => {
         setSelectedProfile(profile)
         setShowConvo(true)
     }
+    const toggleClick = (profile) => {
+        setSelectedProfile(profile)
+        setShowConvo(!showConvo)
+    }
+    const postAndProfile = post ? {...post, ...selectedProfile} : {}
 
 
     const ConversationDropdown = ({props}) => {
@@ -62,10 +68,10 @@ export const ConversationProfileCard = ({post}) => {
                             {/*    <Button onClick={() => setShowConvo(!showConvo) }>{showConvo ? "Hide Conversation" : `View Conversation`}</Button>*/}
                             {/*</Col>*/}
                             <Col>
-                                {/*{otherProfiles[0] && otherProfiles.length === 1 && <p>with: {otherProfiles[0].profileName}</p>}*/}
+                                {otherProfiles[0] && otherProfiles.length === 1 && <Button onClick={() => toggleClick(otherProfiles[0])}>{showConvo ? "Hide Conversation" : `View Conversation With ${otherProfiles[0].profileName}`}</Button>}
                                 {/*&& setSelectedProfile(otherProfiles[0])*/}
-                                {/*&& otherProfiles.length > 1*/}
-                                {otherProfiles[0] &&
+
+                                {otherProfiles[0] && otherProfiles.length > 1 &&
                                     <>
                                     <DropdownButton id={"dropdown-item-button"} title={"View Conversation With:"}>
                                         {showConvo && <Dropdown.Item as={"button"} onClick={() => setShowConvo(false)}>Hide Conversation</Dropdown.Item>}
@@ -92,7 +98,7 @@ export const ConversationProfileCard = ({post}) => {
                             </Col>
                         </Row>
                         <Row>
-                            {showConvo && <ConversationForm post={post}/>}
+                            {showConvo && <ConversationProfileForm props={postAndProfile}/>}
                         </Row>
             </Container>
         </>

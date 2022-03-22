@@ -7,7 +7,7 @@ import {useSelector, useDispatch} from "react-redux";
 import {fetchConversationsContainingProfileId} from "../../../store/conversations";
 
 
-export const ConversationForm = ({post}) => {
+export const ConversationPostForm = ({post}) => {
 
     const dispatch = useDispatch()
 

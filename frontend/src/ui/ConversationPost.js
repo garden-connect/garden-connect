@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react";
 import {Modal, Button, Row, Col, InputGroup, FormControl, Container} from "react-bootstrap";
 import {useDispatch, useSelector} from "react-redux";
 import {PostCard} from "./shared/components/PostCard";
-import {ConversationForm} from "./shared/components/ConversationForm";
+import {ConversationPostForm} from "./shared/components/ConversationPostForm";
 import {fetchConversationsByPostId} from "../store/conversations";
 import {ConversationCard} from "./shared/components/ConversationCard";
 
@@ -71,7 +71,7 @@ export const ConversationPost = ({post}) => {
                             </Col>
                         </Row>
                         <Row>
-                            {post && <ConversationForm post={post}/>}
+                            {post && <ConversationPostForm post={post}/>}
                         </Row>
                     </Modal.Body>
                 </Modal>

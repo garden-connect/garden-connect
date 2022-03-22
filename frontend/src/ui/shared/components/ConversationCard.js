@@ -43,6 +43,7 @@ export const ConversationCard = ({message}) => {
                                 {/*{message && message.conversationSendProfileId}*/}
                             </Col>
                         </Row>
+
                 </Container>
         </>
     )
