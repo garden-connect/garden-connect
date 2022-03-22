@@ -133,7 +133,10 @@ span.navbar-brand {
 .about-me {
     color: #E9BD70;
 }
-
+.navbar-brand img {
+    height: 50px;
+    width: auto;
+}
 
 img {
     height: 150px;

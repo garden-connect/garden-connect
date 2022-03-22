@@ -30,7 +30,7 @@ export const NavBar = () => {
     <Navbar sticky="top" expand="lg" className="navigation border border-2 border-dark mb-5 ">
         <Container fluid>
             <Navbar.Brand>
-                <Image className="mb-3 me-3"  width="70 rem" height="auto" src={carrots} alt="carrots"/>
+                <Image className="mb-3 me-3" width="auto" height="20 rem" src={carrots} alt="carrots"/>
                 Garden Connect
 
             </Navbar.Brand>
