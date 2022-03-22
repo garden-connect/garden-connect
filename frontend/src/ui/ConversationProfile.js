@@ -26,7 +26,7 @@ export const ConversationProfile = ({match}) => {
 // console.log(posts)
     return (
         <>
-            <Container className={"m-0 ps-0"}>
+            {/*<Container className={"m-0 ps-0"}>*/}
                 <Button variant="primary" className="my-0" onClick={() => setLgShow(true)}>
                     Message History
                 </Button>
@@ -39,6 +39,7 @@ export const ConversationProfile = ({match}) => {
                     aria-labelledby="example-custom-modal-styling-title"
                 >
                     <Modal.Header closeButton>
+                        <Modal.Title id={"modal-lg"}>Message History</Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
 
@@ -50,7 +51,7 @@ export const ConversationProfile = ({match}) => {
                         </Row>
                     </Modal.Body>
                 </Modal>
-            </Container>
+            {/*</Container>*/}
         </>
     )
 }

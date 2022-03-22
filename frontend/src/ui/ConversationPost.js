@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react";
 import {Modal, Button, Row, Col, InputGroup, FormControl, Container} from "react-bootstrap";
 import {useDispatch, useSelector} from "react-redux";
 import {PostCard} from "./shared/components/PostCard";
-import {ConversationForm} from "./shared/components/ConversationForm";
+import {ConversationPostForm} from "./shared/components/ConversationPostForm";
 import {fetchConversationsByPostId} from "../store/conversations";
 import {ConversationCard} from "./shared/components/ConversationCard";
 
@@ -50,18 +50,24 @@ export const ConversationPost = ({post}) => {
                     aria-labelledby="example-custom-modal-styling-title"
                 >
                     <Modal.Header closeButton>
+                        <Modal.Title id={"modal-lg"}>Post Conversation</Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
                         <Row>
-                            <Col xs={2}>
+                            <Col>
                                 {post && <p><strong>{post.postTitle}</strong></p>}
                             </Col>
                             <Col>
                                 {/*<FindProfileName/>*/}
-                                {profile && <a className={"dark-a"} href={`/profile/${profile.profileId}`}>{profile.profileName}</a>}
+                                {profile && <p>Posted by: <a className={"dark-a"} href={`/profile/${profile.profileId}`}>{profile.profileName}</a></p>}
                             </Col>
                             <Col>
-                                {post && dateShort.toLocaleDateString()}
+                                {post && <p>On: {dateShort.toLocaleDateString()}</p>}
+                            </Col>
+                        </Row>
+                        <Row>
+                            <Col>
+                                {post && (<p>{post.postContent}</p>)}
                             </Col>
                         </Row>
                         <Row>
@@ -71,7 +77,7 @@ export const ConversationPost = ({post}) => {
                             </Col>
                         </Row>
                         <Row>
-                            {post && <ConversationForm post={post}/>}
+                            {post && <ConversationPostForm post={post}/>}
                         </Row>
                     </Modal.Body>
                 </Modal>
