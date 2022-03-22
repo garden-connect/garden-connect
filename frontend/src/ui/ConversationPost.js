@@ -50,6 +50,7 @@ export const ConversationPost = ({post}) => {
                     aria-labelledby="example-custom-modal-styling-title"
                 >
                     <Modal.Header closeButton>
+                        <Modal.Title id={"modal-lg"}>Post Conversation</Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
                         <Row>
