@@ -53,15 +53,20 @@ export const ConversationPost = ({post}) => {
                     </Modal.Header>
                     <Modal.Body>
                         <Row>
-                            <Col xs={2}>
+                            <Col>
                                 {post && <p><strong>{post.postTitle}</strong></p>}
                             </Col>
                             <Col>
                                 {/*<FindProfileName/>*/}
-                                {profile && <a className={"dark-a"} href={`/profile/${profile.profileId}`}>{profile.profileName}</a>}
+                                {profile && <p>Posted by: <a className={"dark-a"} href={`/profile/${profile.profileId}`}>{profile.profileName}</a></p>}
                             </Col>
                             <Col>
-                                {post && dateShort.toLocaleDateString()}
+                                {post && <p>On: {dateShort.toLocaleDateString()}</p>}
+                            </Col>
+                        </Row>
+                        <Row>
+                            <Col>
+                                {post && (<p>{post.postContent}</p>)}
                             </Col>
                         </Row>
                         <Row>
