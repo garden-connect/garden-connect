@@ -133,7 +133,10 @@ span.navbar-brand {
 .about-me {
     color: #E9BD70;
 }
-
+.navbar-brand img {
+    height: 50px;
+    width: auto;
+}
 
 img {
     height: 150px;
@@ -176,4 +179,9 @@ a {
 }
 .dark-a {
     color: #4e6157;
+}
+.dropdown-toggle {
+    /*width: 120px;*/
+    white-space: normal;
+    word-break: normal;
 }

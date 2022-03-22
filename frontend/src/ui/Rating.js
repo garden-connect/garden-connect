@@ -23,7 +23,7 @@ export const Rating = ({match}) => {
 
     return (
         <>
-            <main>
+            {/*<main>*/}
                 <Button variant="primary" onClick={() => setModalShow(true)}>
                     Ratings/Reviews
                 </Button>
@@ -73,7 +73,7 @@ export const Rating = ({match}) => {
                     </Modal.Body>
                 </Modal>
 
-            </main>
+            {/*</main>*/}
         </>
     )
 }

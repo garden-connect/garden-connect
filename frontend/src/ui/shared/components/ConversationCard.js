@@ -10,8 +10,9 @@ export const ConversationCard = ({message}) => {
 // console.log(message)
 
     const FindProfileName = () => {
-        const profileSenderMessage = conversation.find(conversation => conversation.conversationSendProfileId !== auth.profileId)
-        const profileSenderId = profileSenderMessage.conversationSendProfileId
+        // const profileSenderMessage = conversation.find(conversation => conversation.conversationSendProfileId !== auth.profileId)
+        // const profileSenderId = profileSenderMessage.conversationSendProfileId
+        const profileSenderId = message.conversationSendProfileId
         const profileSender = profiles.find(profile => profile.profileId === profileSenderId)
         setShowTalker(false)
         return (
@@ -42,6 +43,7 @@ export const ConversationCard = ({message}) => {
                                 {/*{message && message.conversationSendProfileId}*/}
                             </Col>
                         </Row>
+
                 </Container>
         </>
     )

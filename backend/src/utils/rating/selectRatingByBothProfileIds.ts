@@ -2,6 +2,8 @@ import {Rating} from "../interfaces/Ratings";
 import {connect} from "../database.utils";
 import {RowDataPacket} from 'mysql2';
 
+const validator = require("validator")
+
 export async function selectRatingByBothProfileIds(rating: Rating) : Promise<Rating|null> {
     try {
         const mySqlConnection = await connect();
@@ -9,7 +11,7 @@ export async function selectRatingByBothProfileIds(rating: Rating) : Promise<Rat
         const result : RowDataPacket[]= await mySqlConnection.execute(mySqlSelectQuery, rating) as RowDataPacket[]
         await mySqlConnection.release()
         const rows: Rating[] = result[0] as Rating[]
-        return rows.length !== 0 ? {...rows[0]} : null;
+        return rows.length !== 0 ? {...rows[0], ratingContent:validator.unescape(rows[0].ratingContent)} : null;
     } catch (error) {
         throw error
     }

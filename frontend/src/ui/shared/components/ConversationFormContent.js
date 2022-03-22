@@ -1,6 +1,6 @@
 import React from "react";
 import {
-    Button,
+    Button, Col, Container,
     Dropdown,
     DropdownButton,
     Form,
@@ -30,35 +30,42 @@ export const ConversationFormContent = (props) => {
         <>
             <form  onSubmit={handleSubmit}>
                 <InputGroup>
-                    <div>
+                    <Container>
+                        <div className={"row my-1"}>
+                            <Col>
+                                {/*Title Input*/}
+                                <input id={"conversationContent"} placeholder={"Type your message here"}
+                                       className="form-control"
+                                       name="conversationContent"
+                                       value={values.conversationContent}
+                                       onChange={handleChange}
+                                       onBlur={handleBlur}
+                                />
+                            </Col>
+                            <Col>
 
-                        {/*Title Input*/}
-                        <input id={"conversationContent"} placeholder={"Type your message here"}
-                               className="form-control"
-                               name="conversationContent"
-                               value={values.conversationContent}
-                               onChange={handleChange}
-                               onBlur={handleBlur}
-                        />
-                        {
-                            errors.conversationContent && touched.conversationContent && (
-                                <div className="alert alert-danger">
-                                    {errors.conversationContent}
+                                <div>
+                                    <Button className="btn btn-primary mb-2" type="submit">Send</Button>
+
+                                    <button
+                                        className="btn btn-secondary mb-2"
+                                        onClick={handleReset}
+                                        disabled={!dirty || isSubmitting}
+                                    >Cancel
+                                    </button>
                                 </div>
-                            )
-                        }
-
-                        <div className={"mt-3"}>
-                            <Button className="btn btn-primary mb-2" type="submit">Send</Button>
-
-                            <button
-                                className="btn btn-secondary mb-2"
-                                onClick={handleReset}
-                                disabled={!dirty || isSubmitting}
-                            >Cancel
-                            </button>
+                            </Col>
                         </div>
-                    </div>
+                        <Row>
+                            {
+                                errors.conversationContent && touched.conversationContent && (
+                                    <div className="alert alert-danger">
+                                        {errors.conversationContent}
+                                    </div>
+                                )
+                            }
+                        </Row>
+                    </Container>
 
                 </InputGroup>
                 {/*<FormDebugger {...props} />*/}
